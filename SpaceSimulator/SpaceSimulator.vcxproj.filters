@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{d5fddeb3-c2be-4c2f-a8cf-7f0b1d11c78a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{42161b40-5554-4ae3-8d7d-0ae1cf954f07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{e5c5a2d1-3545-4570-92d7-e8ef95b3665b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{2b7d0059-777a-437b-b6d2-3b6c922b8e9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{80989588-ed6e-45aa-a369-04274694b5ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Textures">
+      <UniqueIdentifier>{3a0936d7-ad90-471a-8915-4b19685acc73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Init">
+      <UniqueIdentifier>{f7301f1f-afee-4e09-9246-d52736b6ef93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Init">
+      <UniqueIdentifier>{41ebc821-6be3-4269-a6bf-404effb0827e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Managers">
+      <UniqueIdentifier>{c8f1ead0-be1d-485b-8089-90192c0fe5bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Managers">
+      <UniqueIdentifier>{c5b03b84-4dbf-49c2-b583-9c1d6054112d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Rendering">
+      <UniqueIdentifier>{e709353e-055d-448a-928c-a4f7df866c6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Models">
+      <UniqueIdentifier>{50c0251e-d678-4837-a369-8074e152c328}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\EngineInterfaces">
+      <UniqueIdentifier>{6dc036ab-2041-49c1-85e3-aeee52f5dd96}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FrameBufferInfo.h">
+      <Filter>Header Files\Engine\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="InitGlew.h">
+      <Filter>Header Files\Engine\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="InitGlut.h">
+      <Filter>Header Files\Engine\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="ContextInfo.h">
+      <Filter>Header Files\Engine\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInfo.h">
+      <Filter>Header Files\Engine\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="BMPHeaders.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files\Engine\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>Header Files\Engine\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderManager.h">
+      <Filter>Header Files\Engine\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="ISceneListener.h">
+      <Filter>Header Files\Engine\EngineInterfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IControlListener.h">
+      <Filter>Header Files\Engine\EngineInterfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelsManager.h">
+      <Filter>Header Files\Engine\Managers</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

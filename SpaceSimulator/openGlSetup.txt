@@ -1,0 +1,5 @@
+This is the site that finally worked to set up openGL
+	http://in2gpu.com/2014/11/29/setting-opengl-visual-studio-using-nuget/
+	NOTE: includes in this tutorial on the next page are wrong. use #include "GL/glew.h" #include"GL/freeglut.h"
+Open GL math libraries
+	GLM: Install-Package glm
