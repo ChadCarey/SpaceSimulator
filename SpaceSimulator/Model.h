@@ -13,17 +13,17 @@ namespace Rendering
 		virtual ~Model();
 
 		// GETTERS
-		virtual GLuint GetVao() const;
-		virtual const std::vector<GLuint>& GetVbos() const;
-		virtual const GLuint GetTexture(std::string textureName) const;
+		virtual GLuint getVao() const;
+		virtual const std::vector<GLuint>& getVbos() const;
+		virtual const GLuint getTexture(std::string textureName) const;
 
 		// SETTERS
-		virtual void SetProgram(GLuint shaderName);
-		virtual void SetTexture(std::string textureName, GLuint texture);
+		virtual void setProgram(GLuint shaderName);
+		virtual void setTexture(std::string textureName, GLuint texture);
 
 		// METHODS
-		virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix);
-		virtual void Destroy();
+		virtual void draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix);
+		virtual void destroy();
 
 	protected:
 		std::map<std::string, GLuint> textures;
@@ -31,5 +31,6 @@ namespace Rendering
 		GLuint program;
 		std::vector<GLuint> vbos;
 		glm::vec3 position;
+		glm::vec3 rotation;
 	};
 }

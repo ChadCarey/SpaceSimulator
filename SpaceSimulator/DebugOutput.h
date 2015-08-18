@@ -8,7 +8,7 @@
 /**
 * Ref: http://in2gpu.com/2015/05/29/debugging-opengl-part-ii-debug-output/
 */
-namespace Core
+namespace Init
 {
 
 	class DebugOutput
@@ -16,9 +16,9 @@ namespace Core
 	public:
 		DebugOutput(){};
 		~DebugOutput(){};
-		static void CALLBACK Callback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *msg, void *data)
+		static void CALLBACK callback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *msg, void *data)
 		{
-			std::cout << "\n**********Debug Output**************" << std::endl;
+			std::cout << "\n********** Debug Output **************" << std::endl;
 			std::cout << "source: " << getStringForSource(source).c_str() << std::endl;
 			std::cout << "type: " << getStringForType(type).c_str() << std::endl;
 			std::cout << "severity: " << getStringForSeverity(severity).c_str() << std::endl;
