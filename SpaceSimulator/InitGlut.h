@@ -24,15 +24,13 @@ namespace Init
 			// METHODS
 			static void init(const Init::WindowInfo& window,
 				const Init::ContextInfo& context,
-				const Init::FramebufferInfo& framebufferInfo, 
-				const int fps);
+				const Init::FramebufferInfo& framebufferInfo);
 			static void run(); // this is the main run function
 			static void enterFullscreen();
 			static void exitFullscreen();
 			static void printOpenGLInfo(const Init::WindowInfo& windowInfo, const Init::ContextInfo& context);
 		private:
 			// VARIABLES
-			static int fps;
 			static bool drawn;
 			static GraphicsEngine::EngineInterface::ISceneListener* sceneListener;
 			static GraphicsEngine::EngineInterface::IControlListener* controlListener;

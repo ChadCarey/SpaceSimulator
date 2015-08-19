@@ -11,8 +11,9 @@ namespace Managers
 	{
 	public:
 		// CONSTRUCTORS
-		static CameraManager* getInstance(); // Singleton
-		
+		CameraManager();
+		CameraManager(const CameraManager&);
+
 		// GETTERS
 		glm::mat4 getViewMatrix();
 		glm::vec3 getCameraPosition();
@@ -47,18 +48,13 @@ namespace Managers
 			glm::vec3& target,  //camera target
 			glm::vec3& up); // ?related to viewing angle?
 
-	private:
-		// CONTRUCTORS
-		CameraManager();
-		CameraManager(const CameraManager&);
+		// METHODS
+		CameraManager& operator=(const CameraManager&);
 
+	private:
 		// VARIABLES
 		glm::vec3 cameraPosition;
 		glm::vec3 cameraTarget; 
 		glm::vec3 cameraUp;
-		static CameraManager* instance;
-
-		// METHODS
-		CameraManager& operator=(const CameraManager&);
 	};
 }

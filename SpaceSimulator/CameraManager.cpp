@@ -2,8 +2,6 @@
 using namespace glm;
 using namespace Managers;
 
-CameraManager* CameraManager::instance = NULL;
-
 /**
 *
 */
@@ -12,23 +10,6 @@ CameraManager::CameraManager()
 	this->setCameraPosition(glm::vec3(1, 4, 15.4));
 	this->setCameraTarget(glm::vec3(0.0, 0.0, 0.0));
 	this->setCameraUp(glm::vec3(0.0, 1.0, 0.0));
-}
-
-/**
-*
-*/
-CameraManager* CameraManager::getInstance()
-{
-	if (instance == NULL)
-	{
-		std::cout << "Creating camera manager instance\n";
-		instance = new CameraManager();
-	}
-	else
-	{
-		std::cout << "Returning pointer to existing camera\n";
-	}
-	return instance;
 }
 
 /**

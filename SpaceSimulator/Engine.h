@@ -2,6 +2,7 @@
 #include "InitGlut.h"
 #include "ISceneListener.h"
 #include "IControlListener.h"
+#include "IEventScheduler.h"
 #include "TextureLoader.h"
 #include "ShaderManager.h"
 #include "ModelsManager.h"
@@ -17,10 +18,10 @@ namespace GraphicsEngine
 		~Engine();
 
 		//OpenGL, glut, glew, and manager init
-		bool Init(const EngineInterface::ISceneListener*& sceneController, const EngineInterface::IControlListener*& gameControls);
+		bool init(EngineInterface::ISceneListener* sceneController, EngineInterface::IControlListener* gameControls, EngineInterface::IEventScheduler* eventScheduler);
 
 		// LOOP
-		void Run();
+		void run();
 
 		// GETTERS
 		Managers::ShaderManager* getShaderManager() const;

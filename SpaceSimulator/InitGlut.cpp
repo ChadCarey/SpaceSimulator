@@ -8,7 +8,7 @@ WindowInfo InitGLUT::windowInformation;
 ISceneListener* InitGLUT::sceneListener = NULL;
 IControlListener* InitGLUT::controlListener = NULL;
 
-void InitGLUT::init(const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FramebufferInfo& framebufferInfo, const int newFPS)
+void InitGLUT::init(const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FramebufferInfo& framebufferInfo)
 {
 	int dummyargc = 1;
 	char *dummyargv[] = { "Space Simulator", NULL };
@@ -109,7 +109,7 @@ void InitGLUT::printOpenGLInfo(const Init::WindowInfo& windowInfo, const Init::C
 
 void InitGLUT::idleCallback(void)
 {
-	//do nothing, just redisplay
+	// just redisplay
 	glutPostRedisplay();
 }
 
