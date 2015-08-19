@@ -10,16 +10,13 @@
 */
 namespace Rendering
 {
-	namespace Models
-	{
-		class CubeTexture : public Model
+		class TexturedCube : public Model
 		{
 		public:
-			CubeTexture(float scale = 1);
-			~CubeTexture();
+			TexturedCube(float scale = 1);
+			~TexturedCube();
 
 			void create(float scale = 1);
 			virtual void draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override final;
 		};
-	}
 }

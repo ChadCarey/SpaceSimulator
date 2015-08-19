@@ -1,6 +1,9 @@
 #pragma once
 #include <map>
 #include <vector>
+#include "GL\glew.h"
+#include "GL\freeglut.h"
+#include "VertexFormat.h"
 #include <glm\glm.hpp>
 
 namespace Rendering
@@ -9,9 +12,9 @@ namespace Rendering
 	{
 	public:
 		// CONSTRUCTORS
-		Model(float scale);
+		Model();
 		virtual ~Model();
-
+		
 		// GETTERS
 		virtual GLuint getVao() const;
 		virtual const std::vector<GLuint>& getVbos() const;

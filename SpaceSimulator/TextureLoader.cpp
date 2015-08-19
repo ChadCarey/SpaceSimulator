@@ -5,11 +5,11 @@ TextureLoader::TextureLoader() {}
 
 TextureLoader::~TextureLoader() {}
 
-unsigned int TextureLoader::LoadTexture(const std::string& filename, unsigned int width, unsigned int height)
+unsigned int TextureLoader::loadTexture(const std::string& filename, unsigned int width, unsigned int height)
 {
 
 	unsigned char* data;
-	LoadBMPFile(filename, width, height, data);
+	loadBMPFile(filename, width, height, data);
 
 	//create the OpenGL texture
 	unsigned int gl_texture_object;
@@ -42,7 +42,7 @@ unsigned int TextureLoader::LoadTexture(const std::string& filename, unsigned in
 	return gl_texture_object;
 }
 
-void TextureLoader::LoadBMPFile(const std::string& filename, unsigned int& width, unsigned int& height, unsigned char*& data)
+void TextureLoader::loadBMPFile(const std::string& filename, unsigned int& width, unsigned int& height, unsigned char*& data)
 {
 	//read the file
 	std::ifstream file(filename.c_str(), std::ios::in | std::ios::binary);

@@ -1,18 +1,18 @@
-#include "CubeTexture.h"
-using namespace Models;
+#include "TexturedCube.h"
 using namespace Rendering;
 
 #define PI 3.14159265
 
-CubeTexture::CubeTexture()
+TexturedCube::TexturedCube(float scale)
+{
+	create(scale);
+}
+
+TexturedCube::~TexturedCube()
 {
 }
 
-CubeTexture::~CubeTexture()
-{
-}
-
-void CubeTexture::Create(float scale)
+void TexturedCube::create(float scale)
 {
 	glm::vec3 scalingVector(scale, scale, scale);
 
@@ -20,18 +20,20 @@ void CubeTexture::Create(float scale)
 	GLuint vbo;
 	GLuint ibo;
 
-	//time(&timer);
-
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 	
 	std::vector<VertexFormat> vertices;
+
+	// THE FOLLOWING WILL BE REPLACED BY A VERTICESLOADER METHOD IN MODEL CLASS
+
 	std::vector<unsigned int>  indices = { 0, 1, 2, 0, 2, 3,   //front
 		4, 5, 6, 4, 6, 7,   //right
 		8, 9, 10, 8, 10, 11,  //back
 		12, 13, 14, 12, 14, 15,  //left
 		16, 17, 18, 16, 18, 19,  //upper
 		20, 21, 22, 20, 22, 23 }; //bottom
+
 	//front
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0) * scalingVector,
 		glm::vec2(0, 0)));
@@ -112,33 +114,21 @@ void CubeTexture::Create(float scale)
 	this->vbos.push_back(vbo);
 	this->vbos.push_back(ibo);
 
-	rotation_speed = glm::vec3(30.0, 20.0, 10.0);
 	rotation = glm::vec3(45.0, 45.0, 45.0);
 }
 
-void CubeTexture::Update()
+void TexturedCube::draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
-	//rotation = 0.01f * rotation_speed + rotation;
-	//rotation_sin = glm::vec3(rotation.x * PI / 180, rotation.y * PI / 180, rotation.z * PI / 180);
-	rotation_sin = glm::vec3(0 * PI / 180, 0 * PI / 180, 0 * PI / 180);
-}
-
-void CubeTexture::Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
-{
+	// tell openGL which shaderProgram we are using
 	glUseProgram(program);
 	glBindVertexArray(vao);
-
-	/* TEXTURE CODE */
-	/*glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, this->GetTexture("Create"));
-	unsigned int textureLocation = glGetUniformLocation(program, "texture1");
-	glUniform1i(textureLocation, 0);*/
-	/* TEXTURE CODE */
 	
-	glUniform3f(glGetUniformLocation(program, "rotation"), rotation_sin.x, rotation_sin.y, rotation_sin.z);
+	// pass in shaderVariables
+	glUniform3f(glGetUniformLocation(program, "rotation"), rotation.x, rotation.y, rotation.z);
 	glUniform3f(glGetUniformLocation(program, "position"), 0, 0, 0);
-	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, GLU_FALSE, &view_matrix[0][0]); // &(glm::scale(view_matrix,glm::vec3(size, size, size)))[0][0]); // 
+	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, GLU_FALSE, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
 
+	// draw using triangles
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
