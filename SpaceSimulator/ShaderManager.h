@@ -19,8 +19,8 @@ namespace Managers
 		ShaderManager();
 		~ShaderManager();
 		void createProgram(const std::string& shaderName, const std::string& VertexShaderFilename, const std::string& FragmentShaderFilename);
-		static const GLuint ShaderManager::GetShader(const std::string& shaderName) throw (std::string);
-		static void ShaderManager::DeleteShader(const std::string& shaderName);
+		static const GLuint ShaderManager::getShader(const std::string& shaderName) throw (std::string);
+		static void ShaderManager::deleteShader(const std::string& shaderName);
 
 	private:
 		std::string readShader(const std::string filename);

@@ -8,6 +8,9 @@
 #include "IControlListener.h"
 #include "DebugOutput.h"
 
+/**
+* InitGLUT
+*/
 namespace Init
 {
 		class InitGLUT{
@@ -16,31 +19,37 @@ namespace Init
 			// GETTERS
 
 			// SETTERS
-			static void setListeners(GraphicsEngine::EngineInterface::ISceneListener*& sceneListener, GraphicsEngine::EngineInterface::IControlListener*& controlListener);
+			static void setListeners(GraphicsEngine::EngineInterface::ISceneListener* sceneListener, GraphicsEngine::EngineInterface::IControlListener* controlListener);
 
 			// METHODS
 			static void init(const Init::WindowInfo& window,
 				const Init::ContextInfo& context,
-				const Init::FramebufferInfo& framebufferInfo);
+				const Init::FramebufferInfo& framebufferInfo, 
+				const int fps);
 			static void run(); // this is the main run function
-			static void close();
 			static void enterFullscreen();
 			static void exitFullscreen();
-			/*static void printOpenGLInfo(const Core::WindowInfo& windowInfo,
-				const Core::ContextInfo& context);*/
+			static void printOpenGLInfo(const Init::WindowInfo& windowInfo, const Init::ContextInfo& context);
 		private:
 			// VARIABLES
-			static EngineInterface::ISceneListener* sceneListener;
-			static EngineInterface::IControlListener* controlListener;
+			static int fps;
+			static bool drawn;
+			static GraphicsEngine::EngineInterface::ISceneListener* sceneListener;
+			static GraphicsEngine::EngineInterface::IControlListener* controlListener;
 			static Init::WindowInfo windowInformation;
 
 			// SCENE CALLBACK METHODS
 			static void idleCallback(void);
-			static void timerCallback(int value);
 			static void displayCallback(void);
 			static void reshapeCallback(int width, int height);
 			static void closeCallback();
 
 			// CONTROL CALLBACK METHODS
+			static void mouseMove();
+			static void mouseDrag();
+			static void mouseClick();
+			static void keyDown();
+			static void keyUp();
+			static void specialKeyDown();
 		};
 }

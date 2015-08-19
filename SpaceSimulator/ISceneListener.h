@@ -21,12 +21,10 @@ namespace GraphicsEngine
 			virtual void beginFrameCallback() = 0; // physics time
 			virtual void drawFrameCallback() = 0; // drawing time
 			virtual void endFrameCallback() = 0;
-			virtual void idleCallback() = 0;
-			virtual void timerCallback() = 0;
-			virtual void windowReshapeCallback(int width,
-				int height,
-				int previous_width,
-				int previous_height) = 0;
+			virtual void startTimer(int miliseconds) = 0;
+			virtual void timerCallback(int value) = 0;
+			virtual bool closeCallback() = 0;
+			virtual void windowReshapeCallback(int width, int height, int previousWidth, int previousHeight) = 0;
 		};
 
 		inline ISceneListener::~ISceneListener(){

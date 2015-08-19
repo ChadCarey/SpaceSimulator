@@ -11,15 +11,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="InitGlew.cpp" />
+    <ClCompile Include="InitGlut.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Texture_Fragment_Shader.glsl" />
+    <None Include="Texture_Vertex_Shader.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BMPHeaders.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="ContextInfo.h" />
+    <ClInclude Include="DebugOutput.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="FrameBufferInfo.h" />
     <ClInclude Include="IControlListener.h" />
@@ -29,8 +34,12 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelsManager.h" />
     <ClInclude Include="ShaderManager.h" />
+    <ClInclude Include="TexturedCube.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="WindowInfo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="SmileTexture.bmp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{783EA184-D212-48BF-A76D-A7929B2241C1}</ProjectGuid>

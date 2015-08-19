@@ -13,9 +13,9 @@ namespace Rendering
 			TextureLoader();
 			~TextureLoader();
 
-			unsigned int LoadTexture(const std::string& filename, unsigned int width, unsigned int height);
+			unsigned int loadTexture(const std::string& filename, unsigned int width, unsigned int height);
 
 		private:
-			void LoadBMPFile(const std::string& filename, unsigned int& width, unsigned int& height, unsigned char*& data);
+			void loadBMPFile(const std::string& filename, unsigned int& width, unsigned int& height, unsigned char*& data);
 	};
 }

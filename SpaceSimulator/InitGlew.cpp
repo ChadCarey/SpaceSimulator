@@ -1,6 +1,10 @@
 #include "InitGlew.h"
-using namespace Core;
+using namespace Init;
 
+/**
+* FindOpenGLVersion
+* this will find the supported openGL version for the pc
+*/
 std::string InitGLEW::findOpenGLVersion()
 {
 	std::string version = "none";
@@ -32,10 +36,12 @@ std::string InitGLEW::findOpenGLVersion()
 	return version;
 }
 
-
-void InitGLEW::Init()
+/**
+* Init
+* inicializes GLEW and displays the supported openGL version
+*/
+void InitGLEW::init()
 {
-
 	glewExperimental = true;
 	if (glewInit() == GLEW_OK)
 	{

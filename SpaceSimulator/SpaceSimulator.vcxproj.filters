@@ -52,14 +52,32 @@
     <Filter Include="Header Files\Engine\EngineInterfaces">
       <UniqueIdentifier>{6dc036ab-2041-49c1-85e3-aeee52f5dd96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Models">
+      <UniqueIdentifier>{9e055ecd-e988-4c6b-9339-01058ec80cfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Rendering">
+      <UniqueIdentifier>{4eacb35f-5a38-4ec7-8775-394d54c51629}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="InitGlew.cpp">
+      <Filter>Source Files\Engine\Init</Filter>
+    </ClCompile>
+    <ClCompile Include="InitGlut.cpp">
+      <Filter>Source Files\Engine\Init</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Texture_Fragment_Shader.glsl">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Texture_Vertex_Shader.glsl">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameBufferInfo.h">
@@ -104,5 +122,16 @@
     <ClInclude Include="ModelsManager.h">
       <Filter>Header Files\Engine\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="TexturedCube.h">
+      <Filter>Header Files\Engine\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugOutput.h">
+      <Filter>Header Files\Engine\Init</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="SmileTexture.bmp">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

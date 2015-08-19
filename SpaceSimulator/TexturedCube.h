@@ -15,11 +15,11 @@ namespace Rendering
 		class CubeTexture : public Model
 		{
 		public:
-			CubeTexture(float scale);
+			CubeTexture(float scale = 1);
 			~CubeTexture();
 
-			void Create(float scale = 1);
-			virtual void Draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override final;
+			void create(float scale = 1);
+			virtual void draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override final;
 		};
 	}
 }

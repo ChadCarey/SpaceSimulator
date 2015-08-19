@@ -3,6 +3,7 @@
 #include <GL\glut.h>
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
+#include <iostream>
 
 namespace Managers
 {
@@ -33,6 +34,7 @@ namespace Managers
 		glm::mat4 LookAt(glm::vec3& position, //camera position (eye)
 			glm::vec3& target,  //camera target
 			glm::vec3& up); // ?related to viewing angle?
+		void setDefaults();
 
 	private:
 		// CONTRUCTORS

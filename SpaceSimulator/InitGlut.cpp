@@ -1,17 +1,18 @@
 #include "InitGlut.h"
 
-using namespace Core;
+using namespace Init;
+using namespace GraphicsEngine::EngineInterface;
 
 // statics
-Core::IListener* Init_GLUT::listener = NULL;
-Core::WindowInfo Init_GLUT::windowInformation;
+WindowInfo InitGLUT::windowInformation;
+ISceneListener* sceneListener = NULL;
+IControlListener* controlListener = NULL;
 
-void Init_GLUT::init(const Core::WindowInfo& windowInfo, const Core::ContextInfo& contextInfo, const Core::FramebufferInfo& framebufferInfo)
+void InitGLUT::init(const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FramebufferInfo& framebufferInfo, const int newFPS)
 {
-	// dummy args
-	int fakeargc = 1;
-	char *fakeargv[] = { "dummy", NULL };
-	glutInit(&fakeargc, fakeargv);
+	int dummyargc = 1;
+	char *dummyargv[] = { "Space Simulator", NULL };
+	glutInit(&dummyargc, dummyargv);
 
 	if (contextInfo.core)
 	{
@@ -27,32 +28,36 @@ void Init_GLUT::init(const Core::WindowInfo& windowInfo, const Core::ContextInfo
 		glutInitContextProfile(GLUT_COMPATIBILITY_PROFILE);
 	}
 
-	std::cout << "x: " << windowInfo.position_x << std::endl;
-	std::cout << "y: " << windowInfo.position_y << std::endl;
-	std::cout << "width: " << windowInfo.width << std::endl;
-	std::cout << "height: " << windowInfo.height << std::endl;
-	std::cout << "name: " << windowInfo.name.c_str() << std::endl;
+	std::cout << "window position x: " << windowInfo.position_x << std::endl;
+	std::cout << "window position y: " << windowInfo.position_y << std::endl;
+	std::cout << "window width: " << windowInfo.width << std::endl;
+	std::cout << "window height: " << windowInfo.height << std::endl;
+	std::cout << "window name: " << windowInfo.name.c_str() << std::endl;
 
 	glutInitDisplayMode(framebufferInfo.flags);
 	glutInitWindowPosition(windowInfo.position_x, windowInfo.position_y);
 	glutInitWindowSize(windowInfo.width, windowInfo.height);
 
-
-	glutCreateWindow(windowInfo.name.c_str());
+	// sets the window name
+	glutCreateWindow(windowInfo.name.c_str()); 
 
 	std::cout << "GLUT:initialized" << std::endl;
-	glEnable(GL_DEBUG_OUTPUT); // enables debug messages from OpenGL and shader programs ( must be done after glutCreateWindow() )
+	// enables debug messages from OpenGL and shader programs ( must be done after glutCreateWindow() )
+	glEnable(GL_DEBUG_OUTPUT); 
 
-	// callbacks
+	// scene callbacks
 	glutIdleFunc(idleCallback); // called when events are not being received.
 	glutCloseFunc(closeCallback);
 	glutDisplayFunc(displayCallback);
 	glutReshapeFunc(reshapeCallback); // triggered when the window is reshaped
 
-	InitGLEW::Init();
+	// control callbacks
+		// TODO
+
+	InitGLEW::init();
 
 	// debug callback functions ( must be done after InitGLEW::Init() )
-	glDebugMessageCallback(DebugOutput::Callback, NULL);
+	glDebugMessageCallback(DebugOutput::callback, NULL);
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, NULL, GL_TRUE);
 
 
@@ -65,84 +70,94 @@ void Init_GLUT::init(const Core::WindowInfo& windowInfo, const Core::ContextInfo
 
 }
 
-//starts the rendering Loop
-void Init_GLUT::run()
+/**
+* run
+* starts the GLUT main loop
+*/
+void InitGLUT::run()
 {
 	std::cout << "GLUT:\t Start Running " << std::endl;
 	glutMainLoop();
 }
 
-void Init_GLUT::printOpenGLInfo(const Core::WindowInfo& windowInfo, const Core::ContextInfo& contextInfo)
+/**
+* setListeners
+* sets the sceneListener and controlListener that is to be used by GLUT
+*/
+void InitGLUT::setListeners(ISceneListener* newSceneListener, IControlListener* newControlListener)
 {
+	sceneListener = newSceneListener;
+	controlListener = newControlListener;
+}
 
+/**
+* printOpenGLInfo
+* display info about the initilization of openGL and glut
+*/
+void InitGLUT::printOpenGLInfo(const Init::WindowInfo& windowInfo, const Init::ContextInfo& contextInfo)
+{
 	const unsigned char* renderer = glGetString(GL_RENDERER);
 	const unsigned char* vendor = glGetString(GL_VENDOR);
 	const unsigned char* version = glGetString(GL_VERSION);
 
-	std::cout << "******************************************************               ************************" << std::endl;
+	std::cout << "************************** GLUT INFO *******************************" << std::endl;
 	std::cout << "GLUT:Initialise" << std::endl;
 	std::cout << "GLUT:\tVendor : " << vendor << std::endl;
 	std::cout << "GLUT:\tRenderer : " << renderer << std::endl;
 	std::cout << "GLUT:\tOpenGl version: " << version << std::endl;
 }
 
-
-
-void Init_GLUT::close()
-{
-	std::cout << "GLUT:\t Finished" << std::endl;
-	glutLeaveMainLoop();
-}
-
-void Init_GLUT::idleCallback(void)
+void InitGLUT::idleCallback(void)
 {
 	//do nothing, just redisplay
 	glutPostRedisplay();
 }
 
-void Init_GLUT::displayCallback()
+void InitGLUT::displayCallback()
 {
 	//check for NULL
-	if (listener)
+	if (sceneListener)
 	{
-		listener->notifyBeginFrame();
-		listener->notifyDisplayFrame();
+		sceneListener->beginFrameCallback();
+		sceneListener->drawFrameCallback();
 
 		glutSwapBuffers();
 
-		listener->notifyEndFrame();
+		sceneListener->endFrameCallback();
 	}
 }
 
-void Init_GLUT::reshapeCallback(int width, int height)
+void InitGLUT::reshapeCallback(int width, int height)
 {
 	if (windowInformation.isReshapable == true)
 	{
-		if (listener)
+		if (sceneListener)
 		{
-			listener->notifyReshape(width, height, windowInformation.width, windowInformation.height);
+			sceneListener->windowReshapeCallback(width, height, windowInformation.width, windowInformation.height);
 		}
 		windowInformation.width = width;
 		windowInformation.height = height;
 	}
 }
 
-void Init_GLUT::closeCallback()
+void InitGLUT::closeCallback()
 {
-	close();
+	if (sceneListener)
+	{
+		if (sceneListener->closeCallback())
+		{
+			std::cout << "GLUT:\t Finished" << std::endl;
+			glutLeaveMainLoop();
+		}
+	}
 }
 
-void Init_GLUT::enterFullscreen()
+void InitGLUT::enterFullscreen()
 {
 	glutFullScreen();
 }
 
-void Init_GLUT::exitFullscreen()
+void InitGLUT::exitFullscreen()
 {
 	glutLeaveFullScreen();
-}
-
-void Init_GLUT::setListener(Core::IListener*& iListener)
-{
-	listener = iListener;
 }
