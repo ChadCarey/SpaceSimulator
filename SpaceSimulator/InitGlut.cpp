@@ -5,8 +5,8 @@ using namespace GraphicsEngine::EngineInterface;
 
 // statics
 WindowInfo InitGLUT::windowInformation;
-ISceneListener* sceneListener = NULL;
-IControlListener* controlListener = NULL;
+ISceneListener* InitGLUT::sceneListener = NULL;
+IControlListener* InitGLUT::controlListener = NULL;
 
 void InitGLUT::init(const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FramebufferInfo& framebufferInfo, const int newFPS)
 {

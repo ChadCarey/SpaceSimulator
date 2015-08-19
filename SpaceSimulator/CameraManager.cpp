@@ -9,8 +9,8 @@ CameraManager* CameraManager::instance = NULL;
 */
 CameraManager::CameraManager() 
 {
-	this->setCameraPosition(glm::vec3(0.0,0.0,0.0));
-	this->setCameraTarget(glm::vec3(0.0, 0.0, 10.0));
+	this->setCameraPosition(glm::vec3(1, 4, 15.4));
+	this->setCameraTarget(glm::vec3(0.0, 0.0, 0.0));
 	this->setCameraUp(glm::vec3(0.0, 1.0, 0.0));
 }
 

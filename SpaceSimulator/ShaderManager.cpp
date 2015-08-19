@@ -1,19 +1,19 @@
 #include "ShaderManager.h"
 using namespace Managers;
 
-std::map<std::string, GLuint> ShaderManager::programs; // look up why this is needed for it to work
+std::map<std::string, GLuint> ShaderManager::shaderPrograms; // look up why this is needed for it to work
 
 ShaderManager::ShaderManager(void){}
 
 ShaderManager::~ShaderManager(void)
 {
 	std::map<std::string, GLuint>::iterator i;
-	for (i = programs.begin(); i != programs.end(); ++i)
+	for (i = shaderPrograms.begin(); i != shaderPrograms.end(); ++i)
 	{
 		GLuint pr = i->second;
 		glDeleteProgram(pr);
 	}
-	programs.clear();
+	shaderPrograms.clear();
 }
 
 std::string ShaderManager::readShader(const std::string filename)
@@ -93,26 +93,26 @@ void ShaderManager::createProgram(const std::string& shaderName, const std::stri
 		std::cout << "Shader Loader : LINK ERROR" << std::endl << &program_log[0] << std::endl;
 		return;
 	}
-	programs[shaderName] = program;
+	shaderPrograms[shaderName] = program;
 }
 
-const GLuint ShaderManager::GetShader(const std::string& shaderName) throw (std::string)
+const GLuint ShaderManager::getShader(const std::string& shaderName) throw (std::string)
 {
 	GLuint pro = 0;
 	try
 	{
-		pro = programs.at(shaderName);
+		pro = shaderPrograms.at(shaderName);
 	}
 	catch (std::out_of_range& oor)
 	{	}
 	return pro;
 }
 
-void ShaderManager::DeleteShader(const std::string& shaderName)
+void ShaderManager::deleteShader(const std::string& shaderName)
 {
 	try
 	{
-		programs.erase(shaderName);
+		shaderPrograms.erase(shaderName);
 	}
 	catch (const std::out_of_range& oor)
 	{
