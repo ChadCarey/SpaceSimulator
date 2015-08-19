@@ -25,16 +25,27 @@ namespace Managers
 		void setCameraUp(const glm::vec3&);
 
 		// METHODS
-		void rotatate(int x, int y);
-		void rotatateX(int x);
-		void rotatateY(int y);
-		void panRight(int left);
+		void rotateLeft(int left);
+		inline void rotateRight(int right);
+
+		void lookUp(int value);
+		inline void lookDown(int value);
+
+		void lookLeft(int value);
+		inline void lookRight(int value);
+		
+		void panRight(int right);
+		inline void panLeft(int left);
+
 		void panUp(int up);
+		inline void panDown(int down);
+
 		void moveForward(int forward);
+		inline void moveBackward(int backward);
+
 		glm::mat4 LookAt(glm::vec3& position, //camera position (eye)
 			glm::vec3& target,  //camera target
 			glm::vec3& up); // ?related to viewing angle?
-		void setDefaults();
 
 	private:
 		// CONTRUCTORS
@@ -42,7 +53,7 @@ namespace Managers
 		CameraManager(const CameraManager&);
 
 		// VARIABLES
-		glm::vec3 cameraPosition; 
+		glm::vec3 cameraPosition;
 		glm::vec3 cameraTarget; 
 		glm::vec3 cameraUp;
 		static CameraManager* instance;
