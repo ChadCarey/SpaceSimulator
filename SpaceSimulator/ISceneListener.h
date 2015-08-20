@@ -1,8 +1,6 @@
 #pragma once
-#include "ShaderManager.h"
 #include "ModelsManager.h"
 #include "CameraManager.h"
-#include "TextureLoader.h"
 
 /**
 * 
@@ -19,21 +17,23 @@ namespace GraphicsEngine
 		{
 		public:
 			ISceneListener();
+			~ISceneListener();
 
+			// events
 			virtual void beginFrameCallback() = 0;
 			virtual void drawFrameCallback() = 0;
 			virtual void endFrameCallback() = 0;
 			virtual bool closeCallback() = 0;
 			virtual void windowReshapeCallback(int width, int height, int previousWidth, int previousHeight) = 0;
 
-			// SETTERS
-			void setManagers(Managers::CameraManager* cameraManager, Managers::ModelsManager* modelsManager, Managers::ShaderManager* shaderManager, Rendering::TextureLoader* textureLoader);
+			// controls
+			virtual void mouseMoveCallback() = 0;
+			virtual void mouseDragCallback() = 0;
+			virtual void keyboardPressCallback() = 0;
+			virtual void keyboardReleaseCallback() = 0;
 
 		protected:
-			Managers::ShaderManager* shaderManager;
-			Managers::ModelsManager* modelsManager;
-			Managers::CameraManager* cameraManager;
-			Rendering::TextureLoader* textureLoader;
+			static Managers::CameraManager cameraManager;
 			glm::mat4 projectionMatrix;
 		};
 	}

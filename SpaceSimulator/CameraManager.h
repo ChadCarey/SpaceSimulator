@@ -14,10 +14,10 @@ namespace Managers
 		CameraManager(const CameraManager&);
 
 		// GETTERS
-		glm::mat4 getViewMatrix();
-		glm::vec3 getCameraPosition();
-		glm::vec3 getCameraTarget();
-		glm::vec3 getCameraUp();
+		glm::mat4 getViewMatrix() const;
+		glm::vec3 getCameraPosition() const;
+		glm::vec3 getCameraTarget() const;
+		glm::vec3 getCameraUp() const;
 
 		// SETTERS
 		void setCameraPosition(const glm::vec3&);
@@ -45,10 +45,7 @@ namespace Managers
 
 		glm::mat4 LookAt(glm::vec3& position, //camera position (eye)
 			glm::vec3& target,  //camera target
-			glm::vec3& up); // ?related to viewing angle?
-
-		// METHODS
-		CameraManager& operator=(const CameraManager&);
+			glm::vec3& up) const; // ?related to viewing angle?
 
 	private:
 		// VARIABLES

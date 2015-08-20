@@ -105,13 +105,7 @@
     <ClCompile Include="TextureLoader.cpp">
       <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Engine.cpp">
-      <Filter>Source Files\Engine\EngineInterfaces</Filter>
-    </ClCompile>
     <ClCompile Include="ISceneListener.cpp">
-      <Filter>Source Files\Engine\EngineInterfaces</Filter>
-    </ClCompile>
-    <ClCompile Include="IControlListener.cpp">
       <Filter>Source Files\Engine\EngineInterfaces</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -123,8 +117,8 @@
     <ClCompile Include="TSceneListener.cpp">
       <Filter>Source Files\Test\EngineInterfaces</Filter>
     </ClCompile>
-    <ClCompile Include="TControlListener.cpp">
-      <Filter>Source Files\Test\EngineInterfaces</Filter>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Source Files\Engine\Init</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,17 +161,11 @@
     <ClInclude Include="ISceneListener.h">
       <Filter>Header Files\Engine\EngineInterfaces</Filter>
     </ClInclude>
-    <ClInclude Include="IControlListener.h">
-      <Filter>Header Files\Engine\EngineInterfaces</Filter>
-    </ClInclude>
     <ClInclude Include="ModelsManager.h">
       <Filter>Header Files\Engine\Managers</Filter>
     </ClInclude>
     <ClInclude Include="DebugOutput.h">
       <Filter>Header Files\Engine\Init</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>Header Files\Engine\EngineInterfaces</Filter>
     </ClInclude>
     <ClInclude Include="SpaceSimulator.h">
       <Filter>Header Files\Game</Filter>
@@ -191,17 +179,14 @@
     <ClInclude Include="TSceneListener.h">
       <Filter>Header Files\Test\EngineInterfaces</Filter>
     </ClInclude>
-    <ClInclude Include="TEventScheduler.h">
-      <Filter>Header Files\Test\EngineInterfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="TControlListener.h">
-      <Filter>Header Files\Test\EngineInterfaces</Filter>
-    </ClInclude>
     <ClInclude Include="Model.h">
       <Filter>Header Files\Engine\Models</Filter>
     </ClInclude>
     <ClInclude Include="TexturedCube.h">
       <Filter>Header Files\Engine\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files\Engine\Init</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

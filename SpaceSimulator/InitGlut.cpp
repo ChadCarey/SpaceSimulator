@@ -6,7 +6,6 @@ using namespace GraphicsEngine::EngineInterface;
 // statics
 WindowInfo InitGLUT::windowInformation;
 ISceneListener* InitGLUT::sceneListener = NULL;
-IControlListener* InitGLUT::controlListener = NULL;
 
 void InitGLUT::init(const WindowInfo& windowInfo, const ContextInfo& contextInfo, const FramebufferInfo& framebufferInfo)
 {
@@ -84,10 +83,9 @@ void InitGLUT::run()
 * setListeners
 * sets the sceneListener and controlListener that is to be used by GLUT
 */
-void InitGLUT::setListeners(ISceneListener* newSceneListener, IControlListener* newControlListener)
+void InitGLUT::setListener(ISceneListener* newSceneListener)
 {
 	sceneListener = newSceneListener;
-	controlListener = newControlListener;
 }
 
 /**

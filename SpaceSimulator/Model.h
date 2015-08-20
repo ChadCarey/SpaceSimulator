@@ -2,6 +2,7 @@
 #include <map>
 #include <vector>
 #include "TextureLoader.h"
+#include "ShaderManager.h"
 #include "GL\glew.h"
 #include "GL\freeglut.h"
 #include "VertexFormat.h"
@@ -22,6 +23,9 @@ namespace Rendering
 		virtual const GLuint getTexture(std::string textureName) const;
 		glm::vec3 getPosition();
 		glm::vec3 getRotation();
+		Managers::ShaderManager* getShaderManager();
+		TextureLoader getTextureLoader();
+
 
 		// SETTERS
 		virtual void setProgram(GLuint shaderName);
@@ -46,6 +50,8 @@ namespace Rendering
 		std::vector<GLuint> vbos;
 		glm::vec3 position;
 		glm::vec3 rotation;
+		static TextureLoader textureLoader;
+		static Managers::ShaderManager shaderManager;
 
 	private:
 		virtual void destroy();

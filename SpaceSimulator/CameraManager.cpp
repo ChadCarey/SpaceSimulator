@@ -13,17 +13,28 @@ CameraManager::CameraManager()
 }
 
 /**
+*
+*/
+CameraManager::CameraManager(const CameraManager& cam)
+{
+	this->setCameraPosition(cam.getCameraPosition());
+	this->setCameraTarget(cam.getCameraTarget());
+	this->setCameraUp(cam.getCameraUp());
+}
+
+
+/**
 * 
 */
-glm::mat4 CameraManager::getViewMatrix()
+glm::mat4 CameraManager::getViewMatrix() const
 {
-	return this->LookAt(this->cameraPosition, this->cameraTarget, this->cameraUp);
+	return glm::lookAt(this->cameraPosition, this->cameraTarget, this->cameraUp);
 }
 
 /**
 *
 */
-glm::vec3 CameraManager::getCameraPosition()
+glm::vec3 CameraManager::getCameraPosition() const
 {
 	return this->cameraPosition;
 }
@@ -31,7 +42,7 @@ glm::vec3 CameraManager::getCameraPosition()
 /**
 *
 */
-glm::vec3 CameraManager::getCameraTarget()
+glm::vec3 CameraManager::getCameraTarget() const
 {
 	return this->cameraTarget;
 }
@@ -39,7 +50,7 @@ glm::vec3 CameraManager::getCameraTarget()
 /**
 *
 */
-glm::vec3 CameraManager::getCameraUp()
+glm::vec3 CameraManager::getCameraUp() const
 {
 	return this->cameraUp;
 }
@@ -173,7 +184,7 @@ void CameraManager::moveBackward(int backward)
 */
 glm::mat4 CameraManager::LookAt(vec3& position, //camera position (eye)
 	vec3& target,  //camera target
-	vec3& up)
+	vec3& up) const
 {
 	return glm::lookAt(position, target, up);
 }

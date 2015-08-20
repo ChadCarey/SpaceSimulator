@@ -5,7 +5,6 @@
 #include <iostream>
 #include "InitGlew.h"
 #include "ISceneListener.h"
-#include "IControlListener.h"
 #include "DebugOutput.h"
 
 /**
@@ -19,7 +18,7 @@ namespace Init
 			// GETTERS
 
 			// SETTERS
-			static void setListeners(GraphicsEngine::EngineInterface::ISceneListener* sceneListener, GraphicsEngine::EngineInterface::IControlListener* controlListener);
+			static void setListener(GraphicsEngine::EngineInterface::ISceneListener* sceneListener);
 
 			// METHODS
 			static void init(const Init::WindowInfo& window,
@@ -29,11 +28,11 @@ namespace Init
 			static void enterFullscreen();
 			static void exitFullscreen();
 			static void printOpenGLInfo(const Init::WindowInfo& windowInfo, const Init::ContextInfo& context);
+
 		private:
 			// VARIABLES
 			static bool drawn;
 			static GraphicsEngine::EngineInterface::ISceneListener* sceneListener;
-			static GraphicsEngine::EngineInterface::IControlListener* controlListener;
 			static Init::WindowInfo windowInformation;
 
 			// SCENE CALLBACK METHODS

@@ -1,6 +1,5 @@
 #include "TSceneListener.h"
 using namespace GraphicsEngine::EngineInterface;
-using namespace Managers;
 
 TSceneListener::TSceneListener()
 {
@@ -18,7 +17,7 @@ void TSceneListener::drawFrameCallback()
 {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.0, 0.0, 0.0, 1.0);
-		modelsManager->draw(projectionMatrix, cameraManager->getViewMatrix());
+		modelsManager.draw(projectionMatrix, cameraManager.getViewMatrix());
 }
 
 void TSceneListener::endFrameCallback() {}
@@ -32,8 +31,27 @@ void TSceneListener::windowReshapeCallback(int width, int height, int previous_w
 	projectionMatrix = glm::perspective(angle, ar, near1, far1);
 }
 
-
 bool TSceneListener::closeCallback()
 {
 	return true;
+}
+
+void TSceneListener::mouseMoveCallback()
+{
+	std::cout << "Mouse moved\n";
+}
+
+void TSceneListener::mouseDragCallback()
+{
+	std::cout << "mouse draged\n";
+}
+
+void TSceneListener::keyboardPressCallback()
+{
+	std::cout << "keyboard press\n";
+}
+
+void TSceneListener::keyboardReleaseCallback()
+{
+	std::cout << "keyboard release\n";
 }
