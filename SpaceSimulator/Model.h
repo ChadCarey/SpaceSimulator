@@ -4,7 +4,7 @@
 #include "GL\glew.h"
 #include "GL\freeglut.h"
 #include "VertexFormat.h"
-#include <glm\glm.hpp>
+#include "glm\glm.hpp"
 
 namespace Rendering
 {

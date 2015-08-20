@@ -1,9 +1,9 @@
 #pragma once
 #include "Model.h"
-#include<stdarg.h>
+#include <stdarg.h>
 #include "VertexFormat.h"
-#include <glm\glm.hpp>
-#include <glm\gtc\matrix_transform.hpp>
+#include "glm\glm.hpp"
+#include "glm\gtc\matrix_transform.hpp"
 
 /**
 * draws a cube in the most inconvenient way possible: by creating the vertex array, triangle by triangle and passing it to the shader.
