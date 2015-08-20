@@ -9,7 +9,10 @@ TSceneListener::TSceneListener()
 
 TSceneListener::~TSceneListener() {}
 
-void TSceneListener::beginFrameCallback() {}
+void TSceneListener::beginFrameCallback()
+{
+	
+}
 
 void TSceneListener::drawFrameCallback()
 {
@@ -29,15 +32,6 @@ void TSceneListener::windowReshapeCallback(int width, int height, int previous_w
 	projectionMatrix = glm::perspective(angle, ar, near1, far1);
 }
 
-void TSceneListener::startTimer(int miliseconds)
-{
-
-}
-
-void TSceneListener::timerCallback(int value)
-{
-
-}
 
 bool TSceneListener::closeCallback()
 {

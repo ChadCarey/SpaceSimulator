@@ -57,6 +57,7 @@
     <ClInclude Include="WindowInfo.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Crate.bmp" />
     <Image Include="SmileTexture.bmp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
