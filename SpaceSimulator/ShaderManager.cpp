@@ -39,6 +39,7 @@ std::string ShaderManager::readShader(const std::string filename)
 GLuint ShaderManager::createShader(GLenum shaderType, const std::string& source, const std::string& shaderName)
 {
 
+
 	int compile_result = 0;
 
 	GLuint shader = glCreateShader(shaderType);
@@ -64,8 +65,13 @@ GLuint ShaderManager::createShader(GLenum shaderType, const std::string& source,
 	return shader;
 }
 
-void ShaderManager::createProgram(const std::string& shaderName, const std::string& vertexShaderFilename, const std::string& fragmentShaderFilename)
+GLuint ShaderManager::createProgram(const std::string& vertexShaderFilename, const std::string& fragmentShaderFilename)
 {
+	std::string shaderName = vertexShaderFilename + "_" + fragmentShaderFilename;
+
+	GLuint program = this->getShader(shaderName);
+	if (program != 0)
+		return program;
 
 	//read the shader files and save the code
 	std::string vertex_shader_code = readShader(vertexShaderFilename.c_str());
@@ -76,7 +82,7 @@ void ShaderManager::createProgram(const std::string& shaderName, const std::stri
 
 	int link_result = 0;
 	//create the program handle, attatch the shaders and link it
-	GLuint program = glCreateProgram();
+	program = glCreateProgram();
 	glAttachShader(program, vertex_shader);
 	glAttachShader(program, fragment_shader);
 
@@ -93,7 +99,9 @@ void ShaderManager::createProgram(const std::string& shaderName, const std::stri
 		std::cout << "Shader Loader : LINK ERROR" << std::endl << &program_log[0] << std::endl;
 		return;
 	}
+	
 	shaderPrograms[shaderName] = program;
+	return program;
 }
 
 const GLuint ShaderManager::getShader(const std::string& shaderName) throw (std::string)
