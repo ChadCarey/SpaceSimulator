@@ -2,9 +2,15 @@
 using namespace Rendering;
 
 #define PI 3.14159265
+#define VERTEX_SHADER "Texture_Vertex_Shader.glsl"
+#define FRAGMENT_SHADER "Texture_Fragment_Shader.glsl"
+#define TEXTURE "Crate.bmp"
+#define TEXTURE_SIZE 256
 
 TexturedCube::TexturedCube(float scale)
 {
+	this->setProgram(shaderManager.createProgram(VERTEX_SHADER, FRAGMENT_SHADER));
+	this->setTexture(TEXTURE, textureLoader.loadTexture(TEXTURE, TEXTURE_SIZE, TEXTURE_SIZE));
 	create(scale);
 }
 

@@ -97,7 +97,7 @@ GLuint ShaderManager::createProgram(const std::string& vertexShaderFilename, con
 		std::vector<char> program_log(info_log_length);
 		glGetProgramInfoLog(program, info_log_length, NULL, &program_log[0]);
 		std::cout << "Shader Loader : LINK ERROR" << std::endl << &program_log[0] << std::endl;
-		return;
+		return 0;
 	}
 	
 	shaderPrograms[shaderName] = program;
