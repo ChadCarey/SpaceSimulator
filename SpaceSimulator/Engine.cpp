@@ -8,7 +8,7 @@ Engine::Engine()
 }
 
 //You can set params for init
-bool Engine::init(EngineInterface::ISceneListener* sceneController, EngineInterface::IControlListener* gameControls, EngineInterface::IEventScheduler* eventScheduler)
+bool Engine::init(EngineInterface::ISceneListener* sceneController, EngineInterface::IControlListener* gameControls)
 {
 	WindowInfo window(std::string("in2gpu OpenGL Chapter 2 tutorial"), 400, 200, 800, 600, true);
 	ContextInfo context(4, 2, true);
@@ -28,7 +28,6 @@ bool Engine::init(EngineInterface::ISceneListener* sceneController, EngineInterf
 	// give the controll listeners and eventSchedualer access to the same managers
 	sceneController->setManagers(cameraManager, modelsManager, shaderManager, textureLoader);
 	gameControls->setManagers(cameraManager, modelsManager, shaderManager, textureLoader);
-	eventScheduler->setManagers(cameraManager, modelsManager, shaderManager, textureLoader);
 
 	return true;
 }

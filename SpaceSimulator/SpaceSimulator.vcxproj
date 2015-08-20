@@ -14,7 +14,6 @@
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="EngineTest.cpp" />
-    <ClCompile Include="IEventScheduler.cpp" />
     <ClCompile Include="IControlListener.cpp" />
     <ClCompile Include="InitGlew.cpp" />
     <ClCompile Include="InitGlut.cpp" />
@@ -23,7 +22,6 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelsManager.cpp" />
     <ClCompile Include="TControlListener.cpp" />
-    <ClCompile Include="TEventScheduler.cpp" />
     <ClCompile Include="TSceneListener.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="TexturedCube.cpp" />
@@ -41,7 +39,6 @@
     <ClInclude Include="DebugOutput.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineTest.h" />
-    <ClInclude Include="IEventScheduler.h" />
     <ClInclude Include="FrameBufferInfo.h" />
     <ClInclude Include="IControlListener.h" />
     <ClInclude Include="Runnable.h" />

@@ -120,13 +120,7 @@
     <ClCompile Include="EngineTest.cpp">
       <Filter>Source Files\Test</Filter>
     </ClCompile>
-    <ClCompile Include="IEventScheduler.cpp">
-      <Filter>Source Files\Engine\EngineInterfaces</Filter>
-    </ClCompile>
     <ClCompile Include="TSceneListener.cpp">
-      <Filter>Source Files\Test\EngineInterfaces</Filter>
-    </ClCompile>
-    <ClCompile Include="TEventScheduler.cpp">
       <Filter>Source Files\Test\EngineInterfaces</Filter>
     </ClCompile>
     <ClCompile Include="TControlListener.cpp">
@@ -199,9 +193,6 @@
     </ClInclude>
     <ClInclude Include="EngineTest.h">
       <Filter>Header Files\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="IEventScheduler.h">
-      <Filter>Header Files\Engine\EngineInterfaces</Filter>
     </ClInclude>
     <ClInclude Include="TSceneListener.h">
       <Filter>Header Files\Test\EngineInterfaces</Filter>
