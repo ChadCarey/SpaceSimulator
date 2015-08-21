@@ -1,6 +1,9 @@
 #include "Model.h"
 using namespace Rendering;
 
+TextureLoader Model::textureLoader;
+Managers::ShaderManager Model::shaderManager;
+
 Model::Model() 
 {
 	position = glm::vec3(0.0, 0.0, 0.0);
@@ -78,9 +81,17 @@ void Model::move(const glm::vec3& dVector)
 
 void Model::move(float x, float y, float z)
 {
+	std::cout << "position.x: " << this->position.x << std::endl;
 	this->position.x += x;
+	std::cout << "position.x+x: " << this->position.x << std::endl;
+
+	std::cout << "position.y: " << this->position.y << std::endl;
 	this->position.y += y;
+	std::cout << "position.y+y: " << this->position.y << std::endl;
+
+	std::cout << "position.z: " << this->position.z << std::endl;
 	this->position.z += z;
+	std::cout << "position.z+z: " << this->position.z << std::endl;
 }
 
 

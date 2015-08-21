@@ -1,12 +1,29 @@
 #include "TSceneListener.h"
 using namespace GraphicsEngine::EngineInterface;
+using namespace Managers;
 
 TSceneListener::TSceneListener()
 {
-	glEnable(GL_DEPTH_TEST);
+	TexturedCube* cube = new TexturedCube();
+	this->modelsManager.push_front(cube);
+
+	TexturedCube* cube2 = new TexturedCube();
+	cube2->move(-0.1, 0, 0);
+	this->modelsManager.push_front(cube2);
+
+	TexturedCube* cube3 = new TexturedCube();
+	cube3->move(0.1, 0, 0);
+	this->modelsManager.push_front(cube3);
 }
 
-TSceneListener::~TSceneListener() {}
+TSceneListener::~TSceneListener() 
+{
+	for (auto model : modelsManager)
+	{
+		delete model;
+	}
+	modelsManager.clear();
+}
 
 void TSceneListener::beginFrameCallback()
 {
@@ -46,12 +63,29 @@ void TSceneListener::mouseDragCallback()
 	std::cout << "mouse draged\n";
 }
 
-void TSceneListener::keyboardPressCallback()
+void TSceneListener::keyboardPressCallback(const unsigned char& letter, const int& a, const int& b)
 {
-	std::cout << "keyboard press\n";
+	std::cout << "key pressed: " << letter 
+		<< " a: " << a << " b: " << b << std::endl;
+	switch (letter)
+	{
+	case 'w':
+		cameraManager.moveForward(1);
+		break;
+	case 'a':
+		cameraManager.panLeft(1);
+		break;
+	case 'd':
+		cameraManager.panRight(1);
+		break;
+	case 's':
+		cameraManager.moveBackward(1);
+		break;
+	}
 }
 
-void TSceneListener::keyboardReleaseCallback()
+void TSceneListener::keyboardReleaseCallback(const unsigned char& letter, const int& a, const int& b)
 {
-	std::cout << "keyboard release\n";
+	std::cout << "key released: " << letter
+		<< " a: " << a << " b: " << b << std::endl;
 }

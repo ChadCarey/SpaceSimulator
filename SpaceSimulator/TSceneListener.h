@@ -1,5 +1,6 @@
 #pragma once
 #include "ISceneListener.h"
+#include "TexturedCube.h"
 
 /**
 * TSceneListener extends IListener
@@ -24,8 +25,8 @@ namespace GraphicsEngine
 
 			virtual void mouseMoveCallback() override;
 			virtual void mouseDragCallback() override;
-			virtual void keyboardPressCallback() override;
-			virtual void keyboardReleaseCallback() override;
+			virtual void keyboardPressCallback(const unsigned char& letter, const int& a, const int& b) override;
+			virtual void keyboardReleaseCallback(const unsigned char& letter, const int& a, const int& b) override;
 		private:
 			Managers::ModelsManager modelsManager;
 		};

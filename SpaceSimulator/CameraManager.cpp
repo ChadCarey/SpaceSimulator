@@ -142,14 +142,6 @@ void CameraManager::panRight(int right)
 /**
 *
 */
-void CameraManager::panLeft(int left)
-{
-	panRight(-left);
-}
-
-/**
-*
-*/
 void CameraManager::panUp(int up)
 {
 	std::cout << "panUp: " << up << std::endl;
@@ -169,14 +161,6 @@ void CameraManager::panDown(int down)
 void CameraManager::moveForward(int forward)
 {
 	std::cout << "moveForward: " << forward << std::endl;
-}
-
-/**
-*
-*/
-void CameraManager::moveBackward(int backward)
-{
-	moveForward(-backward);
 }
 
 /**

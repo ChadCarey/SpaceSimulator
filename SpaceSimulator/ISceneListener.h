@@ -29,8 +29,8 @@ namespace GraphicsEngine
 			// controls
 			virtual void mouseMoveCallback() = 0;
 			virtual void mouseDragCallback() = 0;
-			virtual void keyboardPressCallback() = 0;
-			virtual void keyboardReleaseCallback() = 0;
+			virtual void keyboardPressCallback(const unsigned char& letter, const int& a, const int& b) = 0;
+			virtual void keyboardReleaseCallback(const unsigned char& letter, const int& a, const int& b) = 0;
 
 		protected:
 			static Managers::CameraManager cameraManager;

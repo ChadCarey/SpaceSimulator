@@ -35,13 +35,13 @@ namespace Managers
 		inline void lookRight(int value);
 		
 		void panRight(int right);
-		inline void panLeft(int left);
+		inline void panLeft(int left) { panRight(-left); }
+
+		void moveForward(int forward);
+		inline void moveBackward(int backward) { moveForward(-backward); }
 
 		void panUp(int up);
 		inline void panDown(int down);
-
-		void moveForward(int forward);
-		inline void moveBackward(int backward);
 
 		glm::mat4 LookAt(glm::vec3& position, //camera position (eye)
 			glm::vec3& target,  //camera target

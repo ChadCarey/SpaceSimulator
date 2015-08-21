@@ -7,10 +7,10 @@ using namespace EngineInterface;
 
 void EngineTest::run()
 {
-	ISceneListener* sceneListener = new TSceneListener();
-
 	Engine engine;
-	engine.init(sceneListener);
+	engine.init();
+	ISceneListener* sceneListener = new TSceneListener();
+	engine.setSceneManager(sceneListener);
 
 	// start the engine
 	engine.run();
