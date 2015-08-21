@@ -83,7 +83,7 @@ void CameraManager::setCameraUp(const glm::vec3& newUp)
 /**
 *
 */
-void CameraManager::rotateLeft(int left)
+void CameraManager::rotateLeft(float left)
 {
 	std::cout << "rotate left: " << left << std::endl;
 }
@@ -91,7 +91,7 @@ void CameraManager::rotateLeft(int left)
 /**
 *
 */
-void CameraManager::rotateRight(int right)
+void CameraManager::rotateRight(float right)
 {
 	rotateLeft(-right);
 }
@@ -99,7 +99,7 @@ void CameraManager::rotateRight(int right)
 /**
 *
 */
-void CameraManager::lookUp(int value)
+void CameraManager::lookUp(float value)
 {
 	std::cout << "loop up: " << value << std::endl;
 }
@@ -107,7 +107,7 @@ void CameraManager::lookUp(int value)
 /**
 *
 */
-void CameraManager::lookDown(int value)
+void CameraManager::lookDown(float value)
 
 {
 	lookUp(-value);
@@ -116,7 +116,7 @@ void CameraManager::lookDown(int value)
 /**
 *
 */
-void CameraManager::lookLeft(int value)
+void CameraManager::lookLeft(float value)
 
 {
 	std::cout << "loop left: " << value << std::endl;
@@ -125,7 +125,7 @@ void CameraManager::lookLeft(int value)
 /**
 *
 */
-void CameraManager::lookRight(int value)
+void CameraManager::lookRight(float value)
 
 {
 	lookLeft(-value);
@@ -134,15 +134,17 @@ void CameraManager::lookRight(int value)
 /**
 *
 */
-void CameraManager::panRight(int right)
+void CameraManager::panRight(float right)
 {
 	std::cout << "panRight: " << right << std::endl;
+	this->cameraPosition.x += right;
+	this->cameraTarget.x += right;
 }
 
 /**
 *
 */
-void CameraManager::panUp(int up)
+void CameraManager::panUp(float up)
 {
 	std::cout << "panUp: " << up << std::endl;
 }
@@ -150,7 +152,7 @@ void CameraManager::panUp(int up)
 /**
 *
 */
-void CameraManager::panDown(int down)
+void CameraManager::panDown(float down)
 {
 	panUp(-down);
 }
@@ -158,9 +160,12 @@ void CameraManager::panDown(int down)
 /**
 *
 */
-void CameraManager::moveForward(int forward)
+void CameraManager::moveForward(float forward)
 {
 	std::cout << "moveForward: " << forward << std::endl;
+	this->cameraPosition.z -= forward;
+	this->cameraTarget.z -= forward;
+
 }
 
 /**

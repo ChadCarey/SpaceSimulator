@@ -2,6 +2,9 @@
 using namespace GraphicsEngine::EngineInterface;
 using namespace Managers;
 
+#define CAMERA_SPEED 0.2
+
+
 TSceneListener::TSceneListener()
 {
 	TexturedCube* cube = new TexturedCube();
@@ -70,16 +73,16 @@ void TSceneListener::keyboardPressCallback(const unsigned char& letter, const in
 	switch (letter)
 	{
 	case 'w':
-		cameraManager.moveForward(1);
+		cameraManager.moveForward(CAMERA_SPEED);
 		break;
 	case 'a':
-		cameraManager.panLeft(1);
+		cameraManager.panLeft(CAMERA_SPEED);
 		break;
 	case 'd':
-		cameraManager.panRight(1);
+		cameraManager.panRight(CAMERA_SPEED);
 		break;
 	case 's':
-		cameraManager.moveBackward(1);
+		cameraManager.moveBackward(CAMERA_SPEED);
 		break;
 	}
 }
