@@ -25,6 +25,7 @@ namespace GraphicsEngine
 
 			virtual void mouseMoveCallback() override;
 			virtual void mouseDragCallback() override;
+			virtual void mouseClickCallback(int a, int b, int c, int d) override;
 			virtual void keyboardPressCallback(const unsigned char& letter, const int& a, const int& b) override;
 			virtual void keyboardReleaseCallback(const unsigned char& letter, const int& a, const int& b) override;
 		private:

@@ -90,6 +90,11 @@ void TSceneListener::mouseDragCallback()
 	std::cout << "mouse draged\n";
 }
 
+void TSceneListener::mouseClickCallback(int a, int b, int c, int d)
+{
+	std::cout << "mouse clicked\n";
+}
+
 void TSceneListener::keyboardPressCallback(const unsigned char& letter, const int& a, const int& b)
 {
 	std::cout << "key pressed: " << letter 

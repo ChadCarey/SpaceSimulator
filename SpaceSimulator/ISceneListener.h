@@ -29,6 +29,7 @@ namespace GraphicsEngine
 			// controls
 			virtual void mouseMoveCallback() = 0;
 			virtual void mouseDragCallback() = 0;
+			virtual void mouseClickCallback(int a, int b, int c, int d) = 0;
 			virtual void keyboardPressCallback(const unsigned char& letter, const int& a, const int& b) = 0;
 			virtual void keyboardReleaseCallback(const unsigned char& letter, const int& a, const int& b) = 0;
 

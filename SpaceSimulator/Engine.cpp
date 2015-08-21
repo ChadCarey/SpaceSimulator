@@ -167,13 +167,20 @@ std::string Engine::findOpenGLVersion()
 
 void Engine::setCallbacks()
 {
+	// display
 	glutIdleFunc(idleCallback); // called when events are not being received.
 	glutCloseFunc(closeCallback);
 	glutDisplayFunc(displayCallback);
 	glutReshapeFunc(reshapeCallback); // triggered when the window is reshaped
 
+	// keyboard
 	glutKeyboardFunc(keyDown);
 	glutKeyboardUpFunc(keyUp);
+
+	// mouse
+	glutMotionFunc(mouseDrag);
+	glutPassiveMotionFunc(mouseMove);
+	glutMouseFunc(mouseClick);
 }
 
 void Engine::idleCallback(void)
@@ -226,22 +233,22 @@ void Engine::exitFullscreen()
 }
 
 
-void Engine::mouseMove()
+void Engine::mouseMove(int x, int y)
 {
 	if (sceneListener)
 		sceneListener->mouseMoveCallback();
 }
 
-void Engine::mouseDrag()
+void Engine::mouseDrag(int x, int y)
 {
 	if (sceneListener)
 		sceneListener->mouseDragCallback();
 }
 
-void Engine::mouseClick()
+void Engine::mouseClick(int a, int b, int c, int d)
 {
-	/*if (sceneListener)
-		sceneListener->mouseClickCallback();*/
+	if (sceneListener)
+		sceneListener->mouseClickCallback(a, b, c, d);
 }
 
 void Engine::keyDown(unsigned char ch, int a, int b)

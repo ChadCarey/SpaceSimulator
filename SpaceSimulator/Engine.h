@@ -39,9 +39,9 @@ namespace GraphicsEngine
 		static void closeCallback();
 
 		// CONTROL CALLBACK METHODS
-		static void mouseMove();
-		static void mouseDrag();
-		static void mouseClick();
+		static void mouseMove(int x, int y);
+		static void mouseDrag(int x, int y);
+		static void mouseClick(int a, int b, int c, int d);
 		static void keyDown(unsigned char ch, int a, int b);
 		static void keyUp(unsigned char ch, int a, int b);
 		static void specialKeyDown();
