@@ -1,8 +1,40 @@
-﻿Build started 8/20/2015 7:22:23 PM.
+﻿Build started 8/21/2015 8:24:24 AM.
      1>Project "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\SpaceSimulator\SpaceSimulator.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\glm.0.9.6.3\build\native\../..//build/native/include/" /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CameraManager.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\glm.0.9.6.3\build\native\../..//build/native/include/" /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CameraManager.cpp Engine.cpp EngineTest.cpp InitGlew.cpp InitGlut.cpp ISceneListener.cpp main.cpp Model.cpp ModelsManager.cpp TSceneListener.cpp ShaderManager.cpp TexturedCube.cpp TextureLoader.cpp
+         TextureLoader.cpp
+         TexturedCube.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         ShaderManager.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.cpp(105): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.cpp(112): warning C4101: 'oor' : unreferenced local variable
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.cpp(123): warning C4101: 'oor' : unreferenced local variable
+         TSceneListener.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\tscenelistener.cpp(14): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\tscenelistener.cpp(18): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\tscenelistener.cpp(76): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\tscenelistener.cpp(79): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\tscenelistener.cpp(82): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\tscenelistener.cpp(85): warning C4305: 'argument' : truncation from 'double' to 'float'
+         ModelsManager.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         Model.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         main.cpp
+         ISceneListener.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         InitGlut.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         InitGlew.cpp
+         EngineTest.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\enginetest.cpp(12): warning C4316: 'GraphicsEngine::EngineInterface::TSceneListener' : object allocated on the heap may not be aligned 16
+         Engine.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
          CameraManager.cpp
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.exe" /INCREMENTAL /NOLOGO "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glew32.lib" "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glfw3dll.lib" "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\freeglut.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.lib" /MACHINE:X86 Debug\CameraManager.obj
          Debug\Engine.obj
@@ -22,4 +54,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.89
+Time Elapsed 00:00:12.78

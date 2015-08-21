@@ -2,15 +2,22 @@
 using namespace Rendering;
 
 TextureLoader Model::textureLoader;
-Managers::ShaderManager Model::shaderManager;
+Managers::ShaderManager* Model::shaderManager = NULL;
+long long int Model::modelCount = 0;
 
 Model::Model() 
 {
+	if (shaderManager == NULL)
+		shaderManager = new Managers::ShaderManager();
+	modelCount++;
 	position = glm::vec3(0.0, 0.0, 0.0);
 }
 
 Model::~Model()
 {
+	modelCount--;
+	if (modelCount < 1)
+		delete shaderManager;
 	destroy();
 }
 

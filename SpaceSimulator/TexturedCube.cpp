@@ -9,7 +9,7 @@ using namespace Rendering;
 
 TexturedCube::TexturedCube(float scale)
 {
-	this->setProgram(shaderManager.createProgram(VERTEX_SHADER, FRAGMENT_SHADER));
+	this->setProgram(shaderManager->createProgram(VERTEX_SHADER, FRAGMENT_SHADER));
 	create(scale);
 	this->setTexture(TEXTURE, textureLoader.loadTexture(TEXTURE, TEXTURE_SIZE, TEXTURE_SIZE));
 }

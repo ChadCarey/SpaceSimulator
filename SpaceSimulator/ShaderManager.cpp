@@ -7,11 +7,9 @@ ShaderManager::ShaderManager(void){}
 
 ShaderManager::~ShaderManager(void)
 {
-	std::map<std::string, GLuint>::iterator i;
-	for (i = shaderPrograms.begin(); i != shaderPrograms.end(); ++i)
+	for (auto program : shaderPrograms)
 	{
-		GLuint pr = i->second;
-		glDeleteProgram(pr);
+		glDeleteProgram(program.second);
 	}
 	shaderPrograms.clear();
 }

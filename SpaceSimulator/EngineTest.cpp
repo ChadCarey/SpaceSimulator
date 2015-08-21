@@ -7,14 +7,16 @@ using namespace EngineInterface;
 
 void EngineTest::run()
 {
-	Engine engine;
-	engine.init();
+	Engine* engine = new Engine();
+	engine->init();
 	ISceneListener* sceneListener = new TSceneListener();
-	engine.setSceneManager(sceneListener);
+	engine->setSceneManager(sceneListener);
 
 	// start the engine
-	engine.run();
+	engine->run();
 
 	if (sceneListener)
 		delete sceneListener;
+	if (engine)
+		delete engine;
 }

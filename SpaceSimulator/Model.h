@@ -51,9 +51,10 @@ namespace Rendering
 		glm::vec3 position;
 		glm::vec3 rotation;
 		static TextureLoader textureLoader;
-		static Managers::ShaderManager shaderManager;
+		static Managers::ShaderManager* shaderManager;
 
 	private:
 		virtual void destroy();
+		static long long int modelCount;
 	};
 }
