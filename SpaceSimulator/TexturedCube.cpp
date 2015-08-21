@@ -118,7 +118,7 @@ void TexturedCube::create(float scale)
 	this->vbos.push_back(vbo);
 	this->vbos.push_back(ibo);
 
-	rotation = glm::vec3(45.0, 45.0, 45.0);
+	rotation = glm::vec3(0.0, 0.0, 0.0);
 }
 
 void TexturedCube::draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
@@ -129,7 +129,7 @@ void TexturedCube::draw(const glm::mat4& projection_matrix, const glm::mat4& vie
 	
 	// pass in shaderVariables
 	glUniform3f(glGetUniformLocation(program, "rotation"), rotation.x, rotation.y, rotation.z);
-	glUniform3f(glGetUniformLocation(program, "position"), 0, 0, 0);
+	glUniform3f(glGetUniformLocation(program, "position"), position.x, position.y, position.z);
 	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, GLU_FALSE, &view_matrix[0][0]);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
 

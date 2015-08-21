@@ -7,16 +7,40 @@ using namespace Managers;
 
 TSceneListener::TSceneListener()
 {
-	TexturedCube* cube = new TexturedCube();
-	this->modelsManager.push_front(cube);
+	TexturedCube* cube1 = new TexturedCube();
+	this->modelsManager.push_front(cube1);
+	cube1->move(0, 0, 0);
+	cube1->setRotation(0, 0, 0);
 
-	TexturedCube* cube2 = new TexturedCube();
-	cube2->move(-0.1, 0, 0);
+	TexturedCube* cube2 = new TexturedCube(2);
 	this->modelsManager.push_front(cube2);
+	cube2->move(-7, -5, -3);
+	cube2->setRotation(10, 35, 45);
 
-	TexturedCube* cube3 = new TexturedCube();
-	cube3->move(0.1, 0, 0);
+	TexturedCube* cube3 = new TexturedCube(1.5);
 	this->modelsManager.push_front(cube3);
+	cube3->move(7, 5, 3);
+	cube3->setRotation(35, 45, 10);
+
+	TexturedCube* cube4 = new TexturedCube(0.5);
+	cube4->move(-3, -7, -5);
+	this->modelsManager.push_front(cube4);
+	cube4->rotate(45, 35, 10);
+
+	TexturedCube* cube5 = new TexturedCube(0.75);
+	cube5->move(3, 7, -5);
+	this->modelsManager.push_front(cube5);
+	cube5->rotate(45, 10, 35);
+
+	TexturedCube* cube6 = new TexturedCube(1.25);
+	cube6->move(-5, -3, -7);
+	this->modelsManager.push_front(cube6);
+	cube6->rotate(-10, -35, -45);
+
+	TexturedCube* cube7 = new TexturedCube(1.75);
+	cube7->move(5, 3, 7);
+	this->modelsManager.push_front(cube7);
+	cube7->rotate(-35, -45, -1);
 }
 
 TSceneListener::~TSceneListener() 
