@@ -7,7 +7,7 @@ using namespace Managers;
 */
 CameraManager::CameraManager() 
 {
-	this->setCameraPosition(glm::vec3(1, 4, 15.4));
+	this->setCameraPosition(glm::vec3(0, 0, -15));
 	this->setCameraTarget(glm::vec3(0.0, 0.0, 0.0));
 	this->setCameraUp(glm::vec3(0.0, 1.0, 0.0));
 }
@@ -137,8 +137,8 @@ void CameraManager::lookRight(float value)
 void CameraManager::panRight(float right)
 {
 	std::cout << "panRight: " << right << std::endl;
-	this->cameraPosition.x += right;
-	this->cameraTarget.x += right;
+	this->cameraPosition.x -= right;
+	this->cameraTarget.x -= right;
 }
 
 /**
@@ -163,9 +163,8 @@ void CameraManager::panDown(float down)
 void CameraManager::moveForward(float forward)
 {
 	std::cout << "moveForward: " << forward << std::endl;
-	this->cameraPosition.z -= forward;
-	this->cameraTarget.z -= forward;
-
+	cameraPosition.z += forward;
+	cameraTarget.z += forward;
 }
 
 /**
@@ -176,4 +175,20 @@ glm::mat4 CameraManager::LookAt(vec3& position, //camera position (eye)
 	vec3& up) const
 {
 	return glm::lookAt(position, target, up);
+}
+
+/**
+*
+*/
+void CameraManager::look(int dx, int dy)
+{
+	angleX += dx;
+	angleX = angleX % 360;
+	if (angleX < 0)
+		angleX += 360;
+	
+	angleY += dy;
+	angleY = angleY % 360;
+	if (angleY < 0)
+		angleY += 360;
 }

@@ -3,9 +3,13 @@ using namespace GraphicsEngine;
 using namespace EngineInterface;
 using namespace Init;
 
+#define ESC_KEY 27
+
 // statics
 WindowInfo Engine::windowInformation;
 ISceneListener* Engine::sceneListener = NULL;
+int Engine::windowCenterX = 0;
+int Engine::windowCenterY = 0;
 
 Engine::Engine()
 {
@@ -15,7 +19,7 @@ Engine::Engine()
 //You can set params for init
 bool Engine::init()
 {
-	WindowInfo window(std::string("in2gpu OpenGL Chapter 2 tutorial"), 400, 200, 800, 600, true);
+	WindowInfo window("Space Simulator", 400, 200, 800, 600, true);
 	ContextInfo context(4, 2, true);
 	FramebufferInfo frameBufferInfo(true, true, true, true);
 
@@ -176,8 +180,10 @@ void Engine::setCallbacks()
 	// keyboard
 	glutKeyboardFunc(keyDown);
 	glutKeyboardUpFunc(keyUp);
+	glutSpecialFunc(specialKeyDown);
 
 	// mouse
+	glutSetCursor(GLUT_CURSOR_CROSSHAIR);
 	glutMotionFunc(mouseDrag);
 	glutPassiveMotionFunc(mouseMove);
 	glutMouseFunc(mouseClick);
@@ -236,13 +242,13 @@ void Engine::exitFullscreen()
 void Engine::mouseMove(int x, int y)
 {
 	if (sceneListener)
-		sceneListener->mouseMoveCallback();
+		sceneListener->mouseMoveCallback(x, y, windowInformation.width / 2, windowInformation.height / 2);
 }
 
 void Engine::mouseDrag(int x, int y)
 {
 	if (sceneListener)
-		sceneListener->mouseDragCallback();
+		sceneListener->mouseDragCallback(x, y, windowInformation.width / 2, windowInformation.height / 2);
 }
 
 void Engine::mouseClick(int a, int b, int c, int d)
@@ -253,6 +259,9 @@ void Engine::mouseClick(int a, int b, int c, int d)
 
 void Engine::keyDown(unsigned char ch, int a, int b)
 {
+	if (ch == ESC_KEY)
+		Engine::closeCallback();
+
 	if (sceneListener)
 		sceneListener->keyboardPressCallback(ch, a, b);
 }
@@ -263,8 +272,9 @@ void Engine::keyUp(unsigned char ch, int a, int b)
 		sceneListener->keyboardReleaseCallback(ch, a, b);
 }
 
-void Engine::specialKeyDown()
+void Engine::specialKeyDown(int a, int b, int c)
 {
-	
+	//if (sceneListener)
+		//sceneListener->specialKey();
 }
 

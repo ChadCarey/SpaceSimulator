@@ -23,12 +23,13 @@ namespace GraphicsEngine
 			virtual bool closeCallback() override;
 			virtual void windowReshapeCallback(int width, int height, int previousWidth, int previousHeight) override;
 
-			virtual void mouseMoveCallback() override;
-			virtual void mouseDragCallback() override;
+			virtual void mouseMoveCallback(int x, int y, int centerX, int centerY) override;
+			virtual void mouseDragCallback(int x, int y, int centerX, int centerY) override;
 			virtual void mouseClickCallback(int a, int b, int c, int d) override;
 			virtual void keyboardPressCallback(const unsigned char& letter, const int& a, const int& b) override;
 			virtual void keyboardReleaseCallback(const unsigned char& letter, const int& a, const int& b) override;
 		private:
+			bool warped;
 			Managers::ModelsManager modelsManager;
 		};
 	}

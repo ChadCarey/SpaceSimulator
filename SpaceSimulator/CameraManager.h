@@ -28,6 +28,8 @@ namespace Managers
 		void rotateLeft(float left);
 		inline void rotateRight(float right);
 
+		void look(int dx, int dy);
+
 		void lookUp(float value);
 		inline void lookDown(float value);
 
@@ -52,5 +54,8 @@ namespace Managers
 		glm::vec3 cameraPosition;
 		glm::vec3 cameraTarget; 
 		glm::vec3 cameraUp;
+
+		int angleX;
+		int angleY;
 	};
 }

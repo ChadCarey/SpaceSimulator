@@ -23,6 +23,10 @@ namespace GraphicsEngine
 		static void printOpenGLInfo(const Init::WindowInfo& windowInfo, const Init::ContextInfo& context);
 
 	private:
+
+		static int windowCenterX;
+		static int windowCenterY;
+
 		// GLUT
 		static void initGLUT(const Init::WindowInfo& window,
 			const Init::ContextInfo& context,
@@ -44,7 +48,7 @@ namespace GraphicsEngine
 		static void mouseClick(int a, int b, int c, int d);
 		static void keyDown(unsigned char ch, int a, int b);
 		static void keyUp(unsigned char ch, int a, int b);
-		static void specialKeyDown();
+		static void specialKeyDown(int a, int b, int c);
 
 
 		// GLEW

@@ -41,6 +41,8 @@ TSceneListener::TSceneListener()
 	cube7->move(5, 3, 7);
 	this->modelsManager.push_front(cube7);
 	cube7->rotate(-35, -45, -1);
+
+	warped = false;
 }
 
 TSceneListener::~TSceneListener() 
@@ -80,12 +82,31 @@ bool TSceneListener::closeCallback()
 	return true;
 }
 
-void TSceneListener::mouseMoveCallback()
+void TSceneListener::mouseMoveCallback(int x, int y, int centerX, int centerY)
 {
-	std::cout << "Mouse moved\n";
+	if (!warped)
+	{
+		// get dX and dY
+		int dx = x - centerX;
+		int dy = y - centerY;
+		std::cout << "Mouse moved, x: " << x << " y: " << y << std::endl;
+		std::cout << "dx: " << dx << " dy: " << dy << std::endl;
+		
+		cameraManager.look(dx, dy);
+
+		// now warp the pointer back to the center of the screen
+		warped = true;
+		glutWarpPointer(centerX, centerY);
+	}
+	else
+	{
+		// now that the pointer has warped we need to clear the flag for the next movement
+		// this prevents a recursive call on glutWarpPointer()
+		warped = false;
+	}
 }
 
-void TSceneListener::mouseDragCallback()
+void TSceneListener::mouseDragCallback(int x, int y, int centerX, int centerY)
 {
 	std::cout << "mouse draged\n";
 }
