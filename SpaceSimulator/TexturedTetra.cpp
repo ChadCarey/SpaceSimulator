@@ -4,7 +4,7 @@ using namespace Rendering;
 #define PI 3.14159265
 #define VERTEX_SHADER "Texture_Vertex_Shader.glsl"
 #define FRAGMENT_SHADER "Texture_Fragment_Shader.glsl"
-#define TEXTURE "SmileTexture.bmp"
+#define TEXTURE "Crate.bmp"
 #define TEXTURE_SIZE 256
 
 TexturedTetra::TexturedTetra(float scale)
@@ -30,32 +30,32 @@ void TexturedTetra::create(float scale)
 	std::vector<VertexFormat> vertices;
 
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0) * scalingVector,
-		glm::vec2(0, 0)));
+		glm::vec2(1, 1)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0) * scalingVector,
 		glm::vec2(1, 0)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0) * scalingVector,
-		glm::vec2(1, 0)));
+		glm::vec2(0, 1)));
 	
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0) * scalingVector,
 		glm::vec2(1, 1)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0) * scalingVector,
-		glm::vec2(1, 1)));
+		glm::vec2(1, 0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0) * scalingVector,
-		glm::vec2(1, 1)));
+		glm::vec2(0, 1)));
 
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0) * scalingVector,
 		glm::vec2(1, 1)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0) * scalingVector,
-		glm::vec2(1, 1)));
+		glm::vec2(1, 0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0) * scalingVector,
-		glm::vec2(1, 1)));
+		glm::vec2(0, 1)));
 
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0) * scalingVector,
 		glm::vec2(1, 1)));
 	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0) * scalingVector,
-		glm::vec2(1, 1)));
+		glm::vec2(1, 0)));
 	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0) * scalingVector,
-		glm::vec2(1, 1)));
+		glm::vec2(0, 1)));
 
 
 	glGenBuffers(1, &vbo);
