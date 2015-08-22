@@ -120,6 +120,9 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Source Files\Engine\Init</Filter>
     </ClCompile>
+    <ClCompile Include="TexturedTetra.cpp">
+      <Filter>Source Files\Engine\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -187,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>Header Files\Engine\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="TexturedTetra.h">
+      <Filter>Header Files\Engine\Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

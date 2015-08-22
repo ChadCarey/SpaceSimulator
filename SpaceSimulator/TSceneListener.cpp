@@ -7,10 +7,8 @@ using namespace Managers;
 
 TSceneListener::TSceneListener()
 {
-	TexturedCube* cube1 = new TexturedCube();
-	this->modelsManager.push_front(cube1);
-	cube1->move(0, 0, 0);
-	cube1->setRotation(0, 0, 0);
+	TexturedTetra* tetra = new TexturedTetra();
+	this->modelsManager.push_front(tetra);
 
 	TexturedCube* cube2 = new TexturedCube(2);
 	this->modelsManager.push_front(cube2);

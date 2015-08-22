@@ -1,6 +1,7 @@
 #pragma once
 #include "ISceneListener.h"
 #include "TexturedCube.h"
+#include "TexturedTetra.h"
 
 /**
 * TSceneListener extends IListener

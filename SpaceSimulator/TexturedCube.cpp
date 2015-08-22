@@ -127,6 +127,12 @@ void TexturedCube::draw(const glm::mat4& projection_matrix, const glm::mat4& vie
 	glUseProgram(program);
 	glBindVertexArray(vao);
 	
+	// set the current texture to this opbject's texture
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, this->getTexture(TEXTURE));
+	unsigned int textureLocation = glGetUniformLocation(program, "texture1");
+	glUniform1i(textureLocation, 0);
+
 	// pass in shaderVariables
 	glUniform3f(glGetUniformLocation(program, "rotation"), rotation.x, rotation.y, rotation.z);
 	glUniform3f(glGetUniformLocation(program, "position"), position.x, position.y, position.z);

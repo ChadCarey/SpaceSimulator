@@ -20,6 +20,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelsManager.cpp" />
+    <ClCompile Include="TexturedTetra.cpp" />
     <ClCompile Include="TSceneListener.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="TexturedCube.cpp" />
@@ -44,6 +45,7 @@
     <ClInclude Include="InitGlut.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelsManager.h" />
+    <ClInclude Include="TexturedTetra.h" />
     <ClInclude Include="TSceneListener.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="SpaceSimulator.h" />
