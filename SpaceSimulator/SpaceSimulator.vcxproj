@@ -20,6 +20,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelsManager.cpp" />
+    <ClCompile Include="TexturedSphere.cpp" />
     <ClCompile Include="TexturedTetra.cpp" />
     <ClCompile Include="TSceneListener.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
@@ -45,16 +46,20 @@
     <ClInclude Include="InitGlut.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelsManager.h" />
+    <ClInclude Include="TexturedSphere.h" />
     <ClInclude Include="TexturedTetra.h" />
     <ClInclude Include="TSceneListener.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="SpaceSimulator.h" />
     <ClInclude Include="TexturedCube.h" />
     <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="VertexFormat.h" />
     <ClInclude Include="WindowInfo.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Blue.bmp" />
     <Image Include="Crate.bmp" />
+    <Image Include="EarthTexture.bmp" />
     <Image Include="SmileTexture.bmp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

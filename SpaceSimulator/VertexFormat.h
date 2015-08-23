@@ -24,6 +24,13 @@ namespace Rendering
 			color.r = color.g = color.b = color.a = 0;
 		}
 
+		VertexFormat(const VertexFormat& copy)
+		{
+			position = copy.position;
+			texture = copy.texture;
+			color = copy.color;
+		}
+
 		VertexFormat() {}
 	};
 

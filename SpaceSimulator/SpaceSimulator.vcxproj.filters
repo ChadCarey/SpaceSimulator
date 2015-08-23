@@ -79,6 +79,9 @@
     <Filter Include="Source Files\Test\EngineInterfaces">
       <UniqueIdentifier>{114de926-6144-44b2-a41b-96450306c314}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Structs">
+      <UniqueIdentifier>{65b89952-e946-412e-b96e-b88e3b5e19fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="InitGlew.cpp">
@@ -121,6 +124,9 @@
       <Filter>Source Files\Engine\Init</Filter>
     </ClCompile>
     <ClCompile Include="TexturedTetra.cpp">
+      <Filter>Source Files\Engine\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="TexturedSphere.cpp">
       <Filter>Source Files\Engine\Models</Filter>
     </ClCompile>
   </ItemGroup>
@@ -194,12 +200,24 @@
     <ClInclude Include="TexturedTetra.h">
       <Filter>Header Files\Engine\Models</Filter>
     </ClInclude>
+    <ClInclude Include="TexturedSphere.h">
+      <Filter>Header Files\Engine\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexFormat.h">
+      <Filter>Header Files\Engine\Structs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="SmileTexture.bmp">
       <Filter>Resource Files\Textures</Filter>
     </Image>
     <Image Include="Crate.bmp">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Blue.bmp">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="EarthTexture.bmp">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>

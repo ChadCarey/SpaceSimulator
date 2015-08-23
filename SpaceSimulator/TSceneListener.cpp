@@ -7,8 +7,16 @@ using namespace Managers;
 
 TSceneListener::TSceneListener()
 {
+	TexturedSphere* sphere = new TexturedSphere();
+	this->modelsManager.push_front(sphere);
+
+	TexturedSphere* sphere2 = new TexturedSphere(2);
+	this->modelsManager.push_front(sphere2);
+	sphere2->setPosition(-10, 0, 0);
+
 	TexturedTetra* tetra = new TexturedTetra();
 	this->modelsManager.push_front(tetra);
+	tetra->move(-15, 10, -5);
 
 	TexturedCube* cube2 = new TexturedCube(2);
 	this->modelsManager.push_front(cube2);
@@ -93,8 +101,8 @@ void TSceneListener::mouseMoveCallback(int x, int y, int centerX, int centerY)
 		cameraManager.look(dx, dy);
 
 		// now warp the pointer back to the center of the screen
-		warped = true;
-		glutWarpPointer(centerX, centerY);
+		//warped = true;
+		//glutWarpPointer(centerX, centerY);
 	}
 	else
 	{

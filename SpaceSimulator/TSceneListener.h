@@ -2,6 +2,7 @@
 #include "ISceneListener.h"
 #include "TexturedCube.h"
 #include "TexturedTetra.h"
+#include "TexturedSphere.h"
 
 /**
 * TSceneListener extends IListener

@@ -79,12 +79,6 @@ void TexturedTetra::create(float scale)
 
 void TexturedTetra::draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)
 {
-	// delete this later, for testing only
-	rotation.x += .001;
-	rotation.y += .0015;
-	rotation.z += .002;
-	// end delete
-
 	// tell openGL which shaderProgram we are using
 	glUseProgram(program);
 	glBindVertexArray(vao);
