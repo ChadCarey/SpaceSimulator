@@ -1,4 +1,4 @@
-﻿Build started 9/16/2015 9:55:17 PM.
+﻿Build started 9/16/2015 10:16:33 PM.
      1>Project "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\SpaceSimulator\SpaceSimulator.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\glm.0.9.6.3\build\native\../..//build/native/include/" /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CameraManager.cpp
@@ -24,4 +24,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.36
+Time Elapsed 00:00:01.26

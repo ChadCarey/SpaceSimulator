@@ -57,8 +57,8 @@ namespace Managers
 
 
 		glm::vec3 getRightVector();
-		// glm::vec3 getForwardVector();
-		// glm::vec3 upVector;
+		glm::vec3 getForwardVector();
+		glm::vec3 upVector;
 
 		int angleX;
 		int angleY;

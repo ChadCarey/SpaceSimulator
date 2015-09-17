@@ -13,6 +13,7 @@ CameraManager::CameraManager()
 	this->setCameraPosition(glm::vec3(0, 0, -15));
 	this->setCameraTarget(glm::vec3(0.0, 0.0, 0.0));
 	this->setCameraUp(glm::vec3(0.0, 1.0, 0.0));
+	this->upVector = this->cameraUp;
 }
 
 /**
@@ -30,7 +31,15 @@ CameraManager::CameraManager(const CameraManager& cam)
 */
 glm::vec3 CameraManager::getRightVector()
 {
-	return normalize(cross(this->cameraUp, this->cameraPosition - this->cameraTarget));
+	return normalize(cross(this->upVector, this->cameraPosition - this->cameraTarget));
+}
+
+/**
+*
+*/
+glm::vec3 CameraManager::getForwardVector()
+{
+	return normalize(this->cameraTarget - this->cameraPosition);
 }
 
 /**
@@ -95,7 +104,6 @@ void CameraManager::setCameraUp(const glm::vec3& newUp)
 */
 void CameraManager::lookLeft(float left)
 {
-
 	glm::vec3 rVector = this->getRightVector() * left * ROTATION_SPEED;
 	std::cout << "lookLeft: x:" << rVector.x << " y:" << rVector.y << " z:" << rVector.z << std::endl;
 	this->cameraTarget.x -= rVector.x;
@@ -118,12 +126,17 @@ void CameraManager::lookLeft(float left)
 */
 void CameraManager::lookUp(float value)
 {
-	glm::vec3 rVector = this->cameraUp * value * ROTATION_SPEED;
-	std::cout << "lookUp: x:" << rVector.x << " y:" << rVector.y << " z:" << rVector.z << std::endl;
-	this->cameraTarget.x -= rVector.x;
-	this->cameraTarget.y -= rVector.y;
-	this->cameraTarget.z -= rVector.z;
+	glm::vec3 mVector = this->upVector * value * ROTATION_SPEED;
+	std::cout << "lookUp: x:" << mVector.x << " y:" << mVector.y << " z:" << mVector.z << std::endl;
+	// set the new camera target
+	this->cameraTarget.x -= mVector.x;
+	this->cameraTarget.y -= mVector.y;
+	this->cameraTarget.z -= mVector.z;
 	this->cameraTarget = normalize(this->cameraTarget - this->cameraPosition) + this->cameraPosition;
+	// set the new upVector
+	glm::vec3 rVector = this->getRightVector();
+	glm::vec3 fVector = this->getForwardVector();
+	this->upVector = normalize(cross(rVector, fVector));
 }
 
 /**
@@ -191,7 +204,7 @@ void CameraManager::panRight(float right)
 void CameraManager::moveForward(float forward)
 {
 	std::cout << "moveForward: " << forward << std::endl;
-	glm::vec3 direction = normalize(this->cameraTarget - this->cameraPosition)*forward;
+	glm::vec3 direction = this->getForwardVector()*forward;
 	this->cameraPosition.x += direction.x;
 	this->cameraPosition.y += direction.y;
 	this->cameraPosition.z += direction.z;
