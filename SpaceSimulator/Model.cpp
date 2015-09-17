@@ -1,6 +1,7 @@
 #include "Model.h"
 using namespace Rendering;
 
+#define PI 3.14159265
 TextureLoader Model::textureLoader;
 Managers::ShaderManager* Model::shaderManager = NULL;
 long long int Model::modelCount = 0;
@@ -69,16 +70,12 @@ void Model::destroy()
 	}
 }
 
-void Model::rotate(const glm::vec3& rotate)
-{
-	this->rotation += rotate;
-}
-
 void Model::rotate(float x, float y, float z)
 {
-	this->rotation.x += x;
-	this->rotation.y += y;
-	this->rotation.z += z;
+	float ratio = (PI / 180);
+	this->rotation.x += x*ratio;
+	this->rotation.y += y*ratio;
+	this->rotation.z += z*ratio;
 }
 
 void Model::move(const glm::vec3& dVector)
@@ -121,7 +118,8 @@ void Model::setRotation(const glm::vec3& newRotation)
 
 void Model::setRotation(float x, float y, float z)
 {
-	this->rotation.x = x;
-	this->rotation.y = y;
-	this->rotation.z = z;
+	float ratio = PI / 180;
+	this->rotation.x = x*ratio;
+	this->rotation.y = y*ratio;
+	this->rotation.z = z*ratio;
 }

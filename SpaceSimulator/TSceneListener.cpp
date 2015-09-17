@@ -7,46 +7,44 @@ using namespace Managers;
 
 TSceneListener::TSceneListener()
 {
-	TexturedSphere* sphere = new TexturedSphere();
-	this->modelsManager.push_front(sphere);
-
-	TexturedSphere* sphere2 = new TexturedSphere(2);
-	this->modelsManager.push_front(sphere2);
-	sphere2->setPosition(-10, 0, 0);
-
-	TexturedTetra* tetra = new TexturedTetra();
-	this->modelsManager.push_front(tetra);
-	tetra->move(-15, 10, -5);
-
-	TexturedCube* cube2 = new TexturedCube(2);
+	// cubes
+	TexturedCube* cube2 = new TexturedCube();
 	this->modelsManager.push_front(cube2);
-	cube2->move(-7, -5, -3);
-	cube2->setRotation(10, 35, 45);
+	cube2->setPosition(-10, 10, 0);
 
 	TexturedCube* cube3 = new TexturedCube(1.5);
 	this->modelsManager.push_front(cube3);
-	cube3->move(7, 5, 3);
-	cube3->setRotation(35, 45, 10);
+	cube3->setPosition(0, 10, 0);
 
-	TexturedCube* cube4 = new TexturedCube(0.5);
-	cube4->move(-3, -7, -5);
+	TexturedCube* cube4 = new TexturedCube(2);
 	this->modelsManager.push_front(cube4);
-	cube4->rotate(45, 35, 10);
+	cube4->setPosition(10, 10, 0);
 
-	TexturedCube* cube5 = new TexturedCube(0.75);
-	cube5->move(3, 7, -5);
-	this->modelsManager.push_front(cube5);
-	cube5->rotate(45, 10, 35);
+	// tetras
+	TexturedTetra* tetra = new TexturedTetra();
+	this->modelsManager.push_front(tetra);
+	tetra->setPosition(-10, 0, 0);
 
-	TexturedCube* cube6 = new TexturedCube(1.25);
-	cube6->move(-5, -3, -7);
-	this->modelsManager.push_front(cube6);
-	cube6->rotate(-10, -35, -45);
+	TexturedTetra* tetra2 = new TexturedTetra(1.5);
+	this->modelsManager.push_front(tetra2);
+	tetra2->setPosition(0, 0, 0);
 
-	TexturedCube* cube7 = new TexturedCube(1.75);
-	cube7->move(5, 3, 7);
-	this->modelsManager.push_front(cube7);
-	cube7->rotate(-35, -45, -1);
+	TexturedTetra* tetra3 = new TexturedTetra(2);
+	this->modelsManager.push_front(tetra3);
+	tetra3->setPosition(10, 0, 0);
+
+	// spheres
+	TexturedSphere* sphere = new TexturedSphere();
+	this->modelsManager.push_front(sphere);
+	sphere->setPosition(-10, -10, 0);
+
+	TexturedSphere* sphere2 = new TexturedSphere(1.5);
+	this->modelsManager.push_front(sphere2);
+	sphere2->setPosition(0, -10, 0);
+
+	TexturedSphere* sphere3 = new TexturedSphere(2);
+	this->modelsManager.push_front(sphere3);
+	sphere3->setPosition(10, -10, 0);
 
 	warped = false;
 }
@@ -98,11 +96,17 @@ void TSceneListener::mouseMoveCallback(int x, int y, int centerX, int centerY)
 		std::cout << "Mouse moved, x: " << x << " y: " << y << std::endl;
 		std::cout << "dx: " << dx << " dy: " << dy << std::endl;
 		
-		cameraManager.look(dx, dy);
+		if (dx != 0)
+			dx = (dx > 0) ? 1 : -1;
+		if (dy != 0)
+			dy = (dy > 0) ? 1 : -1;
+
+		this->cameraManager.lookRight(dx);
+		this->cameraManager.lookUp(dy);
 
 		// now warp the pointer back to the center of the screen
-		//warped = true;
-		//glutWarpPointer(centerX, centerY);
+		warped = true;
+		glutWarpPointer(centerX, centerY);
 	}
 	else
 	{

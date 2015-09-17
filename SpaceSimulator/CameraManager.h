@@ -25,16 +25,16 @@ namespace Managers
 		void setCameraUp(const glm::vec3&);
 
 		// METHODS
-		void rotateLeft(float left);
-		inline void rotateRight(float right);
+		//void rotateLeft(float left);
+		//inline void rotateRight(float right);
 
 		void look(int dx, int dy);
 
 		void lookUp(float value);
-		inline void lookDown(float value);
+		inline void lookDown(float value) { lookLeft(-value); };
 
 		void lookLeft(float value);
-		inline void lookRight(float value);
+		inline void lookRight(float value) { lookLeft(-value); };
 		
 		void panRight(float right);
 		inline void panLeft(float left) { panRight(-left); }
@@ -42,8 +42,8 @@ namespace Managers
 		void moveForward(float forward);
 		inline void moveBackward(float backward) { moveForward(-backward); }
 
-		void panUp(float up);
-		inline void panDown(float down);
+		//void panUp(float up);
+		//inline void panDown(float down);
 
 		glm::mat4 LookAt(glm::vec3& position, //camera position (eye)
 			glm::vec3& target,  //camera target
@@ -54,6 +54,11 @@ namespace Managers
 		glm::vec3 cameraPosition;
 		glm::vec3 cameraTarget; 
 		glm::vec3 cameraUp;
+
+
+		glm::vec3 getRightVector();
+		// glm::vec3 getForwardVector();
+		// glm::vec3 upVector;
 
 		int angleX;
 		int angleY;

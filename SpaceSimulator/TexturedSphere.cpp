@@ -63,10 +63,7 @@ void TexturedSphere::create(float scale)
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	
-	glBufferData(GL_ARRAY_BUFFER,
-		vertices.size() * sizeof(VertexFormat),
-		&vertices[0],
-		GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(VertexFormat), &vertices[0], GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)0);
@@ -76,7 +73,7 @@ void TexturedSphere::create(float scale)
 	this->vao = vao;
 	this->vbos.push_back(vbo);
 
-	rotation = glm::vec3(10.0, 20.0, 30.0);
+	rotation = glm::vec3(0.0, 0.0, 0.0);
 }
 
 void TexturedSphere::draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix)

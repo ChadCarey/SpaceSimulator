@@ -2,6 +2,9 @@
 using namespace glm;
 using namespace Managers;
 
+#define ROTATION_SPEED 0.01f
+
+
 /**
 *
 */
@@ -22,6 +25,13 @@ CameraManager::CameraManager(const CameraManager& cam)
 	this->setCameraUp(cam.getCameraUp());
 }
 
+/**
+*
+*/
+glm::vec3 CameraManager::getRightVector()
+{
+	return normalize(cross(this->cameraUp, this->cameraPosition - this->cameraTarget));
+}
 
 /**
 * 
@@ -83,79 +93,97 @@ void CameraManager::setCameraUp(const glm::vec3& newUp)
 /**
 *
 */
-void CameraManager::rotateLeft(float left)
+void CameraManager::lookLeft(float left)
 {
-	std::cout << "rotate left: " << left << std::endl;
+
+	glm::vec3 rVector = this->getRightVector() * left * ROTATION_SPEED;
+	std::cout << "lookLeft: x:" << rVector.x << " y:" << rVector.y << " z:" << rVector.z << std::endl;
+	this->cameraTarget.x -= rVector.x;
+	this->cameraTarget.y -= rVector.y;
+	this->cameraTarget.z -= rVector.z;
+	this->cameraTarget = normalize(this->cameraTarget-this->cameraPosition)+this->cameraPosition;
 }
 
 /**
 *
 */
-void CameraManager::rotateRight(float right)
+/*void CameraManager::lookRight(float right)
 {
-	rotateLeft(-right);
-}
+	std::cout << "lookRight, calling lookLeft with " << right << std::endl;
+	lookLeft(-right);
+}*/
 
 /**
 *
 */
 void CameraManager::lookUp(float value)
 {
-	std::cout << "loop up: " << value << std::endl;
+	glm::vec3 rVector = this->cameraUp * value * ROTATION_SPEED;
+	std::cout << "lookUp: x:" << rVector.x << " y:" << rVector.y << " z:" << rVector.z << std::endl;
+	this->cameraTarget.x -= rVector.x;
+	this->cameraTarget.y -= rVector.y;
+	this->cameraTarget.z -= rVector.z;
+	this->cameraTarget = normalize(this->cameraTarget - this->cameraPosition) + this->cameraPosition;
 }
 
 /**
 *
 */
-void CameraManager::lookDown(float value)
+/*void CameraManager::lookDown(float value)
 
 {
 	lookUp(-value);
-}
+}*/
 
 /**
 *
 */
-void CameraManager::lookLeft(float value)
+/*void CameraManager::rotateLeft(float value)
 
 {
 	std::cout << "loop left: " << value << std::endl;
-}
+}*/
 
 /**
 *
 */
-void CameraManager::lookRight(float value)
-
+/*void CameraManager::rotateRight(float value)
 {
 	lookLeft(-value);
-}
+}*/
 
 /**
 *
 */
 void CameraManager::panRight(float right)
 {
-	std::cout << "panRight: " << right << std::endl;
-	this->cameraPosition.x -= right;
-	this->cameraTarget.x -= right;
+	glm::vec3 rVec = this->getRightVector() * right;
+	std::cout << "panRight: x:" << rVec.x << " y:" << rVec.y << " z:" << rVec.z << std::endl;
+	this->cameraPosition.x += rVec.x;
+	this->cameraPosition.y += rVec.y;
+	this->cameraPosition.z += rVec.z;
+	this->cameraTarget.x += rVec.x;
+	this->cameraTarget.y += rVec.y;
+	this->cameraTarget.z += rVec.z;
+	//this->cameraPosition.x -= right;
+	//this->cameraTarget.x -= right;
 }
 
 /**
 *
 */
-void CameraManager::panUp(float up)
+/*void CameraManager::panUp(float up)
 {
 	std::cout << "panUp: " << up << std::endl;
-}
+}*/
 
 /**
 *
 */
-void CameraManager::panDown(float down)
+/*void CameraManager::panDown(float down)
 {
 	panUp(-down);
-}
+}*/
 
 /**
 *
@@ -163,8 +191,14 @@ void CameraManager::panDown(float down)
 void CameraManager::moveForward(float forward)
 {
 	std::cout << "moveForward: " << forward << std::endl;
-	cameraPosition.z += forward;
-	cameraTarget.z += forward;
+	glm::vec3 direction = normalize(this->cameraTarget - this->cameraPosition)*forward;
+	this->cameraPosition.x += direction.x;
+	this->cameraPosition.y += direction.y;
+	this->cameraPosition.z += direction.z;
+	this->cameraTarget.x += direction.x;
+	this->cameraTarget.y += direction.y;
+	this->cameraTarget.z += direction.z;
+
 }
 
 /**
@@ -182,13 +216,5 @@ glm::mat4 CameraManager::LookAt(vec3& position, //camera position (eye)
 */
 void CameraManager::look(int dx, int dy)
 {
-	angleX += dx;
-	angleX = angleX % 360;
-	if (angleX < 0)
-		angleX += 360;
-	
-	angleY += dy;
-	angleY = angleY % 360;
-	if (angleY < 0)
-		angleY += 360;
+	//this->rotateRight(dx);
 }
