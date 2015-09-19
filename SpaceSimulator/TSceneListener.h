@@ -31,8 +31,8 @@ namespace GraphicsEngine
 			virtual void keyboardPressCallback(const unsigned char& letter, const int& a, const int& b) override;
 			virtual void keyboardReleaseCallback(const unsigned char& letter, const int& a, const int& b) override;
 		private:
-			bool warped;
 			Managers::ModelsManager modelsManager;
+
 		};
 	}
 }

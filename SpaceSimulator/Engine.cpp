@@ -242,13 +242,23 @@ void Engine::exitFullscreen()
 void Engine::mouseMove(int x, int y)
 {
 	if (sceneListener)
-		sceneListener->mouseMoveCallback(x, y, windowInformation.width / 2, windowInformation.height / 2);
+	{
+		int centerx = windowInformation.width / 2;
+		int centery = windowInformation.height / 2;
+		if (!warped(x, y, centerx, centery))
+			sceneListener->mouseMoveCallback(x, y, centerx, centery);
+	}
 }
 
 void Engine::mouseDrag(int x, int y)
 {
 	if (sceneListener)
-		sceneListener->mouseDragCallback(x, y, windowInformation.width / 2, windowInformation.height / 2);
+	{
+		int centerx = windowInformation.width / 2;
+		int centery = windowInformation.height / 2;
+		if (!warped(x, y, centerx, centery))
+			sceneListener->mouseDragCallback(x, y, centerx, centery);
+	}
 }
 
 void Engine::mouseClick(int a, int b, int c, int d)

@@ -54,5 +54,11 @@ namespace GraphicsEngine
 		// GLEW
 		static void initGLEW();
 		static std::string findOpenGLVersion();
+
+		// OTHER FUNCTIONS
+		static inline bool warped(const int& x, const int& y, const int& centerX, const int& centerY)
+		{
+			return x == centerX && y == centerY;
+		};
 	};
 }
