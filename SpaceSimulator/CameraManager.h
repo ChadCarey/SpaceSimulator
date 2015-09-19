@@ -17,33 +17,28 @@ namespace Managers
 		glm::mat4 getViewMatrix() const;
 		glm::vec3 getCameraPosition() const;
 		glm::vec3 getCameraTarget() const;
-		glm::vec3 getCameraUp() const;
 
 		// SETTERS
 		void setCameraPosition(const glm::vec3&);
-		void setCameraTarget(const glm::vec3&);
-		void setCameraUp(const glm::vec3&);
 
 		// METHODS
-		//void rotateLeft(float left);
-		//inline void rotateRight(float right);
 
 		void look(int dx, int dy);
 
 		void lookUp(float value);
-		inline void lookDown(float value) { lookLeft(-value); };
+		inline void lookDown(float value) { lookUp(-value); };
 
-		void lookLeft(float value);
-		inline void lookRight(float value) { lookLeft(-value); };
+		void lookRight(float value);
+		inline void lookLeft(float value) { lookRight(-value); };
 		
 		void panRight(float right);
 		inline void panLeft(float left) { panRight(-left); }
 
+		void panUp(float up);
+		inline void panDown(float down) { panUp(-down); };
+
 		void moveForward(float forward);
 		inline void moveBackward(float backward) { moveForward(-backward); }
-
-		//void panUp(float up);
-		//inline void panDown(float down);
 
 		glm::mat4 LookAt(glm::vec3& position, //camera position (eye)
 			glm::vec3& target,  //camera target
@@ -52,15 +47,24 @@ namespace Managers
 	private:
 		// VARIABLES
 		glm::vec3 cameraPosition;
-		glm::vec3 cameraTarget; 
 		glm::vec3 cameraUp;
-
-
-		glm::vec3 getRightVector();
-		glm::vec3 getForwardVector();
+		glm::vec3 forwardVector;
 		glm::vec3 upVector;
 
-		int angleX;
-		int angleY;
+		// GETTERS
+		glm::vec3 getCameraUp() const;
+
+		glm::vec3 getForwardVector() const;
+		glm::vec3 getRightVector() const;
+		glm::vec3 getUpVector() const;
+
+		// SETTERS
+		void setCameraUp(const glm::vec3&);
+
+		void setForwardVector(const glm::vec3&);
+		void setUpVector(const glm::vec3&);
+
+		// FUNCTIONS
+		void correctUp();
 	};
 }

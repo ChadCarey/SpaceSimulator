@@ -2,7 +2,7 @@
 using namespace GraphicsEngine::EngineInterface;
 using namespace Managers;
 
-#define CAMERA_SPEED 0.2
+#define BASE_CAMERA_SPEED 0.7
 
 
 TSceneListener::TSceneListener()
@@ -101,8 +101,7 @@ void TSceneListener::mouseMoveCallback(int x, int y, int centerX, int centerY)
 		if (dy != 0)
 			dy = (dy > 0) ? 1 : -1;
 
-		this->cameraManager.lookRight(dx);
-		this->cameraManager.lookUp(dy);
+		this->cameraManager.look(dx, dy);
 
 		// now warp the pointer back to the center of the screen
 		warped = true;
@@ -133,16 +132,22 @@ void TSceneListener::keyboardPressCallback(const unsigned char& letter, const in
 	switch (letter)
 	{
 	case 'w':
-		cameraManager.moveForward(CAMERA_SPEED);
-		break;
-	case 'a':
-		cameraManager.panLeft(CAMERA_SPEED);
-		break;
-	case 'd':
-		cameraManager.panRight(CAMERA_SPEED);
+		cameraManager.moveForward(BASE_CAMERA_SPEED);
 		break;
 	case 's':
-		cameraManager.moveBackward(CAMERA_SPEED);
+		cameraManager.moveBackward(BASE_CAMERA_SPEED);
+		break;
+	case 'a':
+		cameraManager.panLeft(BASE_CAMERA_SPEED);
+		break;
+	case 'd':
+		cameraManager.panRight(BASE_CAMERA_SPEED);
+		break;
+	case 't':
+		cameraManager.panUp(BASE_CAMERA_SPEED);
+		break;
+	case 'g':
+		cameraManager.panDown(BASE_CAMERA_SPEED);
 		break;
 	}
 }
