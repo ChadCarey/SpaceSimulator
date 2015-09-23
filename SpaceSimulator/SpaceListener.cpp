@@ -1,5 +1,4 @@
 #include "SpaceListener.h"
-#include "Planet.h"
 #include "PlanetAtributes.h"
 
 #define PLANET_SCALING_RATIO 0.001f
@@ -10,14 +9,17 @@
 
 SpaceListener::SpaceListener()
 {
-	// spheres
-	Planet* sun = new Planet(SUN_SIZE * PLANET_SCALING_RATIO, SUN_MASS, SUN_TEXTURE, SUN_TEXTURE_HEIGHT, SUN_TEXTURE_WIDTH);
-	this->modelsManager.push_front(sun);
+	// Sun
+	sun = new Planet(SUN_SIZE * PLANET_SCALING_RATIO,
+		SUN_MASS * PLANET_SCALING_RATIO, 
+		SUN_TEXTURE, SUN_TEXTURE_HEIGHT, SUN_TEXTURE_WIDTH);
 	sun->setPosition(SUN_STARTING_X, SUN_STARTING_Y, SUN_STARTING_Z);
 
-	Planet* earth = new Planet(EARTH_SIZE * PLANET_SCALING_RATIO, 10, EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
-	this->modelsManager.push_front(earth);
-	earth->setPosition(SUN_STARTING_X + EARTH_DISTANCE_FROM_SUN*PLANET_SCALING_RATIO, 0, 0);
+	// Earth
+	Planet* earth = new Planet(EARTH_SIZE * PLANET_SCALING_RATIO, 
+		EARTH_MASS * PLANET_SCALING_RATIO, 
+		EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
+	sun->addOrbiter(earth, EARTH_DISTANCE_FROM_SUN);
 	
 	// set the player's starting position
 	this->cameraManager.setCameraPosition(glm::vec3(PLAYER_START_POSITION_X, PLAYER_START_POSITION_Y, PLAYER_START_POSITION_Z));
@@ -25,11 +27,8 @@ SpaceListener::SpaceListener()
 
 SpaceListener::~SpaceListener()
 {
-	for (auto model : modelsManager)
-	{
-		delete model;
-	}
-	modelsManager.clear();
+	// sun will delete all of it's children as well
+	delete sun;
 }
 
 void SpaceListener::beginFrameCallback()
@@ -39,7 +38,7 @@ void SpaceListener::beginFrameCallback()
 
 void SpaceListener::drawFrameCallback()
 {
-	modelsManager.draw(projectionMatrix, cameraManager.getViewMatrix());
+	sun->draw(projectionMatrix, cameraManager.getViewMatrix());
 }
 
 void SpaceListener::endFrameCallback() {}

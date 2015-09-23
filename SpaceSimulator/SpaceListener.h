@@ -1,4 +1,5 @@
 #include "ISceneListener.h"
+#include "Planet.h"
 
 class SpaceListener : public GraphicsEngine::EngineInterface::ISceneListener
 {
@@ -18,6 +19,5 @@ public:
 	virtual void keyboardPressCallback(const unsigned char& letter, const int& a, const int& b) override;
 	virtual void keyboardReleaseCallback(const unsigned char& letter, const int& a, const int& b) override;
 private:
-	Managers::ModelsManager modelsManager;
-
+	Planet* sun;
 };

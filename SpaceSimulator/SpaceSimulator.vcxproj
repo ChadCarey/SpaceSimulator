@@ -59,6 +59,7 @@
     <ClInclude Include="SpaceSimulator.h" />
     <ClInclude Include="TexturedCube.h" />
     <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="Vector3.h" />
     <ClInclude Include="VertexFormat.h" />
     <ClInclude Include="WindowInfo.h" />
   </ItemGroup>

@@ -18,7 +18,7 @@ namespace Rendering
 			~TexturedSphere();
 
 			void create(float scale = 1);
-			virtual void draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override final;
+			virtual void draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override;
 			void setTexture(std::string textureFileName, int height, int width) override final;
 			
 		private:
