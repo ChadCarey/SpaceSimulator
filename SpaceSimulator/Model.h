@@ -29,7 +29,7 @@ namespace Rendering
 
 		// SETTERS
 		virtual void setProgram(GLuint shaderName);
-		virtual void setTexture(std::string textureName, GLuint texture);
+		virtual void setTexture(std::string textureName, int height, int width);// GLuint texture);
 		void setPosition(const glm::vec3& newPosition);
 		void setPosition(float x, float y, float z);
 		void setRotation(const glm::vec3& newRotation);

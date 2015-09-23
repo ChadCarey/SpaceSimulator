@@ -20,6 +20,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelsManager.cpp" />
+    <ClCompile Include="Planet.cpp" />
+    <ClCompile Include="SpaceListener.cpp" />
+    <ClCompile Include="SpaceSimulator.cpp" />
     <ClCompile Include="TexturedSphere.cpp" />
     <ClCompile Include="TexturedTetra.cpp" />
     <ClCompile Include="TSceneListener.cpp" />
@@ -40,12 +43,15 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineTest.h" />
     <ClInclude Include="FrameBufferInfo.h" />
+    <ClInclude Include="Planet.h" />
+    <ClInclude Include="PlanetAtributes.h" />
     <ClInclude Include="Runnable.h" />
     <ClInclude Include="ISceneListener.h" />
     <ClInclude Include="InitGlew.h" />
     <ClInclude Include="InitGlut.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelsManager.h" />
+    <ClInclude Include="SpaceListener.h" />
     <ClInclude Include="TexturedSphere.h" />
     <ClInclude Include="TexturedTetra.h" />
     <ClInclude Include="TSceneListener.h" />

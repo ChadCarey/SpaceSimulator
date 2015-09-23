@@ -183,7 +183,7 @@ void Engine::setCallbacks()
 	glutSpecialFunc(specialKeyDown);
 
 	// mouse
-	glutSetCursor(GLUT_CURSOR_CROSSHAIR);
+	glutSetCursor(GLUT_CURSOR_NONE);
 	glutMotionFunc(mouseDrag);
 	glutPassiveMotionFunc(mouseMove);
 	glutMouseFunc(mouseClick);
@@ -201,6 +201,9 @@ void Engine::displayCallback()
 	if (sceneListener)
 	{
 		sceneListener->beginFrameCallback();
+		// now draw
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(0.0, 0.0, 0.0, 1.0);
 		sceneListener->drawFrameCallback();
 
 		glutSwapBuffers();
@@ -246,7 +249,12 @@ void Engine::mouseMove(int x, int y)
 		int centerx = windowInformation.width / 2;
 		int centery = windowInformation.height / 2;
 		if (!warped(x, y, centerx, centery))
+		{
 			sceneListener->mouseMoveCallback(x, y, centerx, centery);
+			// now warp the pointer back to the center of the screen
+			//warped = true;
+			glutWarpPointer(centerx, centery);
+		}
 	}
 }
 

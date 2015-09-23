@@ -47,10 +47,13 @@ const GLuint Model::getTexture(std::string textureName) const
 	return textures.at(textureName);
 }
 
-void Model::setTexture(std::string textureName, GLuint texture)
+void Model::setTexture(std::string textureFileName, int height, int width)
 {
-	if (texture != 0) 
-		textures[textureName] = texture;
+	GLuint texture = this->textureLoader.loadTexture(textureFileName, width, height);
+	if (texture != 0)
+	{
+		textures[textureFileName] = texture;
+	}
 }
 
 

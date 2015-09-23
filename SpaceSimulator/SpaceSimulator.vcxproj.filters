@@ -40,9 +40,6 @@
     <Filter Include="Header Files\Engine\Managers">
       <UniqueIdentifier>{c8f1ead0-be1d-485b-8089-90192c0fe5bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Engine\Managers">
-      <UniqueIdentifier>{c5b03b84-4dbf-49c2-b583-9c1d6054112d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Engine\Rendering">
       <UniqueIdentifier>{e709353e-055d-448a-928c-a4f7df866c6f}</UniqueIdentifier>
     </Filter>
@@ -61,12 +58,6 @@
     <Filter Include="Source Files\Engine\EngineInterfaces">
       <UniqueIdentifier>{325a0082-4bae-449f-ae41-dcfe22c1d863}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Game\EngineInterfaces">
-      <UniqueIdentifier>{936eb356-b757-4aca-a491-6c0e5d6e05a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Game\EngineInterfaces">
-      <UniqueIdentifier>{45d58e1d-efd5-45ee-b7e3-b6a37baf9443}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Test">
       <UniqueIdentifier>{df1b33e9-6f92-4e0a-998f-9f64e9542806}</UniqueIdentifier>
     </Filter>
@@ -81,6 +72,12 @@
     </Filter>
     <Filter Include="Header Files\Engine\Structs">
       <UniqueIdentifier>{65b89952-e946-412e-b96e-b88e3b5e19fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Managers">
+      <UniqueIdentifier>{c5b03b84-4dbf-49c2-b583-9c1d6054112d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Defines">
+      <UniqueIdentifier>{298485de-734b-4dfb-84a6-2cad097e36ed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +125,15 @@
     </ClCompile>
     <ClCompile Include="TexturedSphere.cpp">
       <Filter>Source Files\Engine\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceSimulator.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceListener.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Planet.cpp">
+      <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +211,15 @@
     </ClInclude>
     <ClInclude Include="VertexFormat.h">
       <Filter>Header Files\Engine\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceListener.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Planet.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanetAtributes.h">
+      <Filter>Header Files\Game\Defines</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

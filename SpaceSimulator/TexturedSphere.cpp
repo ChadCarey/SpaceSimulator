@@ -12,7 +12,7 @@ TexturedSphere::TexturedSphere(float scale)
 {
 	this->setProgram(shaderManager->createProgram(VERTEX_SHADER, FRAGMENT_SHADER));
 	create(scale);
-	this->setTexture(TEXTURE, textureLoader.loadTexture(TEXTURE, TEXTURE_WIDTH, TEXTURE_HEIGHT));
+	this->setTexture(TEXTURE, TEXTURE_HEIGHT, TEXTURE_WIDTH);
 }
 
 TexturedSphere::~TexturedSphere() {}
@@ -85,7 +85,7 @@ void TexturedSphere::draw(const glm::mat4& projection_matrix, const glm::mat4& v
 	
 	// set open gl to use this object's texture
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, this->getTexture(TEXTURE));
+	glBindTexture(GL_TEXTURE_2D, this->getTexture(this->currentTexture));
 	unsigned int textureLocation = glGetUniformLocation(program, "texture1");
 	glUniform1i(textureLocation, 0);
 	
@@ -97,6 +97,12 @@ void TexturedSphere::draw(const glm::mat4& projection_matrix, const glm::mat4& v
 
 	// draw using triangles
 	glDrawArrays(GL_TRIANGLES, 0, numVerticies);
+}
+
+void TexturedSphere::setTexture(std::string textureFileName, int height, int width)
+{
+	this->Model::setTexture(textureFileName, height, width);
+	this->currentTexture = textureFileName;
 }
 
 void TexturedSphere::splitTriangle(VertexFormat& pointOne, VertexFormat& pointTwo, VertexFormat& pointThree, std::vector<VertexFormat>& output)
