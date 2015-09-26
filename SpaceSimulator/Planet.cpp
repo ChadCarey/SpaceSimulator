@@ -17,6 +17,8 @@ Planet::~Planet()
 
 void Planet::addOrbiter(Planet* p, long distance)
 {
+	// set the position of the planet
+	
 	// calculate correct orbiter vector in the direction of the current planet's vector
 		// if the is no current vector we give it a random direction
 	// add it to the orbiter std::vector

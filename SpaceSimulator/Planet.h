@@ -9,7 +9,7 @@
 * the planet class is a drawable TexturedSphere that also has a 
 * tree-like structure that contains of of it's orbiting planets.
 */
-class Planet : private Rendering::TexturedSphere
+class Planet : public Rendering::TexturedSphere
 {
 public:
 	// constructors
