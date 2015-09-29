@@ -1,3 +1,4 @@
+#pragma once
 #include "ISceneListener.h"
 #include "Planet.h"
 
@@ -20,4 +21,5 @@ public:
 	virtual void keyboardReleaseCallback(const unsigned char& letter, const int& a, const int& b) override;
 private:
 	Planet* sun;
+	bool paused;
 };

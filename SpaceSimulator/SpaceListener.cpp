@@ -1,28 +1,33 @@
 #include "SpaceListener.h"
 #include "PlanetAtributes.h"
 
-#define PLANET_SCALING_RATIO 0.001f
-#define PLAYER_START_POSITION_X 0
+#define PLAYER_START_POSITION_X (5.0 / UNIVERSE_SCALE)
 #define PLAYER_START_POSITION_Y 0
-#define PLAYER_START_POSITION_Z -500
-#define BASE_CAMERA_SPEED 50
+#define PLAYER_START_POSITION_Z (-4.0 / UNIVERSE_SCALE)
+#define BASE_CAMERA_SPEED (3500.0 * UNIVERSE_SCALE)
 
 SpaceListener::SpaceListener()
 {
 	// Sun
-	sun = new Planet(SUN_SIZE * PLANET_SCALING_RATIO,
-		SUN_MASS * PLANET_SCALING_RATIO, 
+	sun = new Planet(SUN_SIZE, SUN_MASS, 
 		SUN_TEXTURE, SUN_TEXTURE_HEIGHT, SUN_TEXTURE_WIDTH);
 	sun->setPosition(SUN_STARTING_X, SUN_STARTING_Y, SUN_STARTING_Z);
 
 	// Earth
-	Planet* earth = new Planet(EARTH_SIZE * PLANET_SCALING_RATIO, 
-		EARTH_MASS * PLANET_SCALING_RATIO, 
+	Planet* earth = new Planet(EARTH_SIZE, EARTH_MASS, 
 		EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
-	sun->addOrbiter(earth, EARTH_DISTANCE_FROM_SUN);
+	sun->addNewOrbiter(earth, EARTH_DISTANCE_FROM_SUN);
+	
+	// Earth's moon
+	Planet* moon = new Planet(EARTH_MOON_SIZE, EARTH_MOON_MASS,
+		EARTH_MOON_TEXTURE, EARTH_MOON_TEXTURE_HEIGHT, EARTH_MOON_TEXTURE_WIDTH);
+	earth->addNewOrbiter(moon, EARTH_MOON_DISTANCE_FROM_EARTH);
 	
 	// set the player's starting position
 	this->cameraManager.setCameraPosition(glm::vec3(PLAYER_START_POSITION_X, PLAYER_START_POSITION_Y, PLAYER_START_POSITION_Z));
+
+	// start the simulator paused
+	paused = true;
 }
 
 SpaceListener::~SpaceListener()
@@ -33,7 +38,8 @@ SpaceListener::~SpaceListener()
 
 void SpaceListener::beginFrameCallback()
 {
-
+	if (!paused)
+		sun->update();
 }
 
 void SpaceListener::drawFrameCallback()
@@ -105,6 +111,12 @@ void SpaceListener::keyboardPressCallback(const unsigned char& letter, const int
 		break;
 	case 'g':
 		cameraManager.panDown(BASE_CAMERA_SPEED);
+		break;
+	case 'p':
+		if (paused)
+			paused = false;
+		else
+			paused = true;
 		break;
 	}
 }

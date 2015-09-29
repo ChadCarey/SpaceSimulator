@@ -8,7 +8,7 @@ using namespace Rendering;
 #define TEXTURE_WIDTH 300
 #define TEXTURE_HEIGHT 150
 
-TexturedSphere::TexturedSphere(float scale)
+TexturedSphere::TexturedSphere(float scale) : Model()
 {
 	this->setProgram(shaderManager->createProgram(VERTEX_SHADER, FRAGMENT_SHADER));
 	create(scale);
@@ -54,7 +54,7 @@ void TexturedSphere::create(float scale)
 	{
 		splitTetra(vertices);
 	}
-	normalize(vertices);
+	normalizeVertices(vertices);
 	this->scale(vertices, scale);
 
 	numVerticies = vertices.size();
@@ -174,7 +174,7 @@ void TexturedSphere::splitTetra(std::vector<VertexFormat>& vertices)
 		splitTriangle(vertices[i], vertices[i + 1], vertices[i + 2], output);
 	}
 	vertices.clear();
-	normalize(output);
+	normalizeVertices(output);
 	for (int i = 0; i < output.size(); ++i)
 	{
 		vertices.push_back(output[i]);
@@ -182,7 +182,7 @@ void TexturedSphere::splitTetra(std::vector<VertexFormat>& vertices)
 }
 
 
-void TexturedSphere::normalize(std::vector<VertexFormat>& vertices)
+void TexturedSphere::normalizeVertices(std::vector<VertexFormat>& vertices)
 {
 	for (std::vector<VertexFormat>::iterator it = vertices.begin(); it != vertices.end(); ++it)
 	{

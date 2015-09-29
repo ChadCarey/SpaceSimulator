@@ -104,7 +104,9 @@ void Model::move(float x, float y, float z)
 
 void Model::setPosition(const glm::vec3& newPosition)
 {
-	this->position = newPosition;
+	this->position.x = newPosition.x;
+	this->position.y = newPosition.y;
+	this->position.z = newPosition.z;
 }
 
 void Model::setPosition(float x, float y, float z)
@@ -125,4 +127,9 @@ void Model::setRotation(float x, float y, float z)
 	this->rotation.x = x*ratio;
 	this->rotation.y = y*ratio;
 	this->rotation.z = z*ratio;
+}
+
+glm::vec3 Model::getPosition() const
+{
+	return this->position;
 }

@@ -21,7 +21,7 @@ namespace Rendering
 		virtual GLuint getVao() const;
 		virtual const std::vector<GLuint>& getVbos() const;
 		virtual const GLuint getTexture(std::string textureName) const;
-		glm::vec3 getPosition();
+		glm::vec3 getPosition() const;
 		glm::vec3 getRotation();
 		Managers::ShaderManager* getShaderManager();
 		TextureLoader getTextureLoader();
