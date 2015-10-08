@@ -13,16 +13,50 @@ SpaceListener::SpaceListener()
 		SUN_TEXTURE, SUN_TEXTURE_HEIGHT, SUN_TEXTURE_WIDTH);
 	sun->setPosition(SUN_STARTING_X, SUN_STARTING_Y, SUN_STARTING_Z);
 
+	// Mercury
+	Planet* mercury = new Planet(MERCURY_SIZE, MERCURY_MASS,
+		MERCURY_TEXTURE, MERCURY_TEXTURE_HEIGHT, MERCURY_TEXTURE_WIDTH);
+	sun->addNewOrbiter(mercury, MERCURY_DISTANCE_FROM_SUN);
+
+	// Venus
+	Planet* venus = new Planet(VENUS_SIZE, VENUS_MASS,
+		VENUS_TEXTURE, VENUS_TEXTURE_HEIGHT, VENUS_TEXTURE_WIDTH);
+	sun->addNewOrbiter(venus, VENUS_DISTANCE_FROM_SUN);
+
 	// Earth
 	Planet* earth = new Planet(EARTH_SIZE, EARTH_MASS, 
 		EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
 	sun->addNewOrbiter(earth, EARTH_DISTANCE_FROM_SUN);
-	
 	// Earth's moon
 	Planet* moon = new Planet(EARTH_MOON_SIZE, EARTH_MOON_MASS,
 		EARTH_MOON_TEXTURE, EARTH_MOON_TEXTURE_HEIGHT, EARTH_MOON_TEXTURE_WIDTH);
 	earth->addNewOrbiter(moon, EARTH_MOON_DISTANCE_FROM_EARTH);
 	
+	// mars
+	Planet* mars = new Planet(MARS_SIZE, MARS_MASS,
+		MARS_TEXTURE, MARS_TEXTURE_HEIGHT, MARS_TEXTURE_WIDTH);
+	sun->addNewOrbiter(mars, MARS_DISTANCE_FROM_SUN);
+
+	// Jupiter
+	Planet* jupiter = new Planet(JUPITER_SIZE, JUPITER_MASS,
+		JUPITER_TEXTURE, JUPITER_TEXTURE_HEIGHT, JUPITER_TEXTURE_WIDTH);
+	sun->addNewOrbiter(jupiter, JUPITER_DISTANCE_FROM_SUN);
+
+	// Saturn
+	Planet* saturn = new Planet(SATURN_SIZE, SATURN_MASS,
+		SATURN_TEXTURE, SATURN_TEXTURE_HEIGHT, SATURN_TEXTURE_WIDTH);
+	sun->addNewOrbiter(saturn, SATURN_DISTANCE_FROM_SUN);
+
+	// uranus
+	Planet* uranus = new Planet(URANUS_SIZE, URANUS_MASS,
+		URANUS_TEXTURE, URANUS_TEXTURE_HEIGHT, URANUS_TEXTURE_WIDTH);
+	sun->addNewOrbiter(uranus, URANUS_DISTANCE_FROM_SUN);
+
+	// neptune
+	Planet* neptune = new Planet(NEPTUNE_SIZE, NEPTUNE_MASS,
+		NEPTUNE_TEXTURE, NEPTUNE_TEXTURE_HEIGHT, NEPTUNE_TEXTURE_WIDTH);
+	sun->addNewOrbiter(neptune, NEPTUNE_DISTANCE_FROM_SUN);
+
 	// set the player's starting position
 	this->cameraManager.setCameraPosition(glm::vec3(PLAYER_START_POSITION_X, PLAYER_START_POSITION_Y, PLAYER_START_POSITION_Z));
 

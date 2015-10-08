@@ -21,5 +21,4 @@ void main()
     rotate_z = mat4(cos(rotation.z), -sin(rotation.z), 0.0, 0.0, sin(rotation.z), cos(rotation.z), 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0);
  
     gl_Position = projection_matrix * view_matrix * rotate_y * rotate_x * rotate_z * vec4(final_position, 1);
-
 }

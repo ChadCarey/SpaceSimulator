@@ -34,6 +34,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Sphere_Fragment_Shader.glsl" />
+    <None Include="Sphere_Vertex_Shader.glsl" />
     <None Include="Texture_Fragment_Shader.glsl" />
     <None Include="Texture_Vertex_Shader.glsl" />
   </ItemGroup>
@@ -71,6 +73,9 @@
     <Image Include="Crate.bmp" />
     <Image Include="EarthTexture.bmp" />
     <Image Include="SmileTexture.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SpaceSimulator.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{783EA184-D212-48BF-A76D-A7929B2241C1}</ProjectGuid>

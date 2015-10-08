@@ -5,7 +5,10 @@
 #include "CameraManager.h"
 using namespace Rendering;
 
-
+/**
+* ModelsManager
+* a specialized list that holds models and allows the user to update and draw the whole group
+*/
 namespace Managers
 {
 	class ModelsManager : public std::list<Model*>

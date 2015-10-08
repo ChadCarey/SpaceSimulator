@@ -1,10 +1,11 @@
 #include "TexturedSphere.h"
+#include <math.h>
 using namespace Rendering;
 
-#define VERTEX_SHADER "Texture_Vertex_Shader.glsl"
-#define FRAGMENT_SHADER "Texture_Fragment_Shader.glsl"
+#define VERTEX_SHADER "Sphere_Vertex_Shader.glsl"
+#define FRAGMENT_SHADER "Sphere_Fragment_Shader.glsl"
 #define TEXTURE "Neptune.bmp"
-#define TRIANGLE_SPLITS 5
+#define TRIANGLE_SPLITS 4
 #define TEXTURE_WIDTH 300
 #define TEXTURE_HEIGHT 150
 
@@ -54,7 +55,13 @@ void TexturedSphere::create(float scale)
 	{
 		splitTetra(vertices);
 	}
+	// fix the textures
+	//reTexture(vertices);
+	// normalize the verticies of the tetra to get a sphere
 	normalizeVertices(vertices);
+	// add a save sphere to texture method here later
+
+	// scale the sphere
 	this->scale(vertices, scale);
 
 	numVerticies = vertices.size();
@@ -143,6 +150,9 @@ void TexturedSphere::splitTriangle(VertexFormat& pointOne, VertexFormat& pointTw
 	three.push_back(VertexFormat(center, pointOne.texture));
 	four.push_back(VertexFormat(center, pointTwo.texture));
 
+	// split up the textures
+
+
 	// add them all to the output std::vector
 	for (int i = 0; i < one.size(); ++i)
 	{
@@ -197,5 +207,34 @@ void TexturedSphere::scale(std::vector<VertexFormat>& vertices, float& scale)
 	for (std::vector<VertexFormat>::iterator it = vertices.begin(); it != vertices.end(); ++it)
 	{
 		it->position *= scalingVector;
+	}
+}
+
+/**
+* reTexture
+* reformats the textures of the sphere
+*/
+void TexturedSphere::reTexture(std::vector<VertexFormat>& vertices)
+{
+	int numVer = vertices.size();
+	int numTri = numVer / 3;
+	int numSq = numTri / 2;
+	std::cout << "number of triangles: " << numTri << std::endl;
+	
+	float sqIncrement = 1.0 / sqrt(numSq);
+	
+	
+	for (int i = 0; i < numVer-3; ++i)
+	{
+		/*VertexFormat* one = &vertices[i];
+		VertexFormat* two = &vertices[i+1];
+		VertexFormat* three = &vertices[i+2];
+
+		one->texture.x = 1.0 / numTri;
+		one->texture.y = 0.0;
+		two->texture.x = 1.0 - one->texture.x;
+		two->texture.y = 0.0;
+		three->texture.x = one->texture.x;
+		three->texture.y = 1.0 - one->texture.x;*/
 	}
 }
