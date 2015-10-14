@@ -2,7 +2,7 @@
 #include "Physics.h"
 using namespace glm;
 
-Planet::Planet(long size, float mass, std::string textureFileName, int textureHeight, int textureWidth) : TexturedSphere(size)
+Planet::Planet(long size, long double mass, std::string textureFileName, int textureHeight, int textureWidth) : TexturedSphere(size)
 {
 	this->setTexture(textureFileName, textureHeight, textureWidth);
 	this->setMovementVector(0, 0, 0);
@@ -18,19 +18,20 @@ Planet::~Planet()
 	}
 }
 
-void Planet::setMovementVector(float x, float y, float z)
+void Planet::setMovementVector(const long double& x, const long double& y, const long double& z)
 {
-	this->movementVector.x = x;
-	this->movementVector.y = y;
-	this->movementVector.z = z;
+	this->movementVector.setX(x);
+	this->movementVector.setY(y);
+	this->movementVector.setZ(z);
 }
 
-void Planet::addNewOrbiter(Planet* p, float distance)
+void Planet::addNewOrbiter(Planet* p, const long double& distance)
 {
 	if (p != this)
 	{
-		p->setPosition(this->position.x + distance, this->position.y, this->position.z);
+		p->setPPosition(this->precisePosition.getX() + distance, this->precisePosition.getY(), this->precisePosition.getZ());
 		p->setMovementVector(0, 0, Physics::calculateOrbitalVelocity(p->getMass(), this->getMass(), distance));
+		//p->setMovementVector(p->movementVector - Physics::calculateGravityVecor(*this, *p, distance)*2);
 
 		// add it to the orbiter std::vector
 		OrbiterInfo* orbiter = new OrbiterInfo();
@@ -40,12 +41,12 @@ void Planet::addNewOrbiter(Planet* p, float distance)
 	}
 }
 
-void Planet::move(vec3& movement)
+void Planet::move(PVector3& movement)
 {
 	// move this planet by the given vector
-	this->position.x += movement.x;
-	this->position.y += movement.y;
-	this->position.z += movement.z;
+	this->precisePosition.setX(this->precisePosition.getX() + movement.getX());
+	this->precisePosition.setY(this->precisePosition.getY() + movement.getY());
+	this->precisePosition.setZ(this->precisePosition.getZ() + movement.getZ());
 
 	// move all orbiters by the given vector
 	for (auto orbiter : this->orbiters)
@@ -58,14 +59,17 @@ void Planet::move(vec3& movement)
 
 		// calculate a corection vector and add it to the planets current vector
 		// NOTE: this is a tempory hack
-		glm::vec3 correctPos = (Physics::getUnitVector(this->getPosition(), orbiter->planet->getPosition()) * orbiter->distance) + this->getPosition();
-		glm::vec3 correctionVector = correctPos - orbiter->planet->getPosition();
+		//PVector3 correctPos = (Physics::getUnitVector(this->precisePosition, orbiter->planet->precisePosition) * orbiter->distance) + this->precisePosition;
+		//PVector3 correctionVector = correctPos - orbiter->planet->precisePosition;
 		//orbiter->planet->addVector(correctionVector);
 	}
 }
 
 void Planet::draw(const mat4& projection_matrix, const mat4& view_matrix)
 {
+	// the following will syncronize the high precision physics vectors
+	// with the required drawing vectors (glm::vec3)
+	this->syncVectors();
 	// draw the planets using the superclasses draw method
 	TexturedSphere::draw(projection_matrix, view_matrix);
 	// then call draw for each of the orbiters so they can do the same
@@ -83,7 +87,7 @@ void Planet::draw(const mat4& projection_matrix, const mat4& view_matrix)
 	}
 }
 
-vec3 Planet::getMovementVector()
+PVector3 Planet::getMovementVector()
 {
 	return this->movementVector;
 }
@@ -102,21 +106,55 @@ void Planet::calculateOrbits()
 	for (auto orbiter : this->orbiters)
 	{
 		// Calculate gravity vector and add it to the planet
-		vec3 gravityVector = Physics::calculateGravityVecor(*orbiter->planet, *this, orbiter->distance);
+		PVector3 gravityVector = Physics::calculateGravityVecor(*orbiter->planet, *this, orbiter->distance);
 		orbiter->planet->addVector(gravityVector);
 		// call calculateOrbits for each orbiter
 		orbiter->planet->calculateOrbits();
 	}
 }
 
-float Planet::getMass() const
+long double Planet::getMass() const
 {
 	return this->mass;
 }
 
-void Planet::addVector(const glm::vec3& vector)
+void Planet::addVector(const PVector3& vector)
 {
-	this->movementVector.x += vector.x;
-	this->movementVector.y += vector.y;
-	this->movementVector.z += vector.z;
+	this->movementVector.setX(this->movementVector.getX() + vector.getX());
+	this->movementVector.setY(this->movementVector.getY() + vector.getY());
+	this->movementVector.setZ(this->movementVector.getZ() + vector.getZ());
+}
+
+PVector3 Planet::getPPosition() const
+{
+	return this->precisePosition;
+}
+
+/**
+*
+*
+*/
+void Planet::setPPosition(const PVector3& newPos)
+{
+	this->precisePosition.set(newPos);
+}
+
+/**
+*
+*
+*/
+void Planet::setPPosition(const long double& x, const long double& y, const long double& z)
+{
+	this->precisePosition.set(x, y, z);
+}
+
+/**
+*
+*
+*/
+void Planet::syncVectors()
+{
+	this->position.x = this->precisePosition.getX();
+	this->position.y = this->precisePosition.getY();
+	this->position.z = this->precisePosition.getZ();
 }

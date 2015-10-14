@@ -2,6 +2,7 @@
 #include "TexturedSphere.h"
 #include <string.h>
 #include <vector>
+#include "PVector3.h"
 
 /**
 * Class Planet
@@ -12,20 +13,23 @@ class Planet : public Rendering::TexturedSphere
 {
 public:
 	// constructors
-	Planet(long size, float mass, std::string textureFileName, int textureHeight, int textureWidth);
+	Planet(long size, long double mass, std::string textureFileName, int textureHeight, int textureWidth);
 	~Planet();
 
 	// getters
-	float getMass() const;
-	glm::vec3 getMovementVector();
+	long double getMass() const;
+	PVector3 getMovementVector();
+	PVector3 getPPosition() const;
 
 	// setters
-	inline void setMovementVector(glm::vec3& newVec) { setMovementVector(newVec.x, newVec.y, newVec.z); };
-	void setMovementVector(float x, float y, float z);
+	inline void setMovementVector(PVector3& newVec) { setMovementVector(newVec.getX(), newVec.getY(), newVec.getZ()); };
+	void setMovementVector(const long double& x, const long double& y, const long double& z);
+	void setPPosition(const PVector3& newPos);
+	void setPPosition(const long double& x, const long double& y, const long double& z);
 
 	// methods
-	void addNewOrbiter(Planet* p, float distance);
-	void addVector(const glm::vec3& vector);
+	void addNewOrbiter(Planet* p, const long double& distance);
+	void addVector(const PVector3& vector);
 	void draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override;
 	void update() override;
 
@@ -35,16 +39,18 @@ private:
 	struct OrbiterInfo
 	{
 		Planet* planet;
-		float distance;
+		long double distance;
 	};
 	std::vector<OrbiterInfo*> orbiters;
-	glm::vec3 movementVector;
-	float mass;
+	PVector3 movementVector;
+	PVector3 precisePosition;
+	long double mass;
 	
 	/**
 	* move will move the planet and all of it's orbiting planets by it's movementVector
 	*/
 	inline void move() { this->move(this->movementVector); };
-	void move(glm::vec3& movement);
+	void move(PVector3& movement);
 	void calculateOrbits();
+	inline void syncVectors();
 };

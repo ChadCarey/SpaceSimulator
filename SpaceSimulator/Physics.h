@@ -6,9 +6,9 @@
 class Physics
 {
 public:
-	static glm::vec3 calculateGravityVecor(const Planet& from, const Planet& to, float distance);
-	static float calculateGravityForce(double mass1, double mass2, double distance);
-	static float calculateOrbitalVelocity(double mass1, double mass2, double distance);
-	static glm::vec3 getUnitVector(const glm::vec3& from, const glm::vec3& to);
+	static PVector3 calculateGravityVecor(const Planet& from, const Planet& to, const long double& distance);
+	static long double calculateGravityForce(long double mass1, long double mass2, long double distance);
+	static long double calculateOrbitalVelocity(long double mass1, long double mass2, long double distance);
+	static PVector3 getUnitVector(const PVector3& from, const PVector3& to);
 };
 

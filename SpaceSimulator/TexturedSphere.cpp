@@ -5,7 +5,7 @@ using namespace Rendering;
 #define VERTEX_SHADER "Sphere_Vertex_Shader.glsl"
 #define FRAGMENT_SHADER "Sphere_Fragment_Shader.glsl"
 #define TEXTURE "Neptune.bmp"
-#define TRIANGLE_SPLITS 0
+#define TRIANGLE_SPLITS 4
 #define TEXTURE_WIDTH 300
 #define TEXTURE_HEIGHT 150
 
@@ -42,14 +42,14 @@ void TexturedSphere::create(float scale)
 	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(1, 0.1)));
 
 	// side 3
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(0, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 0.1)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(1, 0.1)));
 
 	// side 4
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(0, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 0.1)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(1, 0.1)));
 
 	for (int i = 0; i < TRIANGLE_SPLITS; ++i)
 	{

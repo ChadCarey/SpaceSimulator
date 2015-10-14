@@ -22,6 +22,7 @@
     <ClCompile Include="ModelsManager.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Planet.cpp" />
+    <ClCompile Include="PVector3.cpp" />
     <ClCompile Include="SimpleLine.cpp" />
     <ClCompile Include="SpaceListener.cpp" />
     <ClCompile Include="SpaceSimulator.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineTest.h" />
     <ClInclude Include="FrameBufferInfo.h" />
+    <ClInclude Include="PVector3.h" />
     <ClInclude Include="SimpleLine.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Planet.h" />

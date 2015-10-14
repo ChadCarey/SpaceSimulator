@@ -1,26 +1,28 @@
 #include "Physics.h"
 
-glm::vec3 Physics::calculateGravityVecor(const Planet& from, const Planet& to, float distance)
+PVector3 Physics::calculateGravityVecor(const Planet& from, const Planet& to, const long double& distance)
 {
 	// get a unit vector from one planet to the other
-	glm::vec3 direction = getUnitVector(from.getPosition(), to.getPosition());
+	PVector3 direction = getUnitVector(from.getPPosition(), to.getPPosition());
 	// get the force of gravity between the two planets
-	glm::vec3 gravityVector = direction * calculateGravityForce(from.getMass(), to.getMass(), distance);
+	PVector3 gravityVector = direction * calculateGravityForce(from.getMass(), to.getMass(), distance);
 	return gravityVector;
 }
 
-float Physics::calculateGravityForce(double mass1, double mass2, double distance)
+long double Physics::calculateGravityForce(long double mass1, long double mass2, long double distance)
 {
-	float force = (GRAVITY_CONSTANT*(mass1*mass2)) / (distance*distance);
+	long double force = (GRAVITY_CONSTANT*(mass1*mass2)) / (distance*distance);
 	return force;
 }
 
-float Physics::calculateOrbitalVelocity(double mass1, double mass2, double distance)
+long double Physics::calculateOrbitalVelocity(long double mass1, long double mass2, long double distance)
 {
 	return sqrt((GRAVITY_CONSTANT*(mass1+mass2))/distance);
 }
 
-glm::vec3 Physics::getUnitVector(const glm::vec3& from, const glm::vec3& to)
+PVector3 Physics::getUnitVector(const PVector3& from, const PVector3& to)
 {
-	return glm::normalize(to - from);
+	PVector3 dVec = to - from;
+	long double length = dVec.getLength();
+	return dVec/length;
 }
