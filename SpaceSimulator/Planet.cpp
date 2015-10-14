@@ -60,7 +60,7 @@ void Planet::move(vec3& movement)
 		// NOTE: this is a tempory hack
 		glm::vec3 correctPos = (Physics::getUnitVector(this->getPosition(), orbiter->planet->getPosition()) * orbiter->distance) + this->getPosition();
 		glm::vec3 correctionVector = correctPos - orbiter->planet->getPosition();
-		orbiter->planet->addVector(correctionVector);
+		//orbiter->planet->addVector(correctionVector);
 	}
 }
 

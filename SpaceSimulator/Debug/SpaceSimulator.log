@@ -1,16 +1,26 @@
-﻿Build started 10/8/2015 9:29:32 AM.
+﻿Build started 10/8/2015 2:43:11 PM.
      1>Project "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\SpaceSimulator\SpaceSimulator.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\glm.0.9.6.3\build\native\../..//build/native/include/" /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt TexturedSphere.cpp
          TexturedSphere.cpp
      1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
      1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(25): warning C4101: 'ibo' : unreferenced local variable
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(157): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(162): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(167): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(172): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(188): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(224): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(144): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(145): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(146): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(155): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(156): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(157): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(158): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(165): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(166): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(169): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(170): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(186): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(191): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(196): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(201): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(217): warning C4018: '<' : signed/unsigned mismatch
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.exe" /INCREMENTAL /NOLOGO "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glew32.lib" "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glfw3dll.lib" "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\freeglut.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.lib" /MACHINE:X86 Debug\SpaceSimulator.res
          Debug\CameraManager.obj
@@ -38,4 +48,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.57
+Time Elapsed 00:00:01.55

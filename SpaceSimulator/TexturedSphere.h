@@ -24,7 +24,6 @@ namespace Rendering
 		private:
 			void splitTriangle(VertexFormat& pointOne, VertexFormat& pointTwo, VertexFormat& pointThree, std::vector<VertexFormat>& output);
 			void splitTetra(std::vector<VertexFormat>& vertices);
-			void reTexture(std::vector<VertexFormat>& vertices);
 			void normalizeVertices(std::vector<VertexFormat>& vertices);
 			void scale(std::vector<VertexFormat>& vertices, float& scale);
 			int numVerticies;

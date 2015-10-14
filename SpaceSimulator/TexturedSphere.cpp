@@ -5,7 +5,7 @@ using namespace Rendering;
 #define VERTEX_SHADER "Sphere_Vertex_Shader.glsl"
 #define FRAGMENT_SHADER "Sphere_Fragment_Shader.glsl"
 #define TEXTURE "Neptune.bmp"
-#define TRIANGLE_SPLITS 4
+#define TRIANGLE_SPLITS 0
 #define TEXTURE_WIDTH 300
 #define TEXTURE_HEIGHT 150
 
@@ -33,30 +33,28 @@ void TexturedSphere::create(float scale)
 
 	// side 1
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(1, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(0, 0.1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(1, 0.1)));
 	
 	// side 2
 	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(1, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(0, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(0, 0.1)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(1, 0.1)));
 
 	// side 3
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(1, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(0, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(0, 0)));
 
 	// side 4
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(1, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(0, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(0, 0)));
 
 	for (int i = 0; i < TRIANGLE_SPLITS; ++i)
 	{
 		splitTetra(vertices);
 	}
-	// fix the textures
-	//reTexture(vertices);
 	// normalize the verticies of the tetra to get a sphere
 	normalizeVertices(vertices);
 	// add a save sphere to texture method here later
@@ -143,14 +141,45 @@ void TexturedSphere::splitTriangle(VertexFormat& pointOne, VertexFormat& pointTw
 	four.push_back(VertexFormat(center, pointOne.texture));
 
 	// third center glm::vec3
-	center.x = (pointTwo.position.x + pointThree.position.x) / 2;
-	center.y = (pointTwo.position.y + pointThree.position.y) / 2;
-	center.z = (pointTwo.position.z + pointThree.position.z) / 2;
+	center.x = (pointTwo.position.x + pointThree.position.x) / 2.0;
+	center.y = (pointTwo.position.y + pointThree.position.y) / 2.0;
+	center.z = (pointTwo.position.z + pointThree.position.z) / 2.0;
 	two.push_back(VertexFormat(center, pointThree.texture));
 	three.push_back(VertexFormat(center, pointOne.texture));
 	four.push_back(VertexFormat(center, pointTwo.texture));
 
 	// split up the textures
+	// triangle one
+	one[0].texture.x = pointOne.texture.x;
+	one[0].texture.y = pointOne.texture.y;
+	one[1].texture.x = (pointOne.texture.x + pointTwo.texture.x) / 2.0;
+	one[1].texture.y = (pointOne.texture.y + pointTwo.texture.y) / 2.0;
+	one[2].texture.x = (pointOne.texture.x + pointThree.texture.x) / 2.0;
+	one[2].texture.y = (pointOne.texture.y + pointThree.texture.y) / 2.0;
+
+	// triangle two
+	two[0].texture.x = pointTwo.texture.x;
+	two[0].texture.y = pointTwo.texture.y;
+	two[1].texture.x = one[1].texture.x;
+	two[1].texture.y = one[1].texture.y;
+	two[2].texture.x = (pointThree.texture.x + pointTwo.texture.x) / 2.0;
+	two[2].texture.y = (pointTwo.texture.y + pointThree.texture.y) / 2.0;
+
+	// triangle three
+	three[0].texture.x = (pointOne.texture.x + pointThree.texture.x) / 2.0;
+	three[0].texture.y = (pointOne.texture.y + pointThree.texture.y) / 2.0;
+	three[1].texture.x = one[2].texture.x;
+	three[1].texture.y = one[2].texture.y;
+	three[2].texture.x = two[2].texture.x;
+	three[2].texture.y = two[2].texture.y;
+
+	// triangle four
+	four[0].texture.x = one[1].texture.x;
+	four[0].texture.y = one[1].texture.y;
+	four[1].texture.x = one[2].texture.x;
+	four[1].texture.y = one[2].texture.y;
+	four[2].texture.x = two[2].texture.x;
+	four[2].texture.y = two[2].texture.y;
 
 
 	// add them all to the output std::vector
@@ -207,34 +236,5 @@ void TexturedSphere::scale(std::vector<VertexFormat>& vertices, float& scale)
 	for (std::vector<VertexFormat>::iterator it = vertices.begin(); it != vertices.end(); ++it)
 	{
 		it->position *= scalingVector;
-	}
-}
-
-/**
-* reTexture
-* reformats the textures of the sphere
-*/
-void TexturedSphere::reTexture(std::vector<VertexFormat>& vertices)
-{
-	int numVer = vertices.size();
-	int numTri = numVer / 3;
-	int numSq = numTri / 2;
-	std::cout << "number of triangles: " << numTri << std::endl;
-	
-	float sqIncrement = 1.0 / sqrt(numSq);
-	
-	
-	for (int i = 0; i < numVer-3; ++i)
-	{
-		/*VertexFormat* one = &vertices[i];
-		VertexFormat* two = &vertices[i+1];
-		VertexFormat* three = &vertices[i+2];
-
-		one->texture.x = 1.0 / numTri;
-		one->texture.y = 0.0;
-		two->texture.x = 1.0 - one->texture.x;
-		two->texture.y = 0.0;
-		three->texture.x = one->texture.x;
-		three->texture.y = 1.0 - one->texture.x;*/
 	}
 }
