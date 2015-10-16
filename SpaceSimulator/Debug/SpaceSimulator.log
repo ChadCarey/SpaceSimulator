@@ -1,13 +1,103 @@
-﻿Build started 10/14/2015 4:56:11 PM.
+﻿Build started 10/16/2015 1:29:38 PM.
      1>Project "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\SpaceSimulator\SpaceSimulator.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\glm.0.9.6.3\build\native\../..//build/native/include/" /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Planet.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\glm.0.9.6.3\build\native\../..//build/native/include/" /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CameraManager.cpp Engine.cpp EngineTest.cpp InitGlew.cpp InitGlut.cpp ISceneListener.cpp main.cpp Model.cpp ModelsManager.cpp Physics.cpp Planet.cpp PVector3.cpp SimpleLine.cpp SpaceListener.cpp SpaceSimulator.cpp TexturedSphere.cpp TexturedTetra.cpp TSceneListener.cpp ShaderManager.cpp TexturedCube.cpp TextureLoader.cpp
+         TextureLoader.cpp
+         TexturedCube.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         ShaderManager.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.cpp(105): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.cpp(112): warning C4101: 'oor' : unreferenced local variable
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.cpp(123): warning C4101: 'oor' : unreferenced local variable
+         TSceneListener.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\tscenelistener.cpp(124): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\tscenelistener.cpp(127): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\tscenelistener.cpp(130): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\tscenelistener.cpp(133): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\tscenelistener.cpp(136): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\tscenelistener.cpp(139): warning C4305: 'argument' : truncation from 'double' to 'float'
+         TexturedTetra.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedtetra.cpp(25): warning C4101: 'ibo' : unreferenced local variable
+         TexturedSphere.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(25): warning C4101: 'ibo' : unreferenced local variable
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(144): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(145): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(146): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(155): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(156): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(157): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(158): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(165): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(166): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(169): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(170): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(186): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(191): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(196): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(201): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\texturedsphere.cpp(217): warning C4018: '<' : signed/unsigned mismatch
+         SpaceSimulator.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacesimulator.cpp(12): warning C4316: 'SpaceListener' : object allocated on the heap may not be aligned 16
+         SpaceListener.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(13): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(18): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(23): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(28): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(32): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(37): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(42): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(47): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(52): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(57): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(132): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(135): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(138): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(141): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(144): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(147): warning C4305: 'argument' : truncation from 'double' to 'float'
+         SimpleLine.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         PVector3.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\pvector3.cpp(82): warning C4172: returning address of local variable or temporary
          Planet.cpp
      1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
      1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\planet.cpp(6): warning C4244: 'argument' : conversion from 'long' to 'float', possible loss of data
      1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\planet.cpp(157): warning C4244: '=' : conversion from 'long double' to 'float', possible loss of data
      1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\planet.cpp(158): warning C4244: '=' : conversion from 'long double' to 'float', possible loss of data
      1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\planet.cpp(159): warning C4244: '=' : conversion from 'long double' to 'float', possible loss of data
+         Physics.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         ModelsManager.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         Model.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\model.cpp(78): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\model.cpp(126): warning C4305: 'initializing' : truncation from 'double' to 'float'
+         main.cpp
+         ISceneListener.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         InitGlut.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         InitGlew.cpp
+         EngineTest.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\enginetest.cpp(12): warning C4316: 'GraphicsEngine::EngineInterface::TSceneListener' : object allocated on the heap may not be aligned 16
+         Engine.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         Generating Code...
+         Compiling...
+         CameraManager.cpp
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\cameramanager.cpp(209): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\cameramanager.cpp(210): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Generating Code...
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\glm.0.9.6.3\build\native\../..//build/native/include/" /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/" /nologo /fo"Debug\SpaceSimulator.res" SpaceSimulator.rc 
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.exe" /INCREMENTAL /NOLOGO "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glew32.lib" "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glfw3dll.lib" "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\freeglut.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.lib" /MACHINE:X86 Debug\SpaceSimulator.res
          Debug\CameraManager.obj
@@ -36,4 +126,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.58
+Time Elapsed 00:00:16.87

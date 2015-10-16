@@ -56,12 +56,6 @@ void Planet::move(PVector3& movement)
 		orbiter->planet->move(movement);
 		// then each child planet needs to be moved by it's own vertor
 		orbiter->planet->move();
-
-		// calculate a corection vector and add it to the planets current vector
-		// NOTE: this is a tempory hack
-		//PVector3 correctPos = (Physics::getUnitVector(this->precisePosition, orbiter->planet->precisePosition) * orbiter->distance) + this->precisePosition;
-		//PVector3 correctionVector = correctPos - orbiter->planet->precisePosition;
-		//orbiter->planet->addVector(correctionVector);
 	}
 }
 

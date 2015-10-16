@@ -11,7 +11,7 @@ PVector3 Physics::calculateGravityVecor(const Planet& from, const Planet& to, co
 
 long double Physics::calculateGravityForce(long double mass1, long double mass2, long double distance)
 {
-	long double force = (GRAVITY_CONSTANT*(mass1*mass2)) / (distance*distance);
+	long double force = (GRAVITY_CONSTANT*(/*mass1*/mass2)) / (distance*distance);
 	return force;
 }
 
