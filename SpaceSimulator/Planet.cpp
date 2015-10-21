@@ -30,8 +30,10 @@ void Planet::addNewOrbiter(Planet* p, const long double& distance)
 	if (p != this)
 	{
 		p->setPPosition(this->precisePosition.getX() + distance, this->precisePosition.getY(), this->precisePosition.getZ());
-		p->setMovementVector(0, 0, Physics::calculateOrbitalVelocity(p->getMass(), this->getMass(), distance));
-		//p->setMovementVector(p->movementVector - Physics::calculateGravityVecor(*this, *p, distance)*2);
+		PVector3 startingVec;
+		startingVec.set(0, 0, Physics::calculateOrbitalVelocity(p->getMass(), this->getMass(), distance));
+		startingVec = startingVec + this->getMovementVector();
+		p->addSystemVector(startingVec);
 
 		// add it to the orbiter std::vector
 		OrbiterInfo* orbiter = new OrbiterInfo();
@@ -41,23 +43,20 @@ void Planet::addNewOrbiter(Planet* p, const long double& distance)
 	}
 }
 
-void Planet::move(PVector3& movement)
+void Planet::move()
 {
 	// move this planet by the given vector
-	this->precisePosition.setX(this->precisePosition.getX() + movement.getX());
-	this->precisePosition.setY(this->precisePosition.getY() + movement.getY());
-	this->precisePosition.setZ(this->precisePosition.getZ() + movement.getZ());
+	this->precisePosition.setX(this->precisePosition.getX() + this->movementVector.getX());
+	this->precisePosition.setY(this->precisePosition.getY() + this->movementVector.getY());
+	this->precisePosition.setZ(this->precisePosition.getZ() + this->movementVector.getZ());
 
-	// move all orbiters by the given vector
+	// then each child planet needs to be moved by it's own vertor
 	for (auto orbiter : this->orbiters)
 	{
-		// orbiting planets need to first be moved by their parent planet's vector 
-		// Think relativity: moon orbits earth, which orbits sun
-		orbiter->planet->move(movement);
-		// then each child planet needs to be moved by it's own vertor
 		orbiter->planet->move();
 	}
 }
+
 
 void Planet::draw(const mat4& projection_matrix, const mat4& view_matrix)
 {
@@ -88,10 +87,31 @@ PVector3 Planet::getMovementVector()
 
 void Planet::update()
 {
-	// calculate orbit correction vectors
-	this->calculateOrbits();
 	// move the planets
 	this->move();
+}
+
+/**
+* this updates the planet in relationship to the given planet
+*/
+void Planet::applyGravity(Planet* p)
+{
+	if (p != this)
+	{
+		// get a unit vector from this planet to p
+		PVector3 vec = Physics::getUnitVector(this->precisePosition, p->precisePosition);
+		// get the force of gravity between the two objects
+		long double force = Physics::calculateGravityForce(this->mass, p->mass, Physics::calculateDistance(this->precisePosition, p->precisePosition));
+		// force / mass = acceleration
+		this->addVector(vec*(force/this->getMass()));
+		vec.invert();
+		p->addVector(vec*(force/p->getMass()));
+		// pass p to the child planets for separate processing
+		for (auto orbiter : this->orbiters)
+		{
+			orbiter->planet->applyGravity(p);
+		}
+	}
 }
 
 void Planet::calculateOrbits()
@@ -101,7 +121,7 @@ void Planet::calculateOrbits()
 	{
 		// Calculate gravity vector and add it to the planet
 		PVector3 gravityVector = Physics::calculateGravityVecor(*orbiter->planet, *this, orbiter->distance);
-		orbiter->planet->addVector(gravityVector);
+		orbiter->planet->addSystemVector(gravityVector);
 		// call calculateOrbits for each orbiter
 		orbiter->planet->calculateOrbits();
 	}
@@ -117,6 +137,19 @@ void Planet::addVector(const PVector3& vector)
 	this->movementVector.setX(this->movementVector.getX() + vector.getX());
 	this->movementVector.setY(this->movementVector.getY() + vector.getY());
 	this->movementVector.setZ(this->movementVector.getZ() + vector.getZ());
+}
+
+
+void Planet::addSystemVector(const PVector3& movement)
+{
+	this->addVector(movement);
+	// move all orbiters by the given vector
+	for (auto orbiter : this->orbiters)
+	{
+		// orbiting planets need to first be moved by their parent planet's vector 
+		// Think relativity: moon orbits earth, which orbits sun
+		orbiter->planet->addSystemVector(movement);
+	}
 }
 
 PVector3 Planet::getPPosition() const

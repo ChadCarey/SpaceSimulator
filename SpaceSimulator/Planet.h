@@ -30,8 +30,16 @@ public:
 	// methods
 	void addNewOrbiter(Planet* p, const long double& distance);
 	void addVector(const PVector3& vector);
+	void addSystemVector(const PVector3& vector);
 	void draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override;
 	void update() override;
+	/**
+	* move will move the planet and all of it's orbiting planets by it's movementVector
+	*/
+	void move();
+
+	void applyGravity(Planet* p);
+	void calculateOrbits();
 
 
 private:
@@ -45,12 +53,5 @@ private:
 	PVector3 movementVector;
 	PVector3 precisePosition;
 	long double mass;
-	
-	/**
-	* move will move the planet and all of it's orbiting planets by it's movementVector
-	*/
-	inline void move() { this->move(this->movementVector); };
-	void move(PVector3& movement);
-	void calculateOrbits();
 	inline void syncVectors();
 };

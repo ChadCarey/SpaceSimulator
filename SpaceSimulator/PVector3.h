@@ -22,7 +22,9 @@ public:
 	PVector3 operator+(const PVector3& rhs) const;
 	PVector3 operator-(const PVector3& rhs) const;
 	PVector3& operator=(const PVector3& rhs);
+	PVector3 operator*=(const long double& rhs);
 	long double getLength() const;
+	void invert();
 
 private:
 	long double x;

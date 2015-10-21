@@ -135,11 +135,16 @@ PVector3 PVector3::operator*(const long double& rhs) const
 */
 PVector3 PVector3::operator/(const long double& rhs) const
 {
-	PVector3 newVector;
-	newVector.setX(this->getX() / rhs);
-	newVector.setY(this->getY() / rhs);
-	newVector.setZ(this->getZ() / rhs);
-	return newVector;
+	if (rhs != 0)
+	{
+		PVector3 newVector;
+		newVector.setX(this->getX() / rhs);
+		newVector.setY(this->getY() / rhs);
+		newVector.setZ(this->getZ() / rhs);
+		return newVector;
+	}
+	else
+		return *this;
 }
 
 /**
@@ -192,4 +197,19 @@ long double PVector3::getLength() const
 	long double sqz = this->getZ();
 	sqz = sqz * sqz;
 	return sqrtl(sqx + sqy + sqz);
+}
+
+PVector3 PVector3::operator*=(const long double& rhs)
+{
+	long double nx, ny, nz;
+	nx = this->getX() * rhs;
+	ny = this->getY() * rhs;
+	nz = this->getZ() * rhs;
+	this->set(nx, ny, nz);
+	return *this;
+}
+
+void PVector3::invert()
+{
+	this->set(this->getX()*-1, this->getY()*-1, this->getZ()*-1);
 }

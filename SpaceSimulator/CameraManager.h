@@ -17,6 +17,7 @@ namespace Managers
 		glm::mat4 getViewMatrix() const;
 		glm::vec3 getCameraPosition() const;
 		glm::vec3 getCameraTarget() const;
+		glm::vec3 getForwardVector() const;
 
 		// SETTERS
 		void setCameraPosition(const glm::vec3&);
@@ -54,7 +55,6 @@ namespace Managers
 		// GETTERS
 		glm::vec3 getCameraUp() const;
 
-		glm::vec3 getForwardVector() const;
 		glm::vec3 getRightVector() const;
 		glm::vec3 getUpVector() const;
 

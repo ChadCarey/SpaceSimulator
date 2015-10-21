@@ -10,5 +10,6 @@ public:
 	static long double calculateGravityForce(long double mass1, long double mass2, long double distance);
 	static long double calculateOrbitalVelocity(long double mass1, long double mass2, long double distance);
 	static PVector3 getUnitVector(const PVector3& from, const PVector3& to);
+	static long double Physics::calculateDistance(const PVector3& one, const PVector3& two);
 };
 

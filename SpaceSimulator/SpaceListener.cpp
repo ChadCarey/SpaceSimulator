@@ -6,10 +6,21 @@
 #define PLAYER_START_POSITION_Z (-4.0 / UNIVERSE_SCALE)
 #define BASE_CAMERA_SPEED (3500.0 * UNIVERSE_SCALE)
 
+#define PROJECTILE_SPEED 0.2f
+#define PROJECTILE_MASS 0.7f
+#define PROJECTILE_SIZE 4.0f
+#define PROJECTILE_TEXTURE "energy.bmp"
+#define PROJECTILE_TEXTURE_HEIGHT 200
+#define PROJECTILE_TEXTURE_WIDTH 300
+
+#define MOUSE_PRIMARY 0
+#define MOUSE_DOWN 0
+#define MOUSE_UP 1
+
 SpaceListener::SpaceListener()
 {
 	// Sun
-	sun = new Planet(SUN_SIZE, SUN_MASS, 
+	Planet* sun = new Planet(SUN_SIZE, SUN_MASS, 
 		SUN_TEXTURE, SUN_TEXTURE_HEIGHT, SUN_TEXTURE_WIDTH);
 	sun->setPosition(SUN_STARTING_X, SUN_STARTING_Y, SUN_STARTING_Z);
 
@@ -57,6 +68,9 @@ SpaceListener::SpaceListener()
 		NEPTUNE_TEXTURE, NEPTUNE_TEXTURE_HEIGHT, NEPTUNE_TEXTURE_WIDTH);
 	sun->addNewOrbiter(neptune, NEPTUNE_DISTANCE_FROM_SUN);
 
+	// add the created system to the PlanetManager
+	solarSystem.push_back(sun);
+
 	// set the player's starting position
 	this->cameraManager.setCameraPosition(glm::vec3(PLAYER_START_POSITION_X, PLAYER_START_POSITION_Y, PLAYER_START_POSITION_Z));
 
@@ -66,19 +80,22 @@ SpaceListener::SpaceListener()
 
 SpaceListener::~SpaceListener()
 {
-	// sun will delete all of it's children as well
-	delete sun;
+	// will delete all of the solar system's planets and all of each planet's children as well
+	for (auto p : solarSystem)
+	{
+		delete p;
+	}
 }
 
 void SpaceListener::beginFrameCallback()
 {
 	if (!paused)
-		sun->update();
+		solarSystem.update();
 }
 
 void SpaceListener::drawFrameCallback()
 {
-	sun->draw(projectionMatrix, cameraManager.getViewMatrix());
+	solarSystem.draw(projectionMatrix, cameraManager.getViewMatrix());
 }
 
 void SpaceListener::endFrameCallback() {}
@@ -119,7 +136,25 @@ void SpaceListener::mouseDragCallback(int x, int y, int centerX, int centerY)
 
 void SpaceListener::mouseClickCallback(int a, int b, int c, int d)
 {
-	std::cout << "mouse clicked\n";
+	std::cout << "mouse clicked a: " << a << " b: " << b << " c: " << c << " d: " << d << std::endl;
+	switch (a)
+	{
+	case MOUSE_UP:
+		std::cout << "mouse up\n";
+		while (true);
+		break;
+	case MOUSE_PRIMARY:
+		if (b == MOUSE_DOWN)
+		{
+			std::cout << "fire\n";
+			fire();
+		}
+		else
+		{
+
+		}
+		break;
+	}
 }
 
 void SpaceListener::keyboardPressCallback(const unsigned char& letter, const int& a, const int& b)
@@ -159,4 +194,19 @@ void SpaceListener::keyboardReleaseCallback(const unsigned char& letter, const i
 {
 	std::cout << "key released: " << letter
 		<< " a: " << a << " b: " << b << std::endl;
+}
+
+void SpaceListener::fire()
+{
+	glm::vec3 pos = cameraManager.getCameraPosition();
+	glm::vec3 dir = cameraManager.getForwardVector() * PROJECTILE_SPEED;
+	// move it forwad so it doesn't spawn on top of us
+	pos.x += dir.x * 15.0;
+	pos.y += dir.y * 15.0;
+	pos.z += dir.z * 15.0;
+	Planet* projectile = new Planet(PROJECTILE_SIZE, PROJECTILE_MASS,
+		PROJECTILE_TEXTURE, PROJECTILE_TEXTURE_HEIGHT, PROJECTILE_TEXTURE_WIDTH);
+	projectile->setPPosition(pos.x, pos.y, pos.z);
+	projectile->setMovementVector(dir.x, dir.y, dir.z);
+	this->solarSystem.push_back(projectile);
 }
