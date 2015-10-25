@@ -4,8 +4,8 @@ using namespace Rendering;
 
 #define VERTEX_SHADER "Sphere_Vertex_Shader.glsl"
 #define FRAGMENT_SHADER "Sphere_Fragment_Shader.glsl"
-#define TEXTURE "Neptune.bmp"
-#define TRIANGLE_SPLITS 4
+#define TEXTURE "earth.bmp"
+#define TRIANGLE_SPLITS 5
 #define TEXTURE_WIDTH 300
 #define TEXTURE_HEIGHT 150
 
