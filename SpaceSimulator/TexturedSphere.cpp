@@ -32,8 +32,8 @@ void TexturedSphere::create(float scale)
 	// Build a cube
 
 	// front
-	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0), glm::vec3(-10.0, -10.0, 10.0)));
-	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, 10.0), glm::vec3(10.0, -10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0), glm::vec3(-1.0, -1.0, 1.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, 10.0), glm::vec3(1.0, -1.0, 1.0)));
 	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0), glm::vec3(10.0, 10.0, 10.0)));
 
 	vertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, 10.0), glm::vec3(-10.0, 10.0, 10.0)));
@@ -254,7 +254,7 @@ void TexturedSphere::splitTetra(std::vector<VertexFormat>& vertices)
 		splitTriangle(vertices[i], vertices[i + 1], vertices[i + 2], output);
 	}
 	vertices.clear();
-	normalizeVertices(output);
+	//normalizeVertices(output);
 	for (int i = 0; i < output.size(); ++i)
 	{
 		vertices.push_back(output[i]);
