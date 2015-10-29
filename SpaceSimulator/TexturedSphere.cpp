@@ -4,7 +4,7 @@ using namespace Rendering;
 
 #define VERTEX_SHADER "Sphere_Vertex_Shader.glsl"
 #define FRAGMENT_SHADER "Sphere_Fragment_Shader.glsl"
-#define TEXTURE "earth.bmp"
+#define TEXTURE "earthS.bmp"
 #define TRIANGLE_SPLITS 0
 #define TEXTURE_WIDTH 300
 #define TEXTURE_HEIGHT 150
@@ -29,37 +29,74 @@ void TexturedSphere::create(float scale)
 
 	std::vector<VertexFormat> vertices;
 
-	// Build tetrahedron
+	// Build a cube
 
-	// side 1
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec3(1, 1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec3(0, 0.1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec3(1, 0.1, 1)));
-	
-	// side 2
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec3(1, 1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec3(0, 0.1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec3(1, 0.1, 1)));
+	// front
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0), glm::vec3(-10.0, -10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, 10.0), glm::vec3(10.0, -10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0), glm::vec3(10.0, 10.0, 10.0)));
 
-	// side 3
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec3(1, 1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec3(0, 0.1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec3(1, 0.1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, 10.0), glm::vec3(-10.0, 10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0), glm::vec3(10.0, 10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0), glm::vec3(-10.0, -10.0, 10.0)));
 
-	// side 4
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec3(1, 1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec3(0, 0.1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec3(1, 0.1, 1)));
+	// right
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0), glm::vec3(10.0, 10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0), glm::vec3(10.0, 10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, -10.0), glm::vec3(10.0, -10.0, -10.0)));
+
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0), glm::vec3(10.0, 10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, -10.0), glm::vec3(10.0, -10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, 10.0), glm::vec3(10.0, -10.0, 10.0)));
+
+	// back
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0), glm::vec3(-10.0, -10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, -10.0), glm::vec3(10.0, -10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0), glm::vec3(10.0, 10.0, -10.0)));
+
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0), glm::vec3(-10.0, -10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0), glm::vec3(10.0, 10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, -10.0), glm::vec3(-10.0, 10.0, -10.0)));
+
+	// left
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0), glm::vec3(-10.0, -10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0), glm::vec3(-10.0, -10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, 10.0), glm::vec3(-10.0, 10.0, 10.0)));
+
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0), glm::vec3(-10.0, -10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, 10.0), glm::vec3(-10.0, 10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, -10.0), glm::vec3(-10.0, 10.0, -10.0)));
+
+	// upper
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0), glm::vec3(10.0, 10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, 10.0), glm::vec3(-10.0, 10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0), glm::vec3(10.0, 10.0, -10.0)));
+
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, 10.0), glm::vec3(-10.0, 10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0), glm::vec3(10.0, 10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, -10.0), glm::vec3(-10.0, 10.0, -10.0)));
+
+	// bottom
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0), glm::vec3(-10.0, -10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, -10.0), glm::vec3(10.0, -10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0), glm::vec3(-10.0, -10.0, 10.0)));
+
+	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, -10.0), glm::vec3(10.0, -10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0), glm::vec3(-10.0, -10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, 10.0), glm::vec3(10.0, -10.0, 10.0)));
+
+
 
 	for (int i = 0; i < TRIANGLE_SPLITS; ++i)
 	{
 		splitTetra(vertices);
 	}
 	// normalize the verticies of the tetra to get a sphere
-	//normalizeVertices(vertices);
+	normalizeVertices(vertices);
 	// add a save sphere to texture method here later
 
 	// scale the sphere
+	//scale *= .1;
 	this->scale(vertices, scale);
 
 	numVerticies = vertices.size();
