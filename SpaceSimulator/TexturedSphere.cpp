@@ -5,7 +5,7 @@ using namespace Rendering;
 #define VERTEX_SHADER "Sphere_Vertex_Shader.glsl"
 #define FRAGMENT_SHADER "Sphere_Fragment_Shader.glsl"
 #define TEXTURE "earth.bmp"
-#define TRIANGLE_SPLITS 5
+#define TRIANGLE_SPLITS 4
 #define TEXTURE_WIDTH 300
 #define TEXTURE_HEIGHT 150
 
@@ -32,24 +32,24 @@ void TexturedSphere::create(float scale)
 	// Build tetrahedron
 
 	// side 1
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(0, 0.1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(1, 0.1)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(0.5, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(1, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 0)));
 	
 	// side 2
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(0, 0.1)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(1, 0.1)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(0.5, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(1, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(0, 0)));
 
 	// side 3
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 0.1)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(1, 0.1)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(0.5, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(1, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(0, 0)));
 
 	// side 4
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 0.1)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(1, 0.1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(0.5, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(1, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(0, 0)));
 
 	for (int i = 0; i < TRIANGLE_SPLITS; ++i)
 	{
@@ -162,16 +162,8 @@ void TexturedSphere::splitTriangle(VertexFormat& pointOne, VertexFormat& pointTw
 	two[0].texture.y = pointTwo.texture.y;
 	two[1].texture.x = one[1].texture.x;
 	two[1].texture.y = one[1].texture.y;
-	two[2].texture.x = (pointThree.texture.x + pointTwo.texture.x) / 2.0;
+	two[2].texture.x = (pointTwo.texture.x + pointThree.texture.x) / 2.0;
 	two[2].texture.y = (pointTwo.texture.y + pointThree.texture.y) / 2.0;
-
-	// triangle three
-	three[0].texture.x = (pointOne.texture.x + pointThree.texture.x) / 2.0;
-	three[0].texture.y = (pointOne.texture.y + pointThree.texture.y) / 2.0;
-	three[1].texture.x = one[2].texture.x;
-	three[1].texture.y = one[2].texture.y;
-	three[2].texture.x = two[2].texture.x;
-	three[2].texture.y = two[2].texture.y;
 
 	// triangle four
 	four[0].texture.x = one[1].texture.x;
@@ -180,6 +172,14 @@ void TexturedSphere::splitTriangle(VertexFormat& pointOne, VertexFormat& pointTw
 	four[1].texture.y = one[2].texture.y;
 	four[2].texture.x = two[2].texture.x;
 	four[2].texture.y = two[2].texture.y;
+
+	// triangle three
+	three[0].texture.x = pointThree.texture.x;
+	three[0].texture.y = pointThree.texture.y;
+	three[1].texture.x = four[1].texture.x;
+	three[1].texture.y = four[1].texture.y;
+	three[2].texture.x = four[2].texture.x;
+	three[2].texture.y = four[2].texture.y;
 
 
 	// add them all to the output std::vector
@@ -213,7 +213,7 @@ void TexturedSphere::splitTetra(std::vector<VertexFormat>& vertices)
 		splitTriangle(vertices[i], vertices[i + 1], vertices[i + 2], output);
 	}
 	vertices.clear();
-	normalizeVertices(output);
+	//normalizeVertices(output);
 	for (int i = 0; i < output.size(); ++i)
 	{
 		vertices.push_back(output[i]);
