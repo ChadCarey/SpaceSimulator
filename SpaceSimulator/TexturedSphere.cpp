@@ -30,26 +30,40 @@ void TexturedSphere::create(float scale)
 	std::vector<VertexFormat> vertices;
 
 	// Build tetrahedron
+	glm::vec3 shiftVector(0.3333, 0.3333, 0.3333);
+
 
 	// side 1
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(0.5, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(1, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0) + shiftVector, glm::vec2(0.5, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0) + shiftVector, glm::vec2(1, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0) + shiftVector, glm::vec2(0, 0)));
 	
 	// side 2
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(0.5, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(1, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0) + shiftVector, glm::vec2(0.5, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0) + shiftVector, glm::vec2(0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0) + shiftVector, glm::vec2(1, 0)));
 
 	// side 3
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(0.5, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(1, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0) + shiftVector, glm::vec2(0.5, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0) + shiftVector, glm::vec2(1, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0) + shiftVector, glm::vec2(0, 0)));
 
-	// side 4
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(0.5, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(1, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(0, 0)));
+	// side 1
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec2(0.5, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0) + shiftVector, glm::vec2(1, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0) + shiftVector, glm::vec2(0, 0)));
+
+	// side 2
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec2(0.5, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0) + shiftVector, glm::vec2(0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0) + shiftVector, glm::vec2(1, 0)));
+
+	// side 3
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec2(0.5, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0) + shiftVector, glm::vec2(1, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0) + shiftVector, glm::vec2(0, 0)));
+	
+	
 
 	for (int i = 0; i < TRIANGLE_SPLITS; ++i)
 	{
