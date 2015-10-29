@@ -1,13 +1,13 @@
 #version 420 core
  
 layout(location = 0) in vec3 in_position;
-layout(location = 1) in vec2 in_texture;
+layout(location = 1) in vec3 in_texture;
  
 uniform mat4 projection_matrix, view_matrix;
 uniform vec3 rotation;
 uniform vec3 position;
  
-out vec2 texcoord;
+out vec3 texcoord; // the bug is probably here, I have been using vec2 with 2d coordinates and cubemaps need 3 I think
 
 void main()
 {

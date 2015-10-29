@@ -42,6 +42,55 @@ unsigned int TextureLoader::loadTexture(const std::string& filename, unsigned in
 	return gl_texture_object;
 }
 
+
+unsigned int TextureLoader::loadCubemapTexture(const std::string& filename, unsigned int width, unsigned int height)
+{
+
+	unsigned char* data;
+	// the cubemap takes a square image, so we will just cut it down to a square
+	unsigned int size = (width < height) ? width : height;
+	loadBMPFile(filename, size, size, data);
+
+	//create the OpenGL texture
+	unsigned int gl_texture_object;
+	glGenTextures(1, &gl_texture_object);
+	
+
+	// filtering
+	glBindTexture(GL_TEXTURE_CUBE_MAP, gl_texture_object);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_BASE_LEVEL, 0);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAX_LEVEL, 0);
+	// Define the 6 faces, for now they all take the same image
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGBA8, size, size, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGBA8, size, size, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGBA8, size, size, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGBA8, size, size, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGBA8, size, size, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGBA8, size, size, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
+
+	// when we work with textures of sizes not divisible by 4 we have to use the line reader
+	// which loads the textures in OpenGL so as it can work with a 1 alligned memory (default is 4)
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	//Generates texture
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, size, size, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+
+	//eliminates the array from the RAM
+	delete data;
+
+	//creates the mipmap hierarchy
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	//returns the texture object
+	return gl_texture_object;
+}
+
+
 void TextureLoader::loadBMPFile(const std::string& filename, unsigned int& width, unsigned int& height, unsigned char*& data)
 {
 	//read the file

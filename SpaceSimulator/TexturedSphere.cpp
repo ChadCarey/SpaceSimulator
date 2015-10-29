@@ -5,7 +5,7 @@ using namespace Rendering;
 #define VERTEX_SHADER "Sphere_Vertex_Shader.glsl"
 #define FRAGMENT_SHADER "Sphere_Fragment_Shader.glsl"
 #define TEXTURE "earth.bmp"
-#define TRIANGLE_SPLITS 5
+#define TRIANGLE_SPLITS 0
 #define TEXTURE_WIDTH 300
 #define TEXTURE_HEIGHT 150
 
@@ -32,31 +32,31 @@ void TexturedSphere::create(float scale)
 	// Build tetrahedron
 
 	// side 1
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(0, 0.1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(1, 0.1)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec3(1, 1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec3(0, 0.1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec3(1, 0.1, 1)));
 	
 	// side 2
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(0, 0.1)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(1, 0.1)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec3(1, 1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec3(0, 0.1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec3(1, 0.1, 1)));
 
 	// side 3
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec2(1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 0.1)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(1, 0.1)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0), glm::vec3(1, 1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec3(0, 0.1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec3(1, 0.1, 1)));
 
 	// side 4
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec2(1, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec2(0, 0.1)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec2(1, 0.1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0), glm::vec3(1, 1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0), glm::vec3(0, 0.1, 1)));
+	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0), glm::vec3(1, 0.1, 1)));
 
 	for (int i = 0; i < TRIANGLE_SPLITS; ++i)
 	{
 		splitTetra(vertices);
 	}
 	// normalize the verticies of the tetra to get a sphere
-	normalizeVertices(vertices);
+	//normalizeVertices(vertices);
 	// add a save sphere to texture method here later
 
 	// scale the sphere
@@ -73,7 +73,7 @@ void TexturedSphere::create(float scale)
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)0);
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::texture)));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::texture3D)));
 	glBindVertexArray(0);
 	this->vao = vao;
 	this->vbos.push_back(vbo);
@@ -90,7 +90,7 @@ void TexturedSphere::draw(const glm::mat4& projection_matrix, const glm::mat4& v
 	
 	// set open gl to use this object's texture
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, this->getTexture(this->currentTexture));
+	glBindTexture(GL_TEXTURE_CUBE_MAP, this->getTexture(this->currentTexture));
 	unsigned int textureLocation = glGetUniformLocation(program, "texture1");
 	glUniform1i(textureLocation, 0);
 	
@@ -106,7 +106,11 @@ void TexturedSphere::draw(const glm::mat4& projection_matrix, const glm::mat4& v
 
 void TexturedSphere::setTexture(std::string textureFileName, int height, int width)
 {
-	this->Model::setTexture(textureFileName, height, width);
+	GLuint texture = this->textureLoader.loadCubemapTexture(textureFileName, width, height);
+	if (texture != 0)
+	{
+		textures[textureFileName] = texture;
+	}
 	this->currentTexture = textureFileName;
 }
 
@@ -150,7 +154,7 @@ void TexturedSphere::splitTriangle(VertexFormat& pointOne, VertexFormat& pointTw
 
 	// split up the textures
 	// triangle one
-	one[0].texture.x = pointOne.texture.x;
+	/*ne[0].texture.x = pointOne.texture.x;
 	one[0].texture.y = pointOne.texture.y;
 	one[1].texture.x = (pointOne.texture.x + pointTwo.texture.x) / 2.0;
 	one[1].texture.y = (pointOne.texture.y + pointTwo.texture.y) / 2.0;
@@ -180,7 +184,7 @@ void TexturedSphere::splitTriangle(VertexFormat& pointOne, VertexFormat& pointTw
 	four[1].texture.y = one[2].texture.y;
 	four[2].texture.x = two[2].texture.x;
 	four[2].texture.y = two[2].texture.y;
-
+	*/
 
 	// add them all to the output std::vector
 	for (int i = 0; i < one.size(); ++i)
