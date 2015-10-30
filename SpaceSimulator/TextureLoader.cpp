@@ -66,13 +66,14 @@ unsigned int TextureLoader::loadCubemapTexture(const std::string& filename, unsi
 	glTexParameteri(GL_TEXTURE_CUBE_MAP_EXT, GL_TEXTURE_BASE_LEVEL, 0);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP_EXT, GL_TEXTURE_MAX_LEVEL, 0);
 	// Define the 6 faces, for now they all take the same image
+	
 	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGBA8, size, size, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
 	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGBA8, size, size, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
 	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGBA8, size, size, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
 	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGBA8, size, size, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
 	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGBA8, size, size, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
 	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGBA8, size, size, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
-
+	
 	// when we work with textures of sizes not divisible by 4 we have to use the line reader
 	// which loads the textures in OpenGL so as it can work with a 1 alligned memory (default is 4)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);

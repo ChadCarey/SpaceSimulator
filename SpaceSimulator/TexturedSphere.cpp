@@ -32,13 +32,13 @@ void TexturedSphere::create(float scale)
 	// Build a cube
 
 	// front
-	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0), glm::vec3(-1.0, -1.0, 1.0)));
-	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, 10.0), glm::vec3(1.0, -1.0, 1.0)));
-	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0), glm::vec3(10.0, 10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0), glm::vec3(1, 0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, 10.0), glm::vec3(1, 0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0), glm::vec3(1, 0, 0)));
 
-	vertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, 10.0), glm::vec3(-10.0, 10.0, 10.0)));
-	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0), glm::vec3(10.0, 10.0, 10.0)));
-	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0), glm::vec3(-10.0, -10.0, 10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, 10.0), glm::vec3(1, 0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0), glm::vec3(1, 0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0), glm::vec3(1, 0, 0)));
 
 	// right
 	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0), glm::vec3(10.0, 10.0, 10.0)));
@@ -50,13 +50,13 @@ void TexturedSphere::create(float scale)
 	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, 10.0), glm::vec3(10.0, -10.0, 10.0)));
 
 	// back
-	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0), glm::vec3(-10.0, -10.0, -10.0)));
-	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, -10.0), glm::vec3(10.0, -10.0, -10.0)));
-	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0), glm::vec3(10.0, 10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0), glm::vec3(10.0, 0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, -10.0), glm::vec3(10.0, 0, 0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0), glm::vec3(10.0, 0, 0)));
 
-	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0), glm::vec3(-10.0, -10.0, -10.0)));
-	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0), glm::vec3(10.0, 10.0, -10.0)));
-	vertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, -10.0), glm::vec3(-10.0, 10.0, -10.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0), glm::vec3(10, 0, 0.0)));
+	vertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0), glm::vec3(10.0, 0.0, 0.0)));
+	vertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, -10.0), glm::vec3(10.0, 0.0, 0.0)));
 
 	// left
 	vertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0), glm::vec3(-10.0, -10.0, -10.0)));
