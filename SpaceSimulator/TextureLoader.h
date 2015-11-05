@@ -14,7 +14,7 @@ namespace Rendering
 			~TextureLoader();
 
 			unsigned int loadTexture(const std::string& filename, unsigned int width, unsigned int height);
-			unsigned int TextureLoader::loadCubemapTexture(const std::string& filename, unsigned int width, unsigned int height);
+            unsigned int loadCubemapTexture(const std::string& filename, unsigned int width, unsigned int height);
 
 		private:
 			void loadBMPFile(const std::string& filename, unsigned int& width, unsigned int& height, unsigned char*& data);

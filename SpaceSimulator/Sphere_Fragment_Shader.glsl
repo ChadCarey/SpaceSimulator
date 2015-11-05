@@ -1,10 +1,11 @@
 #version 420 core
 
-layout(location = 0) out vec4 out_color;
-uniform samplerCube Texture0;
-in vec3 texcoord;
+in vec3 textureDir; // Direction vector representing a 3D texture coordinate
+uniform samplerCube cubemap;  // Cubemap texture sampler
 
-void main(void)
-{
-	out_color = texture(Texture0, texcoord);
-}
+layout(location = 0) out vec4 color;
+
+void main()
+{             
+    color = texture(cubemap, textureDir);
+}  
