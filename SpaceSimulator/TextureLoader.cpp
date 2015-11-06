@@ -1,6 +1,9 @@
 #include "TextureLoader.h"
 using namespace Rendering;
 
+// these are the files that the loadCubemapTexture method is expecting
+const std::string cubemapFiles[] = { "px.bmp", "nx.bmp", "py.bmp", "ny.bmp", "pz.bmp", "nz.bmp" };
+
 TextureLoader::TextureLoader() {}
 
 TextureLoader::~TextureLoader() {}
@@ -42,51 +45,36 @@ unsigned int TextureLoader::loadTexture(const std::string& filename, unsigned in
 	return gl_texture_object;
 }
 
+/*
+* This will load a cubemap from the specified folder
+* NOTE: this method will be looking for the following files in the folder
+* "px.bmp", "nx.bmp", "py.bmp", "ny.bmp", "pz.bmp", "nz.bmp"
+* all file must be found and be 24 bit bmps
+*/
+unsigned int TextureLoader::loadCubemapTexture(const std::string& folderName, unsigned int size)
+{    
+    //create the OpenGL texture
+    unsigned int gl_texture_object;
+    glGenTextures(1, &gl_texture_object);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, gl_texture_object);
 
-unsigned int TextureLoader::loadCubemapTexture(const std::string& filename, unsigned int width, unsigned int height)
-{
-	unsigned char* data1;
-    
-	// the cubemap takes a square image, so we will just cut it down to a square
-	unsigned int size = (width < height) ? width : height;
-	loadBMPFile(filename, size, size, data1);
-    unsigned char* data2 = data1;
-    unsigned char* data3 = data1;
-    unsigned char* data4 = data1;
-    unsigned char* data5 = data1;
-    unsigned char* data6 = data1;
-    
-	//create the OpenGL texture
-	unsigned int gl_texture_object;
-	glGenTextures(1, &gl_texture_object);
-	
-
-	// filtering
-	glBindTexture(GL_TEXTURE_CUBE_MAP, gl_texture_object);
-
-    // Define the 6 faces, for now they all take the same image
-	
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data1);
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data2);
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data3);
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data4);
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data5);
-    glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data6);
-
+    // the cubemap takes a square image, so we will just cut it down to a square
+	//unsigned int size = (width < height) ? width : height;
+    for (int i = 0; i < 6; ++i)
+    {
+        unsigned char* data;
+        std::string filename = folderName + cubemapFiles[i];
+        std::cout << filename << std::endl;
+        loadBMPFile(filename, size, size, data);
+        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X+i, 0, GL_RGB, size, size, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+        delete data;
+    }
 
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-
-	//eliminates the array from the RAM
-	delete data1;
-    //delete data2;
-    //delete data3;
-    //delete data4;
-    //delete data5;
-    //delete data6;
 
 	//creates the mipmap hierarchy
 	glGenerateMipmap(GL_TEXTURE_2D);

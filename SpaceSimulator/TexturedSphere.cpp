@@ -4,16 +4,22 @@ using namespace Rendering;
 
 #define VERTEX_SHADER "Sphere_Vertex_Shader.glsl"
 #define FRAGMENT_SHADER "Sphere_Fragment_Shader.glsl"
-#define TEXTURE "earthS.bmp"
-#define TRIANGLE_SPLITS 4
-#define TEXTURE_WIDTH 256
-#define TEXTURE_HEIGHT 256
+#define TEXTURE_FOLDER "earthTextures/"
+#define TRIANGLE_SPLITS 3
+#define TEXTURE_SIZE 80
 
 TexturedSphere::TexturedSphere(float scale) : Model()
 {
 	this->setProgram(shaderManager->createProgram(VERTEX_SHADER, FRAGMENT_SHADER));
 	create(scale);
-	this->setTexture(TEXTURE, TEXTURE_HEIGHT, TEXTURE_WIDTH);
+	this->setCubeTexture(TEXTURE_FOLDER, TEXTURE_SIZE);
+}
+
+TexturedSphere::TexturedSphere(float scale, const std::string& textureFolder, int size) : Model()
+{
+    this->setProgram(shaderManager->createProgram(VERTEX_SHADER, FRAGMENT_SHADER));
+    create(scale);
+    this->setCubeTexture(textureFolder, size);
 }
 
 TexturedSphere::~TexturedSphere() {}
@@ -135,15 +141,15 @@ void TexturedSphere::draw(const glm::mat4& projection_matrix, const glm::mat4& v
     
 }
 
-void TexturedSphere::setTexture(std::string textureFileName, int height, int width)
+void TexturedSphere::setCubeTexture(const std::string& texturesFolder, int size)
 {
-	GLuint texture = this->textureLoader.loadCubemapTexture(textureFileName, width, height);
+	GLuint texture = this->textureLoader.loadCubemapTexture(texturesFolder, size);
 	if (texture != 0)
 	{
-		textures[textureFileName] = texture;
+		textures[texturesFolder] = texture;
 	}
     
-	this->currentTexture = textureFileName;
+    this->currentTexture = texturesFolder;
 }
 
 void TexturedSphere::splitTriangle(VertexFormat& pointOne, VertexFormat& pointTwo, VertexFormat& pointThree, std::vector<VertexFormat>& output)

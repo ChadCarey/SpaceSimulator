@@ -9,9 +9,12 @@ out vec3 textureDir;
 
 void main()
 {
-    //vec3 final_position = in_position + position;
+    vec3 final_position;
+    final_position.x = in_position.x + position.x;
+    final_position.y = in_position.y + position.y;
+    final_position.z = in_position.z + position.z;
 
-    gl_Position = projection * view * vec4(in_position, 1.0);
+    gl_Position = projection * view * vec4(final_position, 1.0);
 
     textureDir = in_position;
 }  
