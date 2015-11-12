@@ -44,7 +44,7 @@ namespace Rendering
 		void move(float x, float y, float z);
 
 	protected:
-		std::map<std::string, GLuint> textures;
+		static std::map<std::string, GLuint> textures;
 		GLuint vao;
 		GLuint program;
 		std::vector<GLuint> vbos;

@@ -12,7 +12,6 @@ c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulato
 c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\debug\planetmanager.obj
 c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\debug\pvector3.obj
 c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\debug\simpleline.obj
-c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\debug\spacelistener.obj
 c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\debug\spacesimulator.obj
 c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\debug\texturedsphere.obj
 c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\debug\texturedtetra.obj
@@ -22,6 +21,7 @@ c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulato
 c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\debug\textureloader.obj
 c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\debug\cameramanager.obj
 c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\debug\engine.obj
+c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\debug\spacelistener.obj
 c:\users\chad\documents\visual studio 2013\projects\spacesimulator\debug\spacesimulator.ilk
 c:\users\chad\documents\visual studio 2013\projects\spacesimulator\debug\spacesimulator.exe
 c:\users\chad\documents\visual studio 2013\projects\spacesimulator\debug\spacesimulator.pdb

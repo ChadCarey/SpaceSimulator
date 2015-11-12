@@ -6,6 +6,8 @@ TextureLoader Model::textureLoader;
 Managers::ShaderManager* Model::shaderManager = NULL;
 long long int Model::modelCount = 0;
 
+std::map<std::string, GLuint> Model::textures;
+
 Model::Model() 
 {
 	if (shaderManager == NULL)
@@ -44,7 +46,15 @@ const std::vector<GLuint>& Model::getVbos() const
 
 const GLuint Model::getTexture(std::string textureName) const
 {
-	return textures.at(textureName);
+    if (textures.find(textureName) != textures.end())
+    {
+        return textures.at(textureName);
+    }
+    else
+    {
+        std::cout << "texture not found\n";
+        return 0;
+    }
 }
 
 void Model::setTexture(std::string textureFileName, int height, int width)

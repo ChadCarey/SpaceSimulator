@@ -143,12 +143,16 @@ void TexturedSphere::draw(const glm::mat4& projection_matrix, const glm::mat4& v
 
 void TexturedSphere::setCubeTexture(const std::string& texturesFolder, int size)
 {
-	GLuint texture = this->textureLoader.loadCubemapTexture(texturesFolder, size);
-	if (texture != 0)
-	{
-		textures[texturesFolder] = texture;
-	}
-    
+    GLuint texture = this->getTexture(texturesFolder);
+    // if the texture == 0 then it is not found, create it
+    if (texture == 0)
+    {
+        texture = this->textureLoader.loadCubemapTexture(texturesFolder, size);
+        if (texture != 0)
+        {
+            textures[texturesFolder] = texture;
+        }
+    }
     this->currentTexture = texturesFolder;
 }
 

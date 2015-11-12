@@ -1,26 +1,11 @@
-﻿Build started 11/11/2015 3:12:16 PM.
+﻿Build started 11/11/2015 5:57:49 PM.
      1>Project "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\SpaceSimulator\SpaceSimulator.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\glm.0.9.6.3\build\native\../..//build/native/include/" /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SpaceListener.cpp
-         SpaceListener.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\glm.0.9.6.3\build\native\../..//build/native/include/" /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Model.cpp
+         Model.cpp
      1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(22): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(26): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(30): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(34): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(38): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(42): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(47): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(51): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(55): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(59): warning C4244: 'argument' : conversion from 'double' to 'long', possible loss of data
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(158): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(161): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(164): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(167): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(170): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(173): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\spacelistener.cpp(199): warning C4244: 'argument' : conversion from 'float' to 'long', possible loss of data
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\model.cpp(88): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\model.cpp(136): warning C4305: 'initializing' : truncation from 'double' to 'float'
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.exe" /INCREMENTAL /NOLOGO "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glew32.lib" "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glfw3dll.lib" "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\freeglut.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.lib" /MACHINE:X86 Debug\SpaceSimulator.res
          Debug\CameraManager.obj
@@ -50,4 +35,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.55
+Time Elapsed 00:00:01.95
