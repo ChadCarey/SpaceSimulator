@@ -9,9 +9,8 @@
 #define PROJECTILE_SPEED 0.2f
 #define PROJECTILE_MASS 0.7f
 #define PROJECTILE_SIZE 4.0f
-#define PROJECTILE_TEXTURE "energy.bmp"
-#define PROJECTILE_TEXTURE_HEIGHT 200
-#define PROJECTILE_TEXTURE_WIDTH 300
+#define PROJECTILE_TEXTURE_FOLDER "energyTextures/"
+#define PROJECTILE_TEXTURE_SIZE 256
 
 #define MOUSE_PRIMARY 0
 #define MOUSE_DOWN 0
@@ -20,63 +19,46 @@
 SpaceListener::SpaceListener()
 {
 	// Sun
-	Planet* sun = new Planet(SUN_SIZE, SUN_MASS, 
-		EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
-		//SUN_TEXTURE, SUN_TEXTURE_HEIGHT, SUN_TEXTURE_WIDTH);
+    Planet* sun = new Planet(SUN_SIZE, SUN_MASS, SUN_TEXTURE_FOLDER, SUN_TEXTURE_SIZE);
 	sun->setPosition(SUN_STARTING_X, SUN_STARTING_Y, SUN_STARTING_Z);
-
+    
 	// Mercury
-	Planet* mercury = new Planet(MERCURY_SIZE, MERCURY_MASS,
-		EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
-		//MERCURY_TEXTURE, MERCURY_TEXTURE_HEIGHT, MERCURY_TEXTURE_WIDTH);
+	Planet* mercury = new Planet(MERCURY_SIZE, MERCURY_MASS, MERCURY_TEXTURE_FOLDER, MERCURY_TEXTURE_SIZE);
 	sun->addNewOrbiter(mercury, MERCURY_DISTANCE_FROM_SUN);
-
+   
 	// Venus
-	Planet* venus = new Planet(VENUS_SIZE, VENUS_MASS,
-		EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
-		//VENUS_TEXTURE, VENUS_TEXTURE_HEIGHT, VENUS_TEXTURE_WIDTH);
+	Planet* venus = new Planet(VENUS_SIZE, VENUS_MASS, VENUS_TEXTURE_FOLDER, VENUS_TEXTURE_SIZE);
 	sun->addNewOrbiter(venus, VENUS_DISTANCE_FROM_SUN);
 
 	// Earth
-	Planet* earth = new Planet(EARTH_SIZE, EARTH_MASS, 
-		EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
+	Planet* earth = new Planet(EARTH_SIZE, EARTH_MASS, EARTH_TEXTURE_FOLDER, EARTH_TEXTURE_SIZE);
 	sun->addNewOrbiter(earth, EARTH_DISTANCE_FROM_SUN);
-	// Earth's moon
-	Planet* moon = new Planet(MOON_SIZE, MOON_MASS,
-		EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
-		//MOON_TEXTURE, MOON_TEXTURE_HEIGHT, MOON_TEXTURE_WIDTH);
+    
+    // Earth's moon
+	Planet* moon = new Planet(MOON_SIZE, MOON_MASS, MOON_TEXTURE_FOLDER, MOON_TEXTURE_SIZE);
 	earth->addNewOrbiter(moon, MOON_DISTANCE_FROM_EARTH);
-	
+    
 	// mars
-	Planet* mars = new Planet(MARS_SIZE, MARS_MASS,
-		EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
-		//MARS_TEXTURE, MARS_TEXTURE_HEIGHT, MARS_TEXTURE_WIDTH);
+	Planet* mars = new Planet(MARS_SIZE, MARS_MASS, MARS_TEXTURE_FOLDER, MARS_TEXTURE_SIZE);
 	sun->addNewOrbiter(mars, MARS_DISTANCE_FROM_SUN);
-
+    
+    
 	// Jupiter
-	Planet* jupiter = new Planet(JUPITER_SIZE, JUPITER_MASS,
-		EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
-		//JUPITER_TEXTURE, JUPITER_TEXTURE_HEIGHT, JUPITER_TEXTURE_WIDTH);
+	Planet* jupiter = new Planet(JUPITER_SIZE, JUPITER_MASS, JUPITER_TEXTURE_FOLDER, JUPITER_TEXTURE_SIZE);
 	sun->addNewOrbiter(jupiter, JUPITER_DISTANCE_FROM_SUN);
-
+    
 	// Saturn
-	Planet* saturn = new Planet(SATURN_SIZE, SATURN_MASS,
-		EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
-		//SATURN_TEXTURE, SATURN_TEXTURE_HEIGHT, SATURN_TEXTURE_WIDTH);
+	Planet* saturn = new Planet(SATURN_SIZE, SATURN_MASS, SATURN_TEXTURE_FOLDER, SATURN_TEXTURE_SIZE);
 	sun->addNewOrbiter(saturn, SATURN_DISTANCE_FROM_SUN);
 
 	// uranus
-	Planet* uranus = new Planet(URANUS_SIZE, URANUS_MASS,
-		EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
-		//URANUS_TEXTURE, URANUS_TEXTURE_HEIGHT, URANUS_TEXTURE_WIDTH);
+	Planet* uranus = new Planet(URANUS_SIZE, URANUS_MASS, URANUS_TEXTURE_FOLDER, URANUS_TEXTURE_SIZE);
 	sun->addNewOrbiter(uranus, URANUS_DISTANCE_FROM_SUN);
 
 	// neptune
-	Planet* neptune = new Planet(NEPTUNE_SIZE, NEPTUNE_MASS,
-		EARTH_TEXTURE, EARTH_TEXTURE_HEIGHT, EARTH_TEXTURE_WIDTH);
-		//NEPTUNE_TEXTURE, NEPTUNE_TEXTURE_HEIGHT, NEPTUNE_TEXTURE_WIDTH);
+	Planet* neptune = new Planet(NEPTUNE_SIZE, NEPTUNE_MASS, NEPTUNE_TEXTURE_FOLDER, NEPTUNE_TEXTURE_SIZE);
 	sun->addNewOrbiter(neptune, NEPTUNE_DISTANCE_FROM_SUN);
-
+    
 	// add the created system to the PlanetManager
 	solarSystem.push_back(sun);
 
@@ -210,11 +192,11 @@ void SpaceListener::fire()
 	glm::vec3 pos = cameraManager.getCameraPosition();
 	glm::vec3 dir = cameraManager.getForwardVector() * PROJECTILE_SPEED;
 	// move it forwad so it doesn't spawn on top of us
-	pos.x += dir.x * 15.0;
-	pos.y += dir.y * 15.0;
-	pos.z += dir.z * 15.0;
-	Planet* projectile = new Planet(PROJECTILE_SIZE, PROJECTILE_MASS,
-		PROJECTILE_TEXTURE, PROJECTILE_TEXTURE_HEIGHT, PROJECTILE_TEXTURE_WIDTH);
+    float scale = PROJECTILE_SIZE * 6;
+    pos.x += dir.x * scale;
+    pos.y += dir.y * scale;
+    pos.z += dir.z * scale;
+	Planet* projectile = new Planet(PROJECTILE_SIZE, PROJECTILE_MASS, PROJECTILE_TEXTURE_FOLDER, PROJECTILE_TEXTURE_SIZE);
 	projectile->setPPosition(pos.x, pos.y, pos.z);
 	projectile->setMovementVector(dir.x, dir.y, dir.z);
 	this->solarSystem.push_back(projectile);

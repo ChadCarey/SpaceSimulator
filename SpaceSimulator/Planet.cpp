@@ -2,9 +2,8 @@
 #include "Physics.h"
 using namespace glm;
 
-Planet::Planet(long size, long double mass, std::string textureFileName, int textureHeight, int textureWidth) : TexturedSphere(size)
+Planet::Planet(long size, long double mass, const std::string& textureFolder, int textureSize) : TexturedSphere(size, textureFolder, textureSize)
 {
-	this->setTexture(textureFileName, textureHeight, textureWidth);
 	this->setMovementVector(0, 0, 0);
 	this->mass = mass;
 }
