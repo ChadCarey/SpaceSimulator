@@ -1,38 +1,9 @@
-﻿Build started 11/11/2015 5:57:49 PM.
+﻿Build started 11/12/2015 10:23:05 AM.
      1>Project "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\SpaceSimulator\SpaceSimulator.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\glm.0.9.6.3\build\native\../..//build/native/include/" /I"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/include/" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Model.cpp
-         Model.cpp
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\shadermanager.h(22): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\model.cpp(88): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>c:\users\chad\documents\visual studio 2013\projects\spacesimulator\spacesimulator\model.cpp(136): warning C4305: 'initializing' : truncation from 'double' to 'float'
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.exe" /INCREMENTAL /NOLOGO "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glew32.lib" "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\glfw3dll.lib" "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\packages\nupengl.core.0.0.0.1\build\native\../..//build/native/lib/Win32\v120\freeglut.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.lib" /MACHINE:X86 Debug\SpaceSimulator.res
-         Debug\CameraManager.obj
-         Debug\Engine.obj
-         Debug\EngineTest.obj
-         Debug\InitGlew.obj
-         Debug\InitGlut.obj
-         Debug\ISceneListener.obj
-         Debug\main.obj
-         Debug\Model.obj
-         Debug\ModelsManager.obj
-         Debug\Physics.obj
-         Debug\Planet.obj
-         Debug\PlanetManager.obj
-         Debug\PVector3.obj
-         Debug\SimpleLine.obj
-         Debug\SpaceListener.obj
-         Debug\SpaceSimulator.obj
-         Debug\TexturedSphere.obj
-         Debug\TexturedTetra.obj
-         Debug\TSceneListener.obj
-         Debug\ShaderManager.obj
-         Debug\TexturedCube.obj
-         Debug\TextureLoader.obj
+     1>Link:
          SpaceSimulator.vcxproj -> C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\Debug\SpaceSimulator.exe
      1>Done Building Project "C:\Users\Chad\documents\visual studio 2013\Projects\SpaceSimulator\SpaceSimulator\SpaceSimulator.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.95
+Time Elapsed 00:00:00.10

@@ -25,6 +25,7 @@
     <ClCompile Include="PlanetManager.cpp" />
     <ClCompile Include="PVector3.cpp" />
     <ClCompile Include="SimpleLine.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SpaceListener.cpp" />
     <ClCompile Include="SpaceSimulator.cpp" />
     <ClCompile Include="TexturedSphere.cpp" />
@@ -61,6 +62,7 @@
     <ClInclude Include="InitGlut.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelsManager.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="SpaceListener.h" />
     <ClInclude Include="TexturedSphere.h" />
     <ClInclude Include="TexturedTetra.h" />

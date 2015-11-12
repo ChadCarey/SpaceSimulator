@@ -52,7 +52,7 @@ const GLuint Model::getTexture(std::string textureName) const
     }
     else
     {
-        std::cout << "texture not found\n";
+        std::cout << "Texture not yet found. Generating texture.\n";
         return 0;
     }
 }

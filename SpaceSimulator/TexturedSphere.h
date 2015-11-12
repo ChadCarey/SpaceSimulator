@@ -23,6 +23,7 @@ namespace Rendering
             void setCubeTexture(const std::string& texturesFolder, int textureSize);
 
 		private:
+            static std::vector<VertexFormat> unitVertices;
 			void splitTriangle(VertexFormat& pointOne, VertexFormat& pointTwo, VertexFormat& pointThree, std::vector<VertexFormat>& output);
 			void splitTetra(std::vector<VertexFormat>& vertices);
 			void normalizeVertices(std::vector<VertexFormat>& vertices);

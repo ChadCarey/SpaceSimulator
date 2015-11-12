@@ -25,6 +25,7 @@ namespace Rendering
 		glm::vec3 getRotation();
 		Managers::ShaderManager* getShaderManager();
 		TextureLoader getTextureLoader();
+        float getSize() { return size; }
 
 
 		// SETTERS
@@ -52,6 +53,7 @@ namespace Rendering
 		glm::vec3 rotation;
 		static TextureLoader textureLoader;
 		static Managers::ShaderManager* shaderManager;
+        float size;
 
 	private:
 		virtual void destroy();

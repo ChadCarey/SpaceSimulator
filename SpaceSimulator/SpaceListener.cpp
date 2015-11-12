@@ -18,6 +18,9 @@
 
 SpaceListener::SpaceListener()
 {
+    // skybox
+    skybox = new Skybox();
+
 	// Sun
     Planet* sun = new Planet(SUN_SIZE, SUN_MASS, SUN_TEXTURE_FOLDER, SUN_TEXTURE_SIZE);
 	sun->setPosition(SUN_STARTING_X, SUN_STARTING_Y, SUN_STARTING_Z);
@@ -41,24 +44,29 @@ SpaceListener::SpaceListener()
 	// mars
 	Planet* mars = new Planet(MARS_SIZE, MARS_MASS, MARS_TEXTURE_FOLDER, MARS_TEXTURE_SIZE);
 	sun->addNewOrbiter(mars, MARS_DISTANCE_FROM_SUN);
-    
+    this->addMoons(mars, MARS_MOONS);
     
 	// Jupiter
 	Planet* jupiter = new Planet(JUPITER_SIZE, JUPITER_MASS, JUPITER_TEXTURE_FOLDER, JUPITER_TEXTURE_SIZE);
 	sun->addNewOrbiter(jupiter, JUPITER_DISTANCE_FROM_SUN);
+    this->addMoons(jupiter, JUPITER_MOONS);
+    this->addMoons(jupiter, JUPITER_MOONS);
     
 	// Saturn
 	Planet* saturn = new Planet(SATURN_SIZE, SATURN_MASS, SATURN_TEXTURE_FOLDER, SATURN_TEXTURE_SIZE);
 	sun->addNewOrbiter(saturn, SATURN_DISTANCE_FROM_SUN);
+    this->addMoons(saturn, SATURN_MOONS);
 
 	// uranus
 	Planet* uranus = new Planet(URANUS_SIZE, URANUS_MASS, URANUS_TEXTURE_FOLDER, URANUS_TEXTURE_SIZE);
 	sun->addNewOrbiter(uranus, URANUS_DISTANCE_FROM_SUN);
+    this->addMoons(uranus, URANUS_MOONS);
 
 	// neptune
 	Planet* neptune = new Planet(NEPTUNE_SIZE, NEPTUNE_MASS, NEPTUNE_TEXTURE_FOLDER, NEPTUNE_TEXTURE_SIZE);
 	sun->addNewOrbiter(neptune, NEPTUNE_DISTANCE_FROM_SUN);
-    
+    this->addMoons(neptune, NEPTUNE_MOONS);
+
 	// add the created system to the PlanetManager
 	solarSystem.push_back(sun);
 
@@ -71,11 +79,25 @@ SpaceListener::SpaceListener()
 
 SpaceListener::~SpaceListener()
 {
+    delete skybox;
 	// will delete all of the solar system's planets and all of each planet's children as well
 	for (auto p : solarSystem)
 	{
 		delete p;
 	}
+}
+
+void SpaceListener::addMoons(Planet* p, int numMoons)
+{
+    double startingdistance = p->getSize()+ DEFAULT_MOON_DISTANCE;
+
+    for (int i = 0; i < numMoons; ++i)
+    {
+        std::cout << "Adding moon " << i+1 << " of " << numMoons << std::endl;
+        Planet* m = new Planet(DEFAULT_MOON_SIZE, DEFAULT_MOON_MASS, DEFAULT_MOON_TEXTURE_FOLDER, DEFAULT_MOON_TEXTURE_SIZE);
+        p->addNewOrbiter(m, startingdistance);
+        startingdistance += DEFAULT_MOON_DISTANCE;
+    }
 }
 
 void SpaceListener::beginFrameCallback()
@@ -86,6 +108,12 @@ void SpaceListener::beginFrameCallback()
 
 void SpaceListener::drawFrameCallback()
 {
+    // set the skybox possition and draw it
+    glm::mat4 viewMat = cameraManager.getViewMatrix();
+    skybox->setPosition(this->cameraManager.getCameraPosition());
+    skybox->draw(projectionMatrix, viewMat);
+
+    // draw the rest
 	solarSystem.draw(projectionMatrix, cameraManager.getViewMatrix());
 }
 
