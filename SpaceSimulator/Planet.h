@@ -13,7 +13,7 @@ class Planet : public Rendering::TexturedSphere
 {
 public:
 	// constructors
-	Planet(long size, long double mass, std::string textureFileName, int textureHeight, int textureWidth);
+    Planet(long size, long double mass, const std::string& textureFolder, int textureSize);
 	~Planet();
 
 	// getters

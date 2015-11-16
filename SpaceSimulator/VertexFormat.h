@@ -14,14 +14,25 @@ namespace Rendering
 		{
 			position = pos;
 			color = iColor;
-			texture.x = texture.y = 0;
+			texture.x = 0;
+			texture.y = 0;
 		}
 
 		VertexFormat(const glm::vec3 &iPos, const glm::vec2 &iTexture)
 		{
 			position = iPos;
 			texture = iTexture;
+			color.r = 0; 
+			color.g = 0;
+			color.b = 0;
+			color.a = 0;
+		}
+
+		VertexFormat(const glm::vec3 &iPos)
+		{
+			position = iPos;
 			color.r = color.g = color.b = color.a = 0;
+			texture.x = texture.y = 0;
 		}
 
 		VertexFormat(const VertexFormat& copy)

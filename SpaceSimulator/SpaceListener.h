@@ -1,6 +1,7 @@
 #pragma once
 #include "ISceneListener.h"
 #include "Planet.h"
+#include "Skybox.h"
 #include "PlanetManager.h"
 
 class SpaceListener : public GraphicsEngine::EngineInterface::ISceneListener
@@ -22,6 +23,8 @@ public:
 	virtual void keyboardReleaseCallback(const unsigned char& letter, const int& a, const int& b) override;
 private:
 	PlanetManager solarSystem;
+    Skybox* skybox;
 	bool paused;
 	void fire();
+    void addMoons(Planet* p, int numMoons);
 };

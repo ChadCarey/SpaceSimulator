@@ -78,12 +78,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="InitGlew.cpp">
-      <Filter>Source Files\Engine\Init</Filter>
-    </ClCompile>
-    <ClCompile Include="InitGlut.cpp">
-      <Filter>Source Files\Engine\Init</Filter>
-    </ClCompile>
     <ClCompile Include="CameraManager.cpp">
       <Filter>Source Files\Engine\Managers</Filter>
     </ClCompile>
@@ -144,6 +138,9 @@
     <ClCompile Include="PlanetManager.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -162,12 +159,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FrameBufferInfo.h">
-      <Filter>Header Files\Engine\Init</Filter>
-    </ClInclude>
-    <ClInclude Include="InitGlew.h">
-      <Filter>Header Files\Engine\Init</Filter>
-    </ClInclude>
-    <ClInclude Include="InitGlut.h">
       <Filter>Header Files\Engine\Init</Filter>
     </ClInclude>
     <ClInclude Include="ContextInfo.h">
@@ -246,6 +237,9 @@
       <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="PlanetManager.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
   </ItemGroup>

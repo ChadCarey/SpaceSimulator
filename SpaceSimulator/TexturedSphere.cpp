@@ -4,16 +4,28 @@ using namespace Rendering;
 
 #define VERTEX_SHADER "Sphere_Vertex_Shader.glsl"
 #define FRAGMENT_SHADER "Sphere_Fragment_Shader.glsl"
-#define TEXTURE "earth.bmp"
+
+#define TEXTURE_FOLDER "earthTextures/"
 #define TRIANGLE_SPLITS 4
-#define TEXTURE_WIDTH 300
-#define TEXTURE_HEIGHT 150
+#define TEXTURE_SIZE 80
+
+
+std::vector<VertexFormat> TexturedSphere::unitVertices;
 
 TexturedSphere::TexturedSphere(float scale) : Model()
 {
 	this->setProgram(shaderManager->createProgram(VERTEX_SHADER, FRAGMENT_SHADER));
 	create(scale);
-	this->setTexture(TEXTURE, TEXTURE_HEIGHT, TEXTURE_WIDTH);
+	this->setCubeTexture(TEXTURE_FOLDER, TEXTURE_SIZE);
+    this->size = scale;
+}
+
+TexturedSphere::TexturedSphere(float scale, const std::string& textureFolder, int size) : Model()
+{
+    this->setProgram(shaderManager->createProgram(VERTEX_SHADER, FRAGMENT_SHADER));
+    create(scale);
+    this->setCubeTexture(textureFolder, size);
+    this->size = scale;
 }
 
 TexturedSphere::~TexturedSphere() {}
@@ -29,42 +41,6 @@ void TexturedSphere::create(float scale)
 
 	std::vector<VertexFormat> vertices;
 
-	// Build tetrahedron
-	glm::vec3 shiftVector(0.3333, 0.3333, 0.3333);
-
-
-	// side 1
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0) + shiftVector, glm::vec2(0.5, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0) + shiftVector, glm::vec2(1, 0.5)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0) + shiftVector, glm::vec2(0, 0.5)));
-	
-	// side 2
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0) + shiftVector, glm::vec2(0.5, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0) + shiftVector, glm::vec2(0, 0.5)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0) + shiftVector, glm::vec2(1, 0.5)));
-
-	// side 3
-	vertices.push_back(VertexFormat(glm::vec3(1.0, 1.0, 1.0) + shiftVector, glm::vec2(0.5, 1)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0) + shiftVector, glm::vec2(1, 0.5)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0) + shiftVector, glm::vec2(0, 0.5)));
-
-	// side 4
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec2(0.5, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0) + shiftVector, glm::vec2(1, 0.5)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0) + shiftVector, glm::vec2(0, 0.5)));
-
-	// side 5
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec2(0.5, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, 1.0) + shiftVector, glm::vec2(0, 0.5)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0) + shiftVector, glm::vec2(1, 0.5)));
-
-	// side 6
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, -1.0, -1.0), glm::vec2(0.5, 0)));
-	vertices.push_back(VertexFormat(glm::vec3(-1.0, 1.0, -1.0) + shiftVector, glm::vec2(1, 0.5)));
-	vertices.push_back(VertexFormat(glm::vec3(1.0, -1.0, -1.0) + shiftVector, glm::vec2(0, 0.5)));
-	
-	
-
 	for (int i = 0; i < TRIANGLE_SPLITS; ++i)
 	{
 		splitTetra(vertices);
@@ -72,6 +48,79 @@ void TexturedSphere::create(float scale)
 	// normalize the verticies of the tetra to get a sphere
 	normalizeVertices(vertices);
 	// add a save sphere to texture method here later
+
+	// if the unit sphere is not built then build it.
+    if (unitVertices.empty())
+    {
+        std::cout << "Creating unitSphere\n";
+        // Build a cube
+        // front
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, 10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0)));
+
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, 10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0)));
+
+        // right
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, -10.0)));
+
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, -10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, 10.0)));
+
+        // back
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, -10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0)));
+
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, -10.0)));
+
+        // left
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, 10.0)));
+
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, 10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, -10.0)));
+
+        // upper
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, 10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, 10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0)));
+
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, 10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, 10.0, -10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, 10.0, -10.0)));
+
+        // bottom
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, -10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, -10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0)));
+
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, -10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(-10.0, -10.0, 10.0)));
+        unitVertices.push_back(VertexFormat(glm::vec3(10.0, -10.0, 10.0)));
+
+        for (int i = 0; i < TRIANGLE_SPLITS; ++i)
+        {
+            splitTetra(unitVertices);
+        }
+        // normalize the verticies of the tetra to get a sphere
+        normalizeVertices(unitVertices);
+    }
+
+    // copy the unit sphere to make the new sphere
+    for (auto vert : unitVertices)
+    {
+        vertices.push_back(vert);
+    }
 
 	// scale the sphere
 	this->scale(vertices, scale);
@@ -86,8 +135,6 @@ void TexturedSphere::create(float scale)
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)0);
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void*)(offsetof(VertexFormat, VertexFormat::texture)));
 	glBindVertexArray(0);
 	this->vao = vao;
 	this->vbos.push_back(vbo);
@@ -99,29 +146,34 @@ void TexturedSphere::draw(const glm::mat4& projection_matrix, const glm::mat4& v
 {
 
 	// tell openGL which shaderProgram we are using
+    
 	glUseProgram(program);
-	glBindVertexArray(vao);
-	
-	// set open gl to use this object's texture
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, this->getTexture(this->currentTexture));
-	unsigned int textureLocation = glGetUniformLocation(program, "texture1");
-	glUniform1i(textureLocation, 0);
 	
 	// pass in shaderVariables
-	glUniform3f(glGetUniformLocation(program, "rotation"), rotation.x, rotation.y, rotation.z);
 	glUniform3f(glGetUniformLocation(program, "position"), position.x, position.y, position.z);
-	glUniformMatrix4fv(glGetUniformLocation(program, "view_matrix"), 1, GLU_FALSE, &view_matrix[0][0]);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projection_matrix"), 1, false, &projection_matrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "view"), 1, GLU_FALSE, &view_matrix[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(program, "projection"), 1, false, &projection_matrix[0][0]);
 
-	// draw using triangles
-	glDrawArrays(GL_TRIANGLES, 0, numVerticies);
+    glActiveTexture(GL_TEXTURE0);
+    glBindVertexArray(this->vao);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, this->getTexture(this->currentTexture));
+    glDrawArrays(GL_TRIANGLES, 0, this->numVerticies);
+    
 }
 
-void TexturedSphere::setTexture(std::string textureFileName, int height, int width)
+void TexturedSphere::setCubeTexture(const std::string& texturesFolder, int size)
 {
-	this->Model::setTexture(textureFileName, height, width);
-	this->currentTexture = textureFileName;
+    GLuint texture = this->getTexture(texturesFolder);
+    // if the texture == 0 then it is not found, create it
+    if (texture == 0)
+    {
+        texture = this->textureLoader.loadCubemapTexture(texturesFolder, size);
+        if (texture != 0)
+        {
+            textures[texturesFolder] = texture;
+        }
+    }
+    this->currentTexture = texturesFolder;
 }
 
 void TexturedSphere::splitTriangle(VertexFormat& pointOne, VertexFormat& pointTwo, VertexFormat& pointThree, std::vector<VertexFormat>& output)
@@ -161,40 +213,6 @@ void TexturedSphere::splitTriangle(VertexFormat& pointOne, VertexFormat& pointTw
 	two.push_back(VertexFormat(center, pointThree.texture));
 	three.push_back(VertexFormat(center, pointOne.texture));
 	four.push_back(VertexFormat(center, pointTwo.texture));
-
-	// split up the textures
-	// triangle one
-	one[0].texture.x = pointOne.texture.x;
-	one[0].texture.y = pointOne.texture.y;
-	one[1].texture.x = (pointOne.texture.x + pointTwo.texture.x) / 2.0;
-	one[1].texture.y = (pointOne.texture.y + pointTwo.texture.y) / 2.0;
-	one[2].texture.x = (pointOne.texture.x + pointThree.texture.x) / 2.0;
-	one[2].texture.y = (pointOne.texture.y + pointThree.texture.y) / 2.0;
-
-	// triangle two
-	two[0].texture.x = pointTwo.texture.x;
-	two[0].texture.y = pointTwo.texture.y;
-	two[1].texture.x = one[1].texture.x;
-	two[1].texture.y = one[1].texture.y;
-	two[2].texture.x = (pointTwo.texture.x + pointThree.texture.x) / 2.0;
-	two[2].texture.y = (pointTwo.texture.y + pointThree.texture.y) / 2.0;
-
-	// triangle four
-	four[0].texture.x = one[1].texture.x;
-	four[0].texture.y = one[1].texture.y;
-	four[1].texture.x = one[2].texture.x;
-	four[1].texture.y = one[2].texture.y;
-	four[2].texture.x = two[2].texture.x;
-	four[2].texture.y = two[2].texture.y;
-
-	// triangle three
-	three[0].texture.x = pointThree.texture.x;
-	three[0].texture.y = pointThree.texture.y;
-	three[1].texture.x = four[1].texture.x;
-	three[1].texture.y = four[1].texture.y;
-	three[2].texture.x = four[2].texture.x;
-	three[2].texture.y = four[2].texture.y;
-
 
 	// add them all to the output std::vector
 	for (int i = 0; i < one.size(); ++i)

@@ -49,7 +49,7 @@ GLuint ShaderManager::createShader(GLenum shaderType, const std::string& source,
 	glCompileShader(shader);
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &compile_result);
 
-	//check for errors
+	// check for errors
 	if (compile_result == GL_FALSE)
 	{
 
@@ -71,7 +71,7 @@ GLuint ShaderManager::createProgram(const std::string& vertexShaderFilename, con
 	if (program != 0)
 		return program;
 
-	//read the shader files and save the code
+	// read the shader files and save the code
 	std::string vertex_shader_code = readShader(vertexShaderFilename.c_str());
 	std::string fragment_shader_code = readShader(fragmentShaderFilename.c_str());
 
@@ -79,14 +79,14 @@ GLuint ShaderManager::createProgram(const std::string& vertexShaderFilename, con
 	GLuint fragment_shader = createShader(GL_FRAGMENT_SHADER, fragment_shader_code, "fragment shader");
 
 	int link_result = 0;
-	//create the program handle, attatch the shaders and link it
+	// create the program handle, attatch the shaders and link it
 	program = glCreateProgram();
 	glAttachShader(program, vertex_shader);
 	glAttachShader(program, fragment_shader);
 
 	glLinkProgram(program);
 	glGetProgramiv(program, GL_LINK_STATUS, &link_result);
-	//check for link errors
+	// check for link errors
 	if (link_result == GL_FALSE)
 	{
 

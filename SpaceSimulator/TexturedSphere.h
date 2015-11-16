@@ -15,13 +15,15 @@ namespace Rendering
 		{
 		public:
 			TexturedSphere(float scale = 1);
+            TexturedSphere(float scale, const std::string& textureFolder, int size);
 			~TexturedSphere();
 
 			void create(float scale = 1);
 			virtual void draw(const glm::mat4& projection_matrix, const glm::mat4& view_matrix) override;
-			void setTexture(std::string textureFileName, int height, int width) override final;
-			
+            void setCubeTexture(const std::string& texturesFolder, int textureSize);
+
 		private:
+            static std::vector<VertexFormat> unitVertices;
 			void splitTriangle(VertexFormat& pointOne, VertexFormat& pointTwo, VertexFormat& pointThree, std::vector<VertexFormat>& output);
 			void splitTetra(std::vector<VertexFormat>& vertices);
 			void normalizeVertices(std::vector<VertexFormat>& vertices);

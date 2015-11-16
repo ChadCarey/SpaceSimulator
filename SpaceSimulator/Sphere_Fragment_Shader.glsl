@@ -1,11 +1,16 @@
 #version 420 core
-layout(location = 0) out vec4 out_color;
- 
-uniform sampler2D texture1;
- 
- in vec2 texcoord;
-void main(void)
+
+in vec3 textureDir; // Direction vector representing a 3D texture coordinate
+uniform samplerCube cubemap;  // Cubemap texture sampler
+
+layout(location = 0) out vec4 color;
+
+void main()
 {
-  vec4 color = texture(texture1, texcoord);
-  out_color = color;
-}
+    // the textures are mirrored and flipped so we will need to undo this
+    vec3 final_dir;
+    final_dir.x = -textureDir.x;
+    final_dir.y = -textureDir.y;
+    final_dir.z = textureDir.z;
+    color = texture(cubemap, final_dir);
+}  

@@ -25,23 +25,23 @@ TSceneListener::TSceneListener()
 	this->modelsManager.push_front(tetra);
 	tetra->setPosition(-10, 0, 0);
 
-	TexturedTetra* tetra2 = new TexturedTetra(1.5);
+	/*TexturedTetra* tetra2 = new TexturedTetra(1.5);
 	this->modelsManager.push_front(tetra2);
-	tetra2->setPosition(0, 0, 0);
+	tetra2->setPosition(0, 0, 0);*/
 
 	TexturedTetra* tetra3 = new TexturedTetra(2);
 	this->modelsManager.push_front(tetra3);
 	tetra3->setPosition(10, 0, 0);
 
 	// spheres
-	TexturedSphere* sphere = new TexturedSphere();
+/*	TexturedSphere* sphere = new TexturedSphere();
 	this->modelsManager.push_front(sphere);
 	sphere->setPosition(-10, -10, 0);
 
 	TexturedSphere* sphere2 = new TexturedSphere(1.5);
 	this->modelsManager.push_front(sphere2);
 	sphere2->setPosition(0, -10, 0);
-
+    */
 	TexturedSphere* sphere3 = new TexturedSphere(2);
 	this->modelsManager.push_front(sphere3);
 	sphere3->setPosition(10, -10, 0);

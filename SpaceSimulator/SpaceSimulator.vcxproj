@@ -14,8 +14,6 @@
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="EngineTest.cpp" />
-    <ClCompile Include="InitGlew.cpp" />
-    <ClCompile Include="InitGlut.cpp" />
     <ClCompile Include="ISceneListener.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -25,6 +23,7 @@
     <ClCompile Include="PlanetManager.cpp" />
     <ClCompile Include="PVector3.cpp" />
     <ClCompile Include="SimpleLine.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SpaceListener.cpp" />
     <ClCompile Include="SpaceSimulator.cpp" />
     <ClCompile Include="TexturedSphere.cpp" />
@@ -57,10 +56,9 @@
     <ClInclude Include="PlanetAtributes.h" />
     <ClInclude Include="Runnable.h" />
     <ClInclude Include="ISceneListener.h" />
-    <ClInclude Include="InitGlew.h" />
-    <ClInclude Include="InitGlut.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelsManager.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="SpaceListener.h" />
     <ClInclude Include="TexturedSphere.h" />
     <ClInclude Include="TexturedTetra.h" />
